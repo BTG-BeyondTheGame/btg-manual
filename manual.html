@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTG - Beyond The Game User Manual</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #f9fafb;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 60px;
+            background-color: #ffffff;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        .doc-header {
+            text-align: center;
+            padding-bottom: 40px;
+            border-bottom: 3px solid #2563eb;
+            margin-bottom: 50px;
+        }
+
+        .doc-header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #1e3a5f;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .doc-header .subtitle {
+            font-size: 1.3rem;
+            color: #64748b;
+            font-weight: 400;
+        }
+
+        .doc-header .version {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 30px 40px;
+            margin-bottom: 50px;
+        }
+
+        .toc h2 {
+            font-size: 1.4rem;
+            color: #1e3a5f;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .toc ol {
+            list-style: none;
+            counter-reset: toc-counter;
+        }
+
+        .toc > ol > li {
+            counter-increment: toc-counter;
+            margin-bottom: 8px;
+        }
+
+        .toc > ol > li > a::before {
+            content: counter(toc-counter) ". ";
+            font-weight: 600;
+            color: #2563eb;
+        }
+
+        .toc a {
+            color: #475569;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .toc a:hover {
+            color: #2563eb;
+        }
+
+        .toc .toc-subsection {
+            margin-left: 25px;
+            margin-top: 5px;
+            font-size: 0.95rem;
+        }
+
+        .toc .toc-subsection li {
+            margin-bottom: 4px;
+        }
+
+        /* Section Styles */
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #1e3a5f;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #2563eb;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 1.35rem;
+            color: #334155;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            color: #475569;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: #4b5563;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: #4b5563;
+        }
+
+        li strong {
+            color: #334155;
+        }
+
+        /* Feature Boxes */
+        .feature-box {
+            background-color: #f0f9ff;
+            border-left: 4px solid #2563eb;
+            padding: 20px 25px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .feature-box h4 {
+            margin-top: 0;
+            color: #1e40af;
+        }
+
+        /* Tip Boxes */
+        .tip {
+            background-color: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .tip::before {
+            content: "Tip: ";
+            font-weight: 600;
+            color: #16a34a;
+        }
+
+        /* Note Boxes */
+        .note {
+            background-color: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .note::before {
+            content: "Note: ";
+            font-weight: 600;
+            color: #d97706;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        tr:hover {
+            background-color: #f8fafc;
+        }
+
+        /* Code/UI Element References */
+        code {
+            background-color: #f1f5f9;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #7c3aed;
+        }
+
+        /* Keyboard Shortcuts */
+        kbd {
+            background-color: #f8fafc;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            font-size: 0.85em;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Steps */
+        .steps {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .steps li {
+            counter-increment: step-counter;
+            position: relative;
+            padding-left: 45px;
+            margin-bottom: 20px;
+        }
+
+        .steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .doc-footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background-color: white;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 25px;
+            }
+            .doc-header h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="doc-header">
+            <h1>Beyond The Game</h1>
+            <p class="subtitle">User Manual</p>
+            <p class="version">Version 1.0 | January 2026</p>
+        </header>
+
+        <nav class="toc">
+            <h2>Table of Contents</h2>
+            <ol>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#getting-started">Getting Started</a>
+                    <ul class="toc-subsection">
+                        <li><a href="#onboarding">Onboarding Process</a></li>
+                        <li><a href="#navigation">Navigating the App</a></li>
+                    </ul>
+                </li>
+                <li><a href="#goals-habits">Goals &amp; Habit Tracking</a>
+                    <ul class="toc-subsection">
+                        <li><a href="#creating-goals">Creating Goals</a></li>
+                        <li><a href="#goal-types">Goal Types</a></li>
+                        <li><a href="#tracking-habits">Tracking Your Habits</a></li>
+                        <li><a href="#streaks">Streaks &amp; Progress</a></li>
+                    </ul>
+                </li>
+                <li><a href="#poker-tracking">Poker Session Tracking</a>
+                    <ul class="toc-subsection">
+                        <li><a href="#logging-sessions">Logging Sessions</a></li>
+                        <li><a href="#session-details">Session Details</a></li>
+                        <li><a href="#poker-analytics">Poker Analytics</a></li>
+                    </ul>
+                </li>
+                <li><a href="#poker-events">Poker Events &amp; Series</a></li>
+                <li><a href="#analytics">Analytics &amp; Dashboards</a>
+                    <ul class="toc-subsection">
+                        <li><a href="#overview">Overview Dashboard</a></li>
+                        <li><a href="#leaderboards">Leaderboards</a></li>
+                    </ul>
+                </li>
+                <li><a href="#educational-content">Educational Content</a>
+                    <ul class="toc-subsection">
+                        <li><a href="#lectures">Lectures &amp; Videos</a></li>
+                        <li><a href="#questionnaires">Questionnaires</a></li>
+                    </ul>
+                </li>
+                <li><a href="#railbirds">Railbirds (Social Features)</a></li>
+                <li><a href="#notifications">Notifications</a></li>
+                <li><a href="#settings">Settings &amp; Preferences</a></li>
+                <li><a href="#admin">Admin Features</a></li>
+                <li><a href="#data-management">Data Management</a></li>
+            </ol>
+        </nav>
+
+        <!-- Section 1: Introduction -->
+        <section id="introduction">
+            <h2>1. Introduction</h2>
+            <p>
+                Welcome to <strong>Beyond The Game (BTG)</strong>, a comprehensive platform designed to help poker players
+                improve their game through disciplined habit tracking, session logging, educational content, and community engagement.
+            </p>
+            <p>
+                BTG combines personal development tools with poker-specific analytics to give you a complete picture of your
+                journey as a player. Whether you're tracking daily study habits, logging your live sessions, or following
+                other players' progress, BTG provides the tools you need to stay accountable and improve.
+            </p>
+            <div class="feature-box">
+                <h4>Key Features at a Glance</h4>
+                <ul>
+                    <li><strong>Goal &amp; Habit Tracking</strong> &ndash; Create and track daily, weekly, and monthly habits</li>
+                    <li><strong>Poker Session Logging</strong> &ndash; Record all your poker sessions with detailed analytics</li>
+                    <li><strong>Educational Content</strong> &ndash; Access lectures, videos, and questionnaires</li>
+                    <li><strong>Leaderboards</strong> &ndash; Compete with other players and track your ranking</li>
+                    <li><strong>Railbirds</strong> &ndash; Follow other players and support their journey</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 2: Getting Started -->
+        <section id="getting-started">
+            <h2>2. Getting Started</h2>
+
+            <h3 id="onboarding">Onboarding Process</h3>
+            <p>
+                When you first join BTG, you'll be guided through an onboarding process designed to help you get the most
+                out of the platform. The onboarding includes:
+            </p>
+            <ol class="steps">
+                <li><strong>Welcome &amp; Introduction</strong> &ndash; Learn about BTG's core features and philosophy</li>
+                <li><strong>Profile Setup</strong> &ndash; Configure your display name, photo, and team assignment</li>
+                <li><strong>Initial Goals</strong> &ndash; Select from recommended habits or create your own</li>
+                <li><strong>Preferences</strong> &ndash; Set your preferred currency, time format, and other settings</li>
+                <li><strong>Onboarding Lectures</strong> &ndash; Complete introductory educational content</li>
+            </ol>
+            <div class="tip">
+                Complete the onboarding process to unlock all features. Some content may be restricted until onboarding is finished.
+            </div>
+
+            <h3 id="navigation">Navigating the App</h3>
+            <p>
+                BTG uses a bottom navigation bar (on mobile) or sidebar (on desktop) to access the main sections:
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Section</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Home</strong></td>
+                        <td>Your daily habit tracking view and quick actions</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overview</strong></td>
+                        <td>Analytics dashboard with monthly summaries</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Poker</strong></td>
+                        <td>Session logging and poker statistics</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Learn</strong></td>
+                        <td>Educational content, lectures, and resources</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Leaderboard</strong></td>
+                        <td>Rankings and competitive standings</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Settings</strong></td>
+                        <td>Account preferences and configuration</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Section 3: Goals & Habits -->
+        <section id="goals-habits">
+            <h2>3. Goals &amp; Habit Tracking</h2>
+            <p>
+                The heart of BTG is its habit tracking system. By consistently tracking your daily activities, you build
+                the discipline necessary for long-term poker success.
+            </p>
+
+            <h3 id="creating-goals">Creating Goals</h3>
+            <p>To create a new goal:</p>
+            <ol class="steps">
+                <li>Navigate to the <strong>Home</strong> screen</li>
+                <li>Tap the <strong>+ Add Goal</strong> button</li>
+                <li>Choose a goal type (Yes/No, Quantitative, or Habit)</li>
+                <li>Fill in the goal details: name, description, category, and icon</li>
+                <li>Configure the frequency (daily, weekly, monthly)</li>
+                <li>Set point values and any additional options</li>
+                <li>Save your goal</li>
+            </ol>
+
+            <h3 id="goal-types">Goal Types</h3>
+
+            <h4>Yes/No Goals</h4>
+            <p>
+                Simple binary goals that you either complete or don't complete each day. Examples include
+                "Did I meditate today?" or "Did I review my hands?"
+            </p>
+
+            <h4>Quantitative Goals</h4>
+            <p>
+                Goals that track numeric values with customizable units. Perfect for tracking hours studied,
+                pages read, or hands played. You can set:
+            </p>
+            <ul>
+                <li><strong>Target Value</strong> &ndash; The number you aim to reach</li>
+                <li><strong>Unit</strong> &ndash; What you're measuring (hours, pages, hands, etc.)</li>
+                <li><strong>Step Increment</strong> &ndash; How much to add/subtract with each tap</li>
+            </ul>
+
+            <h4>Recurring Habits</h4>
+            <p>
+                Habits that accumulate over a period. For example, "Exercise 5 times per week" or
+                "Study 20 hours per month." These support:
+            </p>
+            <ul>
+                <li><strong>Weekly Accumulation</strong> &ndash; Track progress toward a weekly target</li>
+                <li><strong>Monthly Accumulation</strong> &ndash; Track progress toward a monthly target</li>
+                <li><strong>Custom Active Days</strong> &ndash; Specify which days of the week the habit applies</li>
+            </ul>
+
+            <h3 id="tracking-habits">Tracking Your Habits</h3>
+            <p>
+                Your daily habits appear on the Home screen. To track completion:
+            </p>
+            <ul>
+                <li><strong>Yes/No Goals:</strong> Tap the goal card to toggle completion (shows swipe animation)</li>
+                <li><strong>Quantitative Goals:</strong> Tap to open the input dialog</li>
+                <li><strong>Time-based Goals:</strong> Enter time in hours:minutes format</li>
+            </ul>
+
+            <h4>Quantitative Input Dialog</h4>
+            <p>When logging quantitative goals, a dialog appears with:</p>
+            <ul>
+                <li><strong>Minus button (-)</strong> &ndash; Decrease value by step amount</li>
+                <li><strong>Plus button (+)</strong> &ndash; Increase value by step amount</li>
+                <li><strong>Value display</strong> &ndash; Click to edit the number directly</li>
+                <li><strong>Progress bar</strong> &ndash; Shows current progress vs. weekly/monthly target</li>
+                <li><strong>Log button</strong> &ndash; Save the tracked value</li>
+            </ul>
+            <div class="tip">
+                You can reorganize your goals by dragging and dropping them into your preferred order.
+            </div>
+
+            <h3 id="streaks">Streaks &amp; Progress</h3>
+            <p>
+                BTG tracks your consistency through streaks. A streak counts how many consecutive days, weeks,
+                or months you've completed a goal. Streaks are displayed on each goal card and in the overview.
+            </p>
+            <p>
+                Visual indicators help you see your progress at a glance:
+            </p>
+            <ul>
+                <li><strong>Dots</strong> &ndash; Show completion status for each day of the current week</li>
+                <li><strong>Progress Bars</strong> &ndash; Display progress toward weekly/monthly targets</li>
+                <li><strong>Streak Counter</strong> &ndash; Shows your current consecutive completion streak</li>
+            </ul>
+        </section>
+
+        <!-- Section 4: Poker Tracking -->
+        <section id="poker-tracking">
+            <h2>4. Poker Session Tracking</h2>
+            <p>
+                Keep detailed records of every poker session to analyze your performance and identify trends over time.
+            </p>
+
+            <h3 id="logging-sessions">Logging Sessions</h3>
+            <p>To log a new poker session:</p>
+            <ol class="steps">
+                <li>On the Home screen, find the <strong>Poker Sessions</strong> section</li>
+                <li>Click the <strong>"Log Session"</strong> button (plus icon)</li>
+                <li>Select game type: <strong>Cash Game</strong>, <strong>Tournament</strong>, or <strong>Rakeback</strong></li>
+                <li>Choose game variants (NLH, PLO, etc.) from the autocomplete dropdown</li>
+                <li>Enter session details based on game type</li>
+                <li>Optionally rate your performance (Focus, Power, Discipline)</li>
+                <li>Add notes</li>
+                <li>Click <strong>"Log Session"</strong> to save</li>
+            </ol>
+            <div class="tip">
+                Click any existing session card to edit it. Use the <strong>"Delete Session"</strong> button (red) to remove a session.
+            </div>
+
+            <h3 id="session-details">Session Details</h3>
+            <p>Each session can include the following information:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Date &amp; Time</strong></td>
+                        <td>When the session took place</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Game Type</strong></td>
+                        <td>NLH, PLO, PLO5c, PLO6c, Short Deck, HORSE, etc.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stakes/Big Blind</strong></td>
+                        <td>The blind level played</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Buy-in</strong></td>
+                        <td>Total amount bought in for</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cash-out</strong></td>
+                        <td>Total amount cashed out</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hours Played</strong></td>
+                        <td>Session duration</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Currency</strong></td>
+                        <td>Currency used for the session</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Promotions/Rakeback</strong></td>
+                        <td>Any additional earnings from promotions</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Performance Ratings</strong></td>
+                        <td>Self-assessment of Focus, Power, and Discipline (1-5)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Notes</strong></td>
+                        <td>Free-form notes about the session</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 id="poker-analytics">Poker Analytics</h3>
+            <p>
+                BTG automatically calculates key statistics from your logged sessions:
+            </p>
+            <ul>
+                <li><strong>Total P&amp;L</strong> &ndash; Your overall profit or loss</li>
+                <li><strong>Hourly Rate</strong> &ndash; Average earnings per hour</li>
+                <li><strong>Session Count</strong> &ndash; Number of sessions played</li>
+                <li><strong>Hours Played</strong> &ndash; Total time at the tables</li>
+                <li><strong>Win Rate by Game Type</strong> &ndash; Performance breakdown by variant</li>
+            </ul>
+            <p>
+                View your statistics on a monthly basis or filter by date range, game type, and stakes.
+            </p>
+        </section>
+
+        <!-- Section 5: Poker Events -->
+        <section id="poker-events">
+            <h2>5. Poker Events &amp; Series</h2>
+            <p>
+                Track your participation in poker tournament series and special events.
+            </p>
+
+            <h3>Series Hub</h3>
+            <p>
+                The Series Hub displays all poker series. Each series card shows:
+            </p>
+            <ul>
+                <li><strong>Status badge</strong> &ndash; "Joined", "Not Interested", or "Available"</li>
+                <li>Series name and date range</li>
+                <li>Location (online or physical address)</li>
+            </ul>
+            <p>Click any series card to view its details and events.</p>
+
+            <h3>Joining a Series</h3>
+            <ol class="steps">
+                <li>Open a series from the Series Hub</li>
+                <li>Click the <strong>user icon button</strong> in the top right (color indicates current status)</li>
+                <li>Select your participation level: "All events", "Some dates", "Cash only", or "Not interested"</li>
+                <li>Click <strong>"Save"</strong></li>
+            </ol>
+
+            <h3>Event Details</h3>
+            <p>
+                Each series contains multiple events. Events display:
+            </p>
+            <ul>
+                <li>Event name, date, and time</li>
+                <li>Game type (Cash or Tournament)</li>
+                <li>Stakes or buy-in amount</li>
+                <li>Your participation status and results</li>
+            </ul>
+
+            <h3>Tracking Event Participation</h3>
+            <p>
+                For each event, you can set your status:
+            </p>
+            <ul>
+                <li><strong>Interested</strong> &ndash; Planning to play</li>
+                <li><strong>Playing</strong> &ndash; Currently participating</li>
+                <li><strong>Done Playing</strong> &ndash; Finished the event</li>
+                <li><strong>Not Interested</strong> &ndash; Skipping this event</li>
+            </ul>
+
+            <h3>Logging Poker Sessions for Events</h3>
+            <p>
+                Sessions logged while in an event are automatically linked to that event,
+                allowing you to track buy-ins, cashes, and results per event.
+            </p>
+
+            <h3>Admin: Creating Series &amp; Events</h3>
+            <p>Administrators can create new series using the <strong>"Add Series"</strong> button, specifying name, dates, and location. Events can be added within each series.</p>
+        </section>
+
+        <!-- Section 6: Analytics -->
+        <section id="analytics">
+            <h2>6. Analytics &amp; Dashboards</h2>
+
+            <h3 id="overview">Overview Dashboard</h3>
+            <p>
+                The Overview screen provides a comprehensive view of your progress:
+            </p>
+            <ul>
+                <li><strong>Monthly View</strong> &ndash; See your habit completion rate for the current month</li>
+                <li><strong>Daily Breakdown</strong> &ndash; Tap any day to see detailed completion data</li>
+                <li><strong>Weekly Summaries</strong> &ndash; Track week-over-week progress</li>
+                <li><strong>Poker Stats</strong> &ndash; Monthly P&amp;L, hours, and session summaries</li>
+                <li><strong>Insights</strong> &ndash; Trends and patterns in your data</li>
+            </ul>
+
+            <h3 id="leaderboards">Leaderboards</h3>
+            <p>
+                Compare your performance with other BTG members:
+            </p>
+
+            <h4>Points Leaderboard</h4>
+            <p>
+                Earn points by completing your habits. The points leaderboard ranks all users by their
+                accumulated points for the selected time period.
+            </p>
+
+            <h4>Poker Leaderboards</h4>
+            <p>
+                Multiple poker rankings are available:
+            </p>
+            <ul>
+                <li><strong>By P&amp;L</strong> &ndash; Total profit/loss ranking</li>
+                <li><strong>By Hourly Rate</strong> &ndash; Efficiency ranking</li>
+                <li><strong>By Sessions</strong> &ndash; Volume ranking</li>
+            </ul>
+
+            <h4>Team Rankings</h4>
+            <p>
+                If you're part of a team, view team-based leaderboards to see how your group compares to others.
+            </p>
+        </section>
+
+        <!-- Section 7: Educational Content -->
+        <section id="educational-content">
+            <h2>7. Educational Content</h2>
+            <p>
+                BTG provides a rich library of educational content to support your poker development.
+            </p>
+
+            <h3 id="lectures">Lectures &amp; Videos</h3>
+            <p>
+                Access a curated collection of video lectures and educational materials organized into tabs:
+            </p>
+            <ul>
+                <li><strong>New &amp; Noteworthy</strong> &ndash; Recently added content</li>
+                <li><strong>Onboarding</strong> &ndash; Essential content for new members</li>
+                <li><strong>Main Calls</strong> &ndash; Archive of live coaching calls</li>
+                <li><strong>Study Panels</strong> &ndash; Deep-dive study sessions</li>
+                <li><strong>Homework</strong> &ndash; Practice assignments</li>
+            </ul>
+            <p>
+                Each content card shows: thumbnail, title, duration (clock icon), comment count, and star rating.
+                A <strong>green checkmark badge</strong> indicates completed content.
+            </p>
+
+            <h4>Video Player Features</h4>
+            <ul>
+                <li><strong>Play/Pause</strong> &ndash; Standard video controls</li>
+                <li><strong>Progress bar</strong> &ndash; Seekable timeline with progress tracking</li>
+                <li><strong>Playback speed</strong> &ndash; Options from 0.5x to 2x speed</li>
+                <li><strong>Full-screen mode</strong> &ndash; Immersive viewing</li>
+                <li><strong>Volume control</strong> &ndash; Adjust audio level</li>
+                <li><strong>Chat overlay</strong> &ndash; Some videos include synced live chat replay</li>
+            </ul>
+            <div class="feature-box">
+                <h4>Automatic Progress Tracking</h4>
+                <p>BTG automatically tracks your video progress including:</p>
+                <ul>
+                    <li>Percentage watched and milestones (25%, 50%, 75%, 100%)</li>
+                    <li>Engaged viewing time (only counts while actively watching)</li>
+                    <li>Pause and seek events</li>
+                    <li>Resume position for returning later</li>
+                </ul>
+            </div>
+
+            <h4>Rating Content</h4>
+            <p>
+                Rate videos and content using the 5-star rating system. You can rate in 0.5 star increments
+                using either star buttons or a slider control.
+            </p>
+
+            <h3 id="questionnaires">Questionnaires</h3>
+            <p>
+                Interactive questionnaires test your understanding and reinforce learning.
+            </p>
+            <h4>Completing Questionnaires</h4>
+            <ol class="steps">
+                <li>Open a questionnaire from the Learn section</li>
+                <li>Progress through questions (progress bar shows Q1, Q2, Q3...)</li>
+                <li>Answer using: multiple choice, checkboxes, or text input (depending on question type)</li>
+                <li>Questions marked as <strong>required</strong> must be answered before submitting</li>
+                <li>Click <strong>"Submit"</strong> to save your answers</li>
+            </ol>
+            <div class="tip">
+                Your questionnaire responses are saved and can be viewed by admins for feedback.
+            </div>
+        </section>
+
+        <!-- Section 8: Railbirds -->
+        <section id="railbirds">
+            <h2>8. Railbirds (Social Features)</h2>
+            <p>
+                The Railbirds feature lets you follow other players and build a supportive community.
+            </p>
+
+            <h3>Following Players</h3>
+            <p>
+                Add other BTG members as railbirds to follow their progress:
+            </p>
+            <ol class="steps">
+                <li>Navigate to the <strong>Railbirds</strong> section</li>
+                <li>Click the <strong>"Add Railbird"</strong> button</li>
+                <li>Select a member from the dropdown (organized by "My Team" and "Rest of BTG")</li>
+                <li>Click <strong>"Next"</strong></li>
+                <li>Choose access level: <strong>"From this moment forward"</strong> (new data only) or <strong>"Include past data"</strong> (historical access)</li>
+                <li>Click <strong>"Add Railbird"</strong> to confirm</li>
+            </ol>
+
+            <h3>Removing Railbirds</h3>
+            <p>
+                To stop following someone, click the <strong>X icon</strong> on their card in the "My Rail" section,
+                then confirm by clicking <strong>"Yes"</strong>.
+            </p>
+
+            <h3>Player Overview</h3>
+            <p>
+                Click on any railbird card to view their detailed Overview page showing:
+            </p>
+            <ul>
+                <li>Habit completion rates and streaks</li>
+                <li>Poker session statistics</li>
+                <li>Monthly progress data</li>
+                <li>Recent activity</li>
+            </ul>
+
+            <h3>Support &amp; Encouragement</h3>
+            <p>
+                When viewing a player's overview, use the floating action buttons in the bottom right corner:
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Button</th>
+                        <th>Color</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>🎉 Cheer</strong></td>
+                        <td>Green</td>
+                        <td>Send encouragement for good performance</td>
+                    </tr>
+                    <tr>
+                        <td><strong>💙 Comfort</strong></td>
+                        <td>Blue</td>
+                        <td>Offer support during tough times</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                Each button opens a dialog where you can write a personal message before sending.
+            </p>
+
+            <h3>People Watching Me</h3>
+            <p>
+                The "People Watching Me" section shows who has added you as a railbird. Build accountability
+                by knowing others are following your journey.
+            </p>
+        </section>
+
+        <!-- Section 9: Notifications -->
+        <section id="notifications">
+            <h2>9. Notifications</h2>
+            <p>
+                Stay informed about important events and updates through BTG's notification system.
+            </p>
+
+            <h3>In-App Notifications</h3>
+            <p>
+                Access the notification center from the bell icon to view:
+            </p>
+            <ul>
+                <li>System announcements</li>
+                <li>Railbird activity</li>
+                <li>Leaderboard changes</li>
+                <li>Content updates</li>
+            </ul>
+
+            <h3>Push Notifications</h3>
+            <p>
+                Enable push notifications to receive alerts on your device even when not using the app.
+                Push notifications can be enabled in <strong>Settings</strong>.
+            </p>
+            <div class="note">
+                Push notification availability depends on your device and browser support.
+            </div>
+        </section>
+
+        <!-- Section 10: Settings -->
+        <section id="settings">
+            <h2>10. Settings &amp; Preferences</h2>
+            <p>
+                Customize BTG to match your preferences.
+            </p>
+
+            <h3>Display Settings</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Setting</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Time Format</strong></td>
+                        <td>12-hour or 24-hour</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Theme</strong></td>
+                        <td>Light or Dark mode</td>
+                    </tr>
+                    <tr>
+                        <td><strong>First Day of Week</strong></td>
+                        <td>Sunday or Monday</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Poker Settings</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Setting</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Default Currency</strong></td>
+                        <td>Currency for new poker sessions</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Game Variants</strong></td>
+                        <td>Your preferred game types for quick selection</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Notification Settings</h3>
+            <p>
+                Control which notifications you receive and how they're delivered.
+            </p>
+
+            <h3>Personal Access Tokens (API Keys)</h3>
+            <p>
+                For advanced users and developers, BTG supports Personal Access Tokens for API access.
+                Access this from <strong>Settings &gt; API Keys</strong>.
+            </p>
+
+            <h4>Creating a Token</h4>
+            <ol class="steps">
+                <li>Click the <strong>"New Token"</strong> button (key icon)</li>
+                <li>Enter a name for your token (e.g., "CLI tool")</li>
+                <li>Click <strong>"Create"</strong></li>
+                <li><strong>Important:</strong> Copy your token immediately! It will only be shown once.</li>
+                <li>Use the <strong>copy icon button</strong> to copy the token to your clipboard</li>
+            </ol>
+            <div class="note">
+                Store your token securely. If you lose it, you'll need to create a new one.
+            </div>
+
+            <h4>Token Scopes</h4>
+            <p>Currently supported scope: <code>pokersessions.readwrite</code> &ndash; allows reading and writing poker session data via the API.</p>
+
+            <h4>Managing Tokens</h4>
+            <ul>
+                <li>View all your tokens with creation date and last used date</li>
+                <li>Click the <strong>trash icon</strong> to revoke a token (immediate, no confirmation)</li>
+            </ul>
+        </section>
+
+        <!-- Section 11: Admin Features -->
+        <section id="admin">
+            <h2>11. Admin Features</h2>
+            <p>
+                Administrators have access to additional features for managing the BTG platform.
+            </p>
+            <div class="note">
+                These features are only available to users with administrator privileges.
+            </div>
+
+            <h3>Admin Navigation</h3>
+            <p>Admin pages are accessible from the sidebar menu:</p>
+            <ul>
+                <li><strong>Users</strong> &ndash; User management</li>
+                <li><strong>Teams</strong> &ndash; Team management</li>
+                <li><strong>Content</strong> &ndash; Lecture/video management</li>
+                <li><strong>Deals</strong> &ndash; Promotions management</li>
+                <li><strong>Poker Analytics</strong> &ndash; Player statistics</li>
+                <li><strong>Engagement</strong> &ndash; User engagement tracking</li>
+                <li><strong>Trackings</strong> &ndash; Habit tracking reports</li>
+                <li><strong>Email Templates</strong> &ndash; Email template management</li>
+                <li><strong>Default Goals</strong> &ndash; Default habit templates</li>
+            </ul>
+
+            <h3>User Management</h3>
+            <p>Users are organized by team with the following action buttons on each user card:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Button</th>
+                        <th>Icon</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Email</strong></td>
+                        <td>Envelope</td>
+                        <td>Opens email dialog to send email and view email history</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Push</strong></td>
+                        <td>Bell</td>
+                        <td>Opens push notification dialog</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Edit</strong></td>
+                        <td>Pen</td>
+                        <td>Opens user edit dialog</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Delete</strong></td>
+                        <td>X mark</td>
+                        <td>Deletes user (with confirmation)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Viewing Email History</h4>
+            <p>To see all emails sent to a specific user:</p>
+            <ol class="steps">
+                <li>Go to <strong>Admin &gt; Users</strong></li>
+                <li>Find the user and click the <strong>envelope icon</strong> (Email button)</li>
+                <li>In the Email Dialog, click the <strong>mail history icon</strong> (multiple envelopes) in the top right corner</li>
+                <li>View all sent emails as expandable accordions showing: recipient, subject, date sent, and full email content</li>
+            </ol>
+
+            <h4>Impersonating Users</h4>
+            <p>To view the app as another user for troubleshooting:</p>
+            <ol class="steps">
+                <li>Go to <strong>Admin &gt; Users</strong></li>
+                <li>Click the <strong>pen icon</strong> (Edit) on the user</li>
+                <li>In the Edit User dialog, click the <strong>user-secret icon</strong> button</li>
+                <li>The page reloads and you'll see a yellow warning banner showing "Impersonating: [name]"</li>
+                <li>Click <strong>"Cancel Impersonation"</strong> button to return to your account</li>
+            </ol>
+
+            <h3>Viewing Which Lectures Users Watched</h3>
+            <p>There are multiple ways to see user lecture/video completion:</p>
+
+            <h4>Method 1: Engagement Dashboard</h4>
+            <ol class="steps">
+                <li>Go to <strong>Admin &gt; Engagement</strong></li>
+                <li>Filter by time period, team, or search for specific users</li>
+                <li>Click on any user row to expand their details</li>
+                <li>View the <strong>VIDEOS section</strong> showing checkmarks (watched), percentages (partial), or circles (not watched)</li>
+            </ol>
+
+            <h4>Method 2: Content Results Button</h4>
+            <ol class="steps">
+                <li>Go to <strong>Admin &gt; Content</strong></li>
+                <li>Click the <strong>"Results" button</strong> (eye icon) in the top right</li>
+                <li>A fullscreen dialog shows all users and all content in a table</li>
+                <li>Filter by specific member or specific content item</li>
+                <li>Green = completed, Yellow = partial, Checkmark = watched, Percentage = progress</li>
+            </ol>
+
+            <h4>Method 3: Eye Icon on Individual Content</h4>
+            <ol class="steps">
+                <li>Go to <strong>Admin &gt; Content</strong></li>
+                <li>Click the <strong>eye icon</strong> on any video or content item</li>
+                <li>See "Seen by X people" with list of users and their progress percentages</li>
+                <li>Use <strong>"Send Reminder"</strong> button to remind users who haven't completed</li>
+            </ol>
+
+            <h3>Poker Analytics</h3>
+            <p>The Poker Analytics page provides comprehensive session data with filters:</p>
+            <ul>
+                <li><strong>Game Type</strong> &ndash; All, Cash, or MTT</li>
+                <li><strong>Tracking</strong> &ndash; Hours or Hands</li>
+                <li><strong>Stakes/Variants</strong> &ndash; Multi-select filters</li>
+                <li><strong>Date Range</strong> &ndash; From/To date pickers</li>
+                <li><strong>Team/Players</strong> &ndash; Filter by team or specific players</li>
+            </ul>
+            <p>Features include: summary cards, player distribution bar, expandable player leaderboard, downswing watch, session quality analysis, and results by variant.</p>
+
+            <h3>Engagement Analytics</h3>
+            <p>Track user engagement across multiple metrics:</p>
+            <ul>
+                <li><strong>Calls</strong> &ndash; Live session attendance or recording views</li>
+                <li><strong>Homework</strong> &ndash; Assignment submissions</li>
+                <li><strong>Discord</strong> &ndash; Discord activity</li>
+                <li><strong>Tracking</strong> &ndash; Habit tracking activity</li>
+            </ul>
+            <p>The "At Risk" section highlights users with no activity in 7+ days.</p>
+
+            <h3>Team Management</h3>
+            <ul>
+                <li>Create and edit teams with logos</li>
+                <li>Each team card has Edit (pen) and Delete (X) buttons</li>
+                <li><strong>"Add Team"</strong> button creates new teams</li>
+            </ul>
+
+            <h3>Content Management</h3>
+            <ul>
+                <li>Hierarchical folder structure with drag-and-drop reordering</li>
+                <li>Create videos, questionnaires, and HTML content</li>
+                <li>Set reminders for incomplete content</li>
+                <li>Download questionnaire responses as CSV</li>
+            </ul>
+
+            <h3>Email Templates</h3>
+            <ul>
+                <li>Create reusable email templates</li>
+                <li>Rich text HTML editor</li>
+                <li>Use templates when sending emails to users</li>
+            </ul>
+        </section>
+
+        <!-- Section 12: Data Management -->
+        <section id="data-management">
+            <h2>12. Data Management</h2>
+
+            <h3>Importing Data</h3>
+            <p>
+                Import tracking data from CSV files to migrate from other systems or restore backups:
+            </p>
+            <ol class="steps">
+                <li>Go to <strong>Settings</strong></li>
+                <li>Select <strong>Import Data</strong></li>
+                <li>Choose the data type to import</li>
+                <li>Select your CSV file</li>
+                <li>Map columns to BTG fields</li>
+                <li>Confirm the import</li>
+            </ol>
+
+            <h3>Exporting Data</h3>
+            <p>
+                Export your data for backup or analysis:
+            </p>
+            <ul>
+                <li>Habit tracking history</li>
+                <li>Poker session records</li>
+                <li>Goal configurations</li>
+            </ul>
+
+            <h3>Data Deletion</h3>
+            <p>
+                You can request deletion of your data through the Settings menu. This action is
+                irreversible, so please ensure you have exported any data you wish to keep.
+            </p>
+            <div class="note">
+                Contact an administrator if you need assistance with data management.
+            </div>
+        </section>
+
+        <footer class="doc-footer">
+            <p>Beyond The Game &copy; 2026. All rights reserved.</p>
+            <p>For support, contact your BTG administrator.</p>
+        </footer>
+    </div>
+</body>
+</html>

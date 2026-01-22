@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTG Assistant - AI Help Chat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 800px;
+            height: 90vh;
+            max-height: 700px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .chat-header {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .chat-header .avatar {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .chat-header .info h1 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .chat-header .info p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* API Key Banner */
+        .api-key-banner {
+            background: #fef3c7;
+            border-bottom: 1px solid #f59e0b;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .api-key-banner.hidden {
+            display: none;
+        }
+
+        .api-key-banner label {
+            font-size: 0.9rem;
+            color: #92400e;
+            font-weight: 500;
+        }
+
+        .api-key-banner input {
+            flex: 1;
+            min-width: 200px;
+            padding: 8px 12px;
+            border: 1px solid #d97706;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .api-key-banner input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+        }
+
+        .api-key-banner button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .api-key-banner button:hover {
+            background: #1d4ed8;
+        }
+
+        .api-key-banner button.clear-btn {
+            background: #dc2626;
+        }
+
+        .api-key-banner button.clear-btn:hover {
+            background: #b91c1c;
+        }
+
+        .api-key-saved {
+            background: #d1fae5;
+            border-bottom: 1px solid #10b981;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .api-key-saved.hidden {
+            display: none;
+        }
+
+        .api-key-saved span {
+            color: #065f46;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+
+        .api-key-saved button {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: background 0.2s;
+        }
+
+        .api-key-saved button:hover {
+            background: #b91c1c;
+        }
+
+        /* Messages Area */
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            background: #f8fafc;
+        }
+
+        .message {
+            display: flex;
+            gap: 12px;
+            max-width: 85%;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .message .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .message.assistant .avatar {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+        }
+
+        .message.user .avatar {
+            background: #e2e8f0;
+            color: #475569;
+        }
+
+        .message .content {
+            padding: 12px 16px;
+            border-radius: 16px;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .message.assistant .content {
+            background: white;
+            color: #334155;
+            border: 1px solid #e2e8f0;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message.user .content {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message .content p {
+            margin-bottom: 10px;
+        }
+
+        .message .content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .message .content ul, .message .content ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .message .content li {
+            margin-bottom: 5px;
+        }
+
+        .message .content code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.85em;
+        }
+
+        .message .content strong {
+            font-weight: 600;
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            display: flex;
+            gap: 12px;
+            max-width: 85%;
+        }
+
+        .typing-indicator .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .typing-indicator .dots {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 16px 20px;
+            border-radius: 16px;
+            border-bottom-left-radius: 4px;
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .typing-indicator .dot {
+            width: 8px;
+            height: 8px;
+            background: #94a3b8;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out;
+        }
+
+        .typing-indicator .dot:nth-child(1) { animation-delay: 0s; }
+        .typing-indicator .dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator .dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-6px); }
+        }
+
+        /* Input Area */
+        .input-area {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+        }
+
+        .input-wrapper textarea {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: none;
+            outline: none;
+            transition: border-color 0.2s;
+            max-height: 120px;
+            min-height: 52px;
+        }
+
+        .input-wrapper textarea:focus {
+            border-color: #2563eb;
+        }
+
+        .input-wrapper textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        .send-btn {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .send-btn:hover:not(:disabled) {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .send-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        /* Suggested Questions */
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 15px 20px;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .suggestion {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .suggestion:hover {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+
+        /* Error Message */
+        .error-message {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Scrollbar */
+        .messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .messages::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+
+        .messages::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="avatar">🎯</div>
+            <div class="info">
+                <h1>BTG Assistant</h1>
+                <p>Ask me anything about Beyond The Game</p>
+            </div>
+        </div>
+
+        <div class="api-key-banner" id="apiKeyBanner">
+            <label for="apiKey">Gemini API Key:</label>
+            <input type="password" id="apiKey" placeholder="Enter your Gemini API key">
+            <button onclick="saveApiKey()">Save Key</button>
+        </div>
+
+        <div class="api-key-saved hidden" id="apiKeySaved">
+            <span>API key is configured</span>
+            <button onclick="clearApiKey()">Clear Key</button>
+        </div>
+
+        <div class="messages" id="messages">
+            <div class="message assistant">
+                <div class="avatar">🎯</div>
+                <div class="content">
+                    <p><strong>Welcome to BTG Assistant!</strong></p>
+                    <p>I'm here to help you navigate and use Beyond The Game. You can ask me questions like:</p>
+                    <ul>
+                        <li>How do I create a new habit?</li>
+                        <li>Where can I see my poker statistics?</li>
+                        <li>How do I view email histories for a user?</li>
+                        <li>What are railbirds?</li>
+                    </ul>
+                    <p>What would you like to know?</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="suggestions" id="suggestions">
+            <div class="suggestion" onclick="askQuestion(this.textContent)">How do I create a goal?</div>
+            <div class="suggestion" onclick="askQuestion(this.textContent)">Where are poker analytics?</div>
+            <div class="suggestion" onclick="askQuestion(this.textContent)">How do I see email histories?</div>
+            <div class="suggestion" onclick="askQuestion(this.textContent)">What are railbirds?</div>
+        </div>
+
+        <div class="input-area">
+            <div class="input-wrapper">
+                <textarea
+                    id="userInput"
+                    placeholder="Ask a question about BTG..."
+                    rows="1"
+                    onkeydown="handleKeyDown(event)"
+                    oninput="autoResize(this)"
+                ></textarea>
+                <button class="send-btn" onclick="sendMessage()" id="sendBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // BTG Knowledge Base - comprehensive information about the app
+        const BTG_KNOWLEDGE_BASE = `
+# Beyond The Game (BTG) - Complete Application Knowledge Base
+
+## Application Overview
+BTG (Beyond The Game) is a comprehensive habit tracking and poker analytics platform designed for poker players. It combines personal development tools with poker-specific analytics to help players improve their game through disciplined habit tracking, session logging, educational content, and community engagement.
+
+## Main Navigation Sections
+- **Home**: Daily habit tracking view and quick actions
+- **Overview**: Analytics dashboard with monthly summaries
+- **Poker**: Session logging and poker statistics
+- **Learn**: Educational content, lectures, and resources
+- **Leaderboard**: Rankings and competitive standings
+- **Settings**: Account preferences and configuration
+- **Admin** (admin users only): User management, analytics, content management
+
+---
+
+## GOALS & HABIT TRACKING
+
+### Creating Goals
+To create a new goal:
+1. Navigate to the Home screen
+2. Tap the "+ Add Goal" button
+3. Choose a goal type (Yes/No, Quantitative, or Habit)
+4. Fill in details: name, description, category, icon
+5. Configure frequency (daily, weekly, monthly)
+6. Set point values
+7. Save
+
+### Goal Types
+
+**Yes/No Goals**: Simple binary goals - either completed or not (e.g., "Did I meditate today?")
+
+**Quantitative Goals**: Track numeric values with units
+- Set a target value
+- Define the unit (hours, pages, hands, etc.)
+- Set step increment for quick input
+
+**Recurring Habits**: Goals that accumulate over time
+- Weekly accumulation (e.g., "Exercise 5 times per week")
+- Monthly accumulation (e.g., "Study 20 hours per month")
+- Custom active days selection
+
+### Goal Properties
+- Name and description
+- Category selection
+- Custom icons and color coding
+- Points/rewards values
+- Frequency (daily, weekly, monthly)
+- Days active (which days per week)
+- Target values and step increments
+
+### Tracking Habits
+- Yes/No: Tap the goal card to toggle completion
+- Quantitative: Tap to open input dialog
+- Time-based: Use built-in timer or enter manually
+- Goals can be reordered via drag-and-drop
+
+### Streaks & Progress
+- Streak counter shows consecutive completion days
+- Dots show completion for each day of current week
+- Progress bars display weekly/monthly targets
+- Calendar view shows historical completion
+
+---
+
+## POKER SESSION TRACKING
+
+### Logging a Poker Session
+1. Navigate to the Poker section
+2. Tap "+ New Session"
+3. Select game type and variant
+4. Enter session details
+5. Add performance ratings and notes
+6. Save
+
+### Session Details Fields
+- **Date & Time**: When session occurred
+- **Game Type**: NLH, PLO, PLO5c, PLO6c, Short Deck, HORSE, Razz, Stud, etc.
+- **Stakes/Big Blind**: Blind level
+- **Buy-in**: Total amount bought in
+- **Cash-out**: Amount cashed out
+- **Hours Played**: Session duration
+- **Currency**: Session currency
+- **Promotions/Rakeback**: Additional earnings
+- **Performance Ratings**: Self-assessment (1-5) for Focus, Power, Discipline
+- **Notes**: Free-form session notes
+
+### Poker Analytics
+Automatically calculated statistics:
+- Total P&L (profit/loss)
+- Hourly rate
+- Session count
+- Total hours played
+- Win rate by game type
+- Monthly/date range filtering
+
+---
+
+## POKER EVENTS & SERIES
+
+### Features
+- Browse tournament series and events
+- Event details: name, description, game type, date, location, buy-in
+- Track participation and results
+- Record buy-ins, placements, winnings
+- Event leaderboards for series competition
+
+---
+
+## ANALYTICS & DASHBOARDS
+
+### Overview Dashboard
+- Monthly habit completion view
+- Daily breakdown (tap any day for details)
+- Weekly summaries
+- Poker stats (P&L, hours, sessions)
+- Trends and insights
+
+### Leaderboards
+- **Points Leaderboard**: Ranking by habit points
+- **Poker Leaderboards**:
+  - By P&L (profit/loss)
+  - By hourly rate
+  - By session count
+- **Team Rankings**: Group-based competition
+- Filter by month/year
+
+---
+
+## EDUCATIONAL CONTENT (Learn Section)
+
+### Content Organization
+- New & Noteworthy
+- Onboarding Series
+- Main Calls archive
+- Study Panels
+- Homework assignments
+
+### Content Types
+- **Video Lectures**: With Video.js player, YouTube support
+- **HTML Content**: Rich text documents
+- **Questionnaires**: Interactive Q&A
+
+### Features
+- Progress tracking (resume where you left off)
+- Mark as watched
+- Rate content
+- Add comments
+- Folder organization
+
+---
+
+## RAILBIRDS (Social Features)
+
+### What are Railbirds?
+Railbirds let you follow other players' progress and build a supportive community.
+
+### Adding Railbirds
+1. Go to Railbirds section
+2. Search for a player
+3. Tap "Add Railbird"
+4. Optionally include historical data
+
+### Features
+- View player statistics
+- See habit completion rates
+- Track poker performance
+- Send encouragement ("Cheer")
+- Send support messages
+- "People Watching Me" shows who follows you
+
+---
+
+## NOTIFICATIONS
+
+### In-App Notifications
+- Access via bell icon
+- System announcements
+- Railbird activity
+- Leaderboard changes
+- Content updates
+- Mark as read
+
+### Push Notifications
+- Enable in Settings
+- Works on mobile and web
+- Real-time alerts
+
+---
+
+## SETTINGS & PREFERENCES
+
+### Display Settings
+- **Time Format**: 12-hour or 24-hour
+- **Theme**: Light or Dark mode
+- **First Day of Week**: Sunday or Monday
+
+### Poker Settings
+- **Default Currency**: For new sessions
+- **Game Variants**: Preferred game types
+
+### Notification Settings
+- Enable/disable push notifications
+- Control notification types
+
+### Personal Access Tokens (PAT)
+- Create API tokens for programmatic access
+- Scopes available: pokersessions.readwrite
+- Track token usage
+- Revoke tokens
+
+### Data Management
+- Export/backup data
+- Import from CSV
+- Request data deletion
+
+---
+
+## ADMIN FEATURES (Administrators Only)
+
+### Admin Navigation Menu (Sidebar)
+The admin section appears in the sidebar only for users with admin privileges. Menu items:
+- **Users** → /admin/users
+- **Teams** → /admin/teams
+- **Content** → /admin/lectures
+- **Deals** → /admin/deals
+- **Poker Analytics** → /admin/poker-analytics
+- **Engagement** → /admin/engagement
+- **Trackings** → /admin/trackings
+- **Email Templates** → /admin/emails
+- **Default Goals** → /admin/default-goals
+
+---
+
+### USER MANAGEMENT PAGE (/admin/users)
+
+#### Page Layout:
+- Users are grouped by **Team** (with team logo and name as headers)
+- **"Unassigned Users"** section shows users without a team
+- Each user displayed as a card showing: name, email, and tags
+
+#### User Card Icons (next to name):
+- **Escalator icon** - Onboarding status (yellow if complete, faded if not, crossed out if skipped)
+- **Flask icon** (light blue) - Shows if user is on Beta system
+- **Bullseye with ban** (red) - Shows if habits are blocked
+
+#### Action Buttons (right side of each user card):
+1. **Email button** (envelope icon) - Opens Email Dialog to send email to user
+2. **Push Notification button** (bell icon) - Opens Push Notification Dialog
+3. **Edit button** (pen icon) - Opens User Edit Dialog
+4. **Delete button** (X icon) - Opens delete confirmation
+
+#### Top Toolbar:
+- **Login logs button** (clock-rotate-left icon) - Downloads CSV of login logs for last 14 days
+
+#### Add User Button:
+- Label: "Add User" with plus icon
+- Located after all user cards
+
+---
+
+### EMAIL DIALOG (How to send email and view email history)
+
+**To open:** Click the **envelope icon** button on any user card in Admin > Users
+
+#### Email Dialog Layout:
+- **Top right corner has two buttons:**
+  1. **Email History button** (envelopes-bulk icon) - Click this to view all emails sent to this user
+  2. **Close button** (X icon)
+
+#### Sending an Email:
+1. **From field:** Shows "support@joinbtg.com" (read-only)
+2. **To field:** Shows recipient name and email (read-only)
+3. **Template dropdown:** Select an email template, then click "Load" button to fill subject/body
+4. **Subject field:** Enter email subject (required)
+5. **Body field:** Rich text editor for email content (required)
+6. **Send button:** Click to send (has paper-plane icon)
+
+#### VIEWING EMAIL HISTORY:
+**To see all emails sent to a user:**
+1. Go to **Admin > Users**
+2. Find the user and click the **envelope icon** (Email button)
+3. In the Email Dialog, click the **"envelopes-bulk" icon** in the top right corner
+4. This opens the **Email History view** showing all sent emails as expandable accordions
+5. Each accordion shows: To, Subject, Sent timestamp
+6. Click to expand and see the full email body content
+7. Emails are sorted newest first
+
+---
+
+### USER EDIT DIALOG
+
+**To open:** Click the **pen icon** on any user card
+
+#### Dialog Title: "Edit User" or "Add User"
+
+#### Fields:
+- **Name** (text input, required)
+- **Email** (text input, required - disabled when editing)
+- **Team** (dropdown with team logos)
+- **Photo** (file upload - shows preview when uploaded)
+- **Tags** (multi-select autocomplete)
+
+#### Options Section:
+- **Onboarding checkbox** - If unchecked, disables lecture selector
+- **Onboarding Lecture dropdown** - Select onboarding lecture (only "BTG Onboarding*" lectures)
+- **Block habits checkbox** - Block user from tracking habits
+- **Beta System checkbox** - Enable beta features for user
+
+#### When Adding New User:
+- **Send welcome email dropdown** - Choose email template or "Don't send"
+
+#### Buttons:
+- **Save button** (primary, full width)
+- **Impersonate button** (user-secret icon) - Only visible when editing existing user
+
+---
+
+### IMPERSONATE USER FEATURE
+
+**To impersonate a user:**
+1. Go to **Admin > Users**
+2. Click the **pen icon** (Edit) on the user you want to impersonate
+3. In the Edit User dialog, click the **"user-secret" icon button** (Impersonate button)
+4. Page will reload and you'll see as that user
+
+**When impersonating:**
+- A **yellow warning banner** appears at the very top of the screen
+- Banner shows: user-secret icon + "Impersonating: [user name]"
+- **"Cancel Impersonation" button** on the right side of the banner
+- Click it to stop impersonating and return to your account
+
+---
+
+### PUSH NOTIFICATION DIALOG
+
+**To open:** Click the **bell icon** on any user card
+
+#### Dialog Title: "Send Push Notification to [user name]"
+
+#### Fields:
+- **Title** (required) - Notification title
+- **Message** (multiline, required) - Notification body text
+- **Badge Number** (optional) - Number to show on app icon
+- **Metadata** (optional) - JSON format additional data
+
+#### Buttons:
+- **Send** (primary)
+- **Cancel** (secondary)
+
+---
+
+### DELETE USER DIALOG
+
+**To open:** Click the **X icon** on any user card
+
+- Message: "Are you sure you want to remove this user?"
+- **Yes button** - Confirms deletion
+- **Cancel button** - Cancels
+
+---
+
+### TEAMS MANAGEMENT PAGE (/admin/teams)
+
+#### Page Layout:
+- List of team cards, each showing: team logo, team name, team ID
+- Action buttons per team: Edit (pen icon), Delete (X icon)
+- **"Add Team" button** at the bottom
+
+#### Team Edit Dialog:
+- **ID field** (disabled when editing)
+- **Name field**
+- **Logo upload** (file input with preview)
+- **Save button**
+
+---
+
+### POKER ANALYTICS PAGE (/admin/poker-analytics)
+
+#### Filter Controls (Top Section):
+
+**Row 1:**
+- **Game Type toggle:** "All" | "Cash" | "MTT"
+- **Tracking toggle:** "All" | "Hours" | "Hands"
+- **Stakes dropdown:** Multi-select, placeholder "All stakes"
+- **Variants dropdown:** Multi-select, placeholder "All variants"
+
+**Row 2:**
+- **From date picker**
+- **To date picker**
+- **Team dropdown:** "All Teams" + list of teams
+- **Players dropdown:** Multi-select, placeholder "All players"
+- **Min Sessions:** Number input (default 1)
+
+#### Summary Cards:
+- Players count
+- Sessions count
+- Hours total
+- Hands total
+- Total P&L (green if positive, red if negative)
+- Avg $/hr
+- Avg BB/100
+
+#### Player Distribution Bar:
+- Stacked horizontal bar showing: Big Win (dark green), Small Win (light green), Break-even (grey), Small Loss (orange), Big Loss (red)
+
+#### Player Leaderboard Table:
+- Expandable rows (click chevron to expand)
+- Columns: Player, Team, Sessions, Hours, Hands, P&L, $/hr, BB/100, Std Dev, Max DD, Curr DD, Quality
+- Sortable by: Sessions, P&L, Std Dev, Max DD, Curr DD
+
+#### Expanded Player Row:
+- Shows last 10 sessions with: Date, Type, Variants, Result, Volume
+
+#### Collapsible Sections:
+1. **"Downswing Watch"** - Players with current drawdown > $1000
+2. **"Session Quality Analysis"** - Quality ratings breakdown
+3. **"Results by Variant"** - P&L breakdown by game variant
+
+---
+
+### ENGAGEMENT ANALYTICS PAGE (/admin/engagement)
+
+**This is a key page for seeing which lectures/videos each user watched.**
+
+#### Header: "User Engagement Dashboard"
+
+#### Filter Controls:
+- **Time Period dropdown:** "Last 7 days", "Last 30 days", "Last 90 days", "All time"
+- **Team dropdown:** "All Teams" + list of teams
+- **Search Users field:** Text search by name or email
+
+#### Summary Cards:
+- **AVG ENGAGEMENT** - Overall engagement percentage with color indicator
+- **CALLS** - Users who attended live sessions OR watched recordings (count/total)
+- **HOMEWORK** - Homework submissions (count/total)
+- **DISCORD** - Discord activity (count/total)
+- **TRACKING** - Habit tracking activity (count/total)
+
+#### At-Risk Section:
+- Red header: "AT RISK (X users with no activity in 7+ days)"
+- Displays clickable chips with user names and days since last activity
+- Click a chip to expand and see that user's details
+
+#### User Engagement Table:
+- **Expandable rows** - Click any row to see detailed breakdown
+- Columns: User (with team), Score (color-coded chip), Calls (milestone dots), Homework, Discord, Tracking, Poker
+
+#### EXPANDED USER DETAILS (Click a user row to see):
+When you click on a user row, it expands to show four sections:
+
+1. **VIDEOS Section:**
+   - Shows: "{count}/{total} watched"
+   - Lists all videos with status icons:
+     - **Green checkmark** = Fully watched (100%)
+     - **Percentage number** = Partially watched (e.g., "45%")
+     - **Empty circle** = Not watched at all
+   - Shows up to 10 videos, then "+X more videos" link
+
+2. **HOMEWORK Section:**
+   - Shows: "{count}/{total} submitted"
+   - Lists each homework assignment with:
+     - **Checkmark** = Submitted (with date)
+     - **Circle** = Not submitted
+
+3. **TRACKING Section:**
+   - Shows days tracked and completion rate
+
+4. **POKER Section:**
+   - Shows recent poker sessions
+
+**HOW TO SEE WHICH LECTURES A SPECIFIC USER WATCHED:**
+1. Go to **Admin > Engagement** (/admin/engagement)
+2. Optionally filter by Time Period, Team, or search for user
+3. Find the user in the table
+4. **Click on their row** to expand it
+5. Look at the **VIDEOS section** in the expanded panel
+6. You'll see each video with a checkmark (watched), percentage (partially watched), or circle (not watched)
+
+---
+
+### TRACKINGS PAGE (/admin/trackings)
+
+#### Page Layout:
+- Users grouped by Team
+- Each user card shows:
+  - User name, team, user ID
+  - "Tracking since [date] ([X] days ago)"
+  - Stacked progress bar: Days Completed (dark green), Days Off (light green), Days Tracked but not completed (yellow), Days Not Tracked (red)
+- Click any user to go to /admin/trackings/[userId] for detailed view
+
+---
+
+### EMAIL TEMPLATES PAGE (/admin/emails)
+
+- List of email templates
+- Create, edit, delete templates
+- Each template has: ID, title, HTML content
+- Rich text editor for template content
+
+---
+
+### CONTENT/LECTURES PAGE (/admin/lectures)
+
+#### Basic Features:
+- Hierarchical folder structure
+- Create folders and lectures
+- Drag-and-drop reordering
+- Content types: videos, questionnaires, HTML content
+- Edit lecture properties, set reminders
+
+---
+
+### HOW TO SEE WHO WATCHED EACH VIDEO/LECTURE (Results Button)
+
+**Method 1: Results Button (See all users and all content)**
+
+1. Go to **Admin > Content** (/admin/lectures)
+2. Click the **"Results" button** (eye icon with "Results" text) in the top right area
+3. A fullscreen dialog opens showing completion data
+
+**Results Dialog Features:**
+- **View toggle** (top right): Switch between Table view and Form view
+- **Member filter** (dropdown): Select a specific user to see their data
+- **Item filter** (dropdown): Select a specific video/questionnaire to focus on
+
+**Table View Mode:**
+- Left column shows user names
+- Top row shows all content items (videos, questionnaires, HTML)
+- Each cell shows status:
+  - **Green background** = Completed/answered
+  - **Yellow background** = Partially watched video
+  - **Checkmark icon** = Fully completed
+  - **Percentage** = Video watch progress (e.g., "45%")
+  - **Eye icon button** = Click to view questionnaire answers
+
+**For Questionnaires:**
+- Select a questionnaire in the Item filter
+- Table changes to show question-by-question breakdown
+- Each column = one question
+- Each row = one user's answers
+- **"Download as CSV" button** appears to export data
+
+**Form View Mode:**
+- Groups data by user
+- Shows each item's completion status per user
+- Better for reviewing individual user progress
+
+---
+
+**Method 2: Eye Icon on Individual Items (Quick view)**
+
+1. Go to **Admin > Content** (/admin/lectures)
+2. Find any video, HTML, or questionnaire item
+3. Click the **eye icon** on that specific item
+4. A popup shows:
+   - **"Seen by X people"** (for videos) or **"Read by X people"** (for HTML) or **"Got X answers"** (for questionnaires)
+   - List of users with their status:
+     - **Checkmark** = Completed/watched
+     - **Percentage** = Progress (e.g., "Watched 45%")
+     - **Empty square** = Not viewed
+   - Hover over a user to see detailed progress (e.g., "Watched up to 45% (~00:05:23 engaged), paused 2 times")
+   - **"Send Reminder" button** - Send reminder to users who haven't completed
+
+---
+
+### VIDEO PROGRESS TRACKING DETAILS
+
+The system tracks detailed viewing behavior for each video:
+- **Percentage watched** (0-100%)
+- **Engaged time** (actual time spent watching)
+- **Pause count** (how many times user paused)
+- **Seek count** (how many times user skipped around)
+- **Summary text** like: "Watched up to 45% (~00:05:23 engaged), paused 2 times, seeked 1 times"
+- Or for completed: "Watched the full video (00:10:30 engaged time)"
+- Or if never played: "Video never played"
+
+---
+
+### DEALS/PROMOTIONS PAGE (/admin/deals)
+
+- List of partner deals
+- Create, edit, delete deals
+- Track user interactions with deals
+
+---
+
+### DEFAULT GOALS PAGE (/admin/default-goals)
+
+- Set up default habit templates
+- These goals are automatically added for new users
+
+---
+
+## HOME PAGE (Daily Tracking)
+
+### Main Elements:
+- **Day Selector** at top: Navigate between days with left/right arrows
+- **Day Mode dropdown**: Change tracking mode for the day
+- **Goal cards**: Click to log/track, drag to reorder
+
+### Poker Sessions Section:
+- **"Log Session" button**: Opens poker session dialog
+  - Icon: Plus sign
+  - Click to log a new poker session
+- **Session cards**: Click any session card to edit it
+
+### Goal Tracking Actions:
+- **Yes/No goals**: Tap the card to toggle completion (shows swipe animation)
+- **Quantitative goals**: Tap to open input dialog with +/- buttons
+- **Completed goals**: Shown in collapsible "Done" section at bottom
+
+### Quantitative Input Dialog:
+- **Minus button (-)**: Decrease value by step amount
+- **Plus button (+)**: Increase value by step amount
+- **Value display**: Click to edit directly
+- **Progress bar**: Shows current vs target progress
+- **Log button**: Save the tracked value
+
+---
+
+## POKER SESSION DIALOG
+
+**To open:** Click "Log Session" button or click an existing session card
+
+### Dialog Buttons:
+- **Close button (X)**: Top right corner, closes without saving
+- **Game type toggles**:
+  - "Cash Game" (money bag icon)
+  - "Tournament" (trophy icon)
+  - "Rakeback" (gift icon)
+
+### Form Fields:
+- **Game Variant**: Autocomplete dropdown (NLH, PLO, PLO5c, etc.)
+- **Currency selector**: Dropdown with all currencies
+- **Big Blind input**: Number field (for cash games)
+- **Hours/Hands toggle**: Switch between tracking hours or hands
+- **Result input**: Profit/loss amount
+- **Buy-ins/Cashes**: For tournaments
+- **Notes**: Multi-line text field
+- **Performance ratings**: Focus, Power, Discipline (1-5 each)
+
+### Action Buttons:
+- **"Log Session" / "Update Session"**: Primary button to save
+- **"Delete Session"**: Red outlined button (only when editing existing)
+
+---
+
+## OVERVIEW PAGE (/overview)
+
+### Month Navigation:
+- **Left arrow (<)**: Go to previous month
+- **Right arrow (>)**: Go to next month (disabled if current month)
+
+### Tab Buttons:
+- **Insights tab**: Day-of-week analysis
+- **Habits tab**: Daily/weekly/monthly heatmaps
+- **Weeks tab**: Week cards with scores
+- **Poker tab**: Poker statistics and chart
+
+### Insights Tab:
+- **Week navigation arrows**: Previous/next week within month
+- **Day cells**: Click any day to navigate to Home page for that date
+- **Weekly goals list**: Shows progress dots for each goal
+
+### Weeks Tab:
+- **Week cards**: Click to navigate to that week's start date
+- Shows score percentage, day pips, habit completion bars
+
+### Poker Tab:
+- **Statistics cards**: Display P&L, Hours, $/Hour, Sessions
+- **Chart**: Hover for tooltips showing daily data
+
+---
+
+## GOALS PAGE (/goals - My Habits)
+
+### Main Actions:
+- **Add Goal button (FAB)**: Floating button with plus icon at bottom
+  - Opens goal creation wizard
+
+### Goal Cards:
+- **Click card**: Opens goal editor
+- **Drag handle**: Reorder goals by dragging
+- **Delete icon** (trash): Delete the goal
+
+### Goal Editor Dialog:
+- **Close button (X)**: Cancel editing
+- **Icon picker**: Click icon to choose from icon library
+- **Goal type toggles**: Yes/No, Quantitative
+- **Frequency toggles**: Daily, Weekly, Monthly
+- **Day-of-week checkboxes**: Select active days
+- **Points slider**: Adjust point value
+- **Save button**: Save changes
+- **Delete button**: Remove goal (when editing existing)
+
+---
+
+## LEARN PAGE (/resources/lectures)
+
+### Tab Navigation:
+- **New & Noteworthy**: Latest content
+- **Onboarding**: Getting started content
+- **Main Calls**: Call recordings archive
+- **Study Panels**: Study session recordings
+- **Homework**: Assignments
+
+### Resource Cards:
+- **Click any card**: Opens viewer dialog (video, HTML, or questionnaire)
+- **Completion badge**: Green checkmark shows if completed
+- **Meta icons**: Clock (duration), comment (comments), star (rating)
+
+### Search:
+- **Search box**: Filter resources by name
+
+---
+
+## VIDEO PLAYER (in Learn section)
+
+### Player Controls:
+- **Play/Pause**: Standard video controls
+- **Progress bar**: Seekable timeline
+- **Fullscreen button**: Enter/exit fullscreen
+- **Speed control**: Playback rate (0.5x to 2x)
+- **Volume control**: Adjust audio level
+
+### Progress Tracking:
+- System automatically tracks: play/pause events, seek positions, milestones (25%, 50%, 75%, 100%), engaged time
+
+### Additional Features:
+- **Chat overlay**: Some videos have live chat replay
+  - Minimize/maximize chat button
+- **Watermark**: Animated watermark for security
+
+---
+
+## RATING CONTENT (in Learn section)
+
+### How to Rate:
+1. Open any video or content
+2. Look for the star rating display
+3. **Star buttons or slider**: Rate 1-5 stars (0.5 increments)
+4. **Save**: Rating is saved automatically
+
+---
+
+## QUESTIONNAIRES (in Learn section)
+
+### Questionnaire Dialog:
+- **Progress indicator**: Shows Q1, Q2, Q3... progress
+- **Question types**: Multiple choice, checkboxes, text input
+- **Required badge**: Some questions are mandatory
+- **Submit button**: Save your answers
+
+---
+
+## RAILBIRDS PAGE (/railbirds)
+
+### "My Rail" Section (People I Follow):
+- **"Add Railbird" button**: Opens dialog to add someone to follow
+  - Disabled if no members available
+- **Railbird cards**: Shows each person you follow
+  - **X icon button**: Remove this railbird (opens confirmation)
+
+### "People Watching Me" Section:
+- Shows who is following you
+- Click a card to view their profile
+
+### Add Railbird Dialog:
+1. **"Select Member" dropdown**: Choose who to follow
+   - Organized by "My Team" and "Rest of BTG"
+2. **"Cancel" / "Next" buttons**
+3. **Access Level selection**:
+   - "From this moment forward" (new data only)
+   - "Include past data" (historical access)
+4. **"Back" / "Add Railbird" buttons**
+
+### Remove Railbird Confirmation:
+- Message: "Remove railbird?"
+- **"Yes"** button: Confirm removal
+- **"Cancel"** button: Keep following
+
+---
+
+## RAILBIRD PLAYER OVERVIEW (/railbirds/player/:id)
+
+### Viewing Someone's Progress:
+- Shows their Overview page data (habits, poker stats)
+
+### Floating Action Buttons (FABs) - Bottom Right:
+1. **Cheer button (🎉)**: Green FAB
+   - Opens "Send Cheer" dialog
+   - Message field to write encouragement
+   - **"Cancel" / "Send Cheer"** buttons
+
+2. **Comfort button (💙)**: Blue FAB
+   - Opens "Send Comfort" dialog
+   - Message field to write support
+   - **"Cancel" / "Send Comfort"** buttons
+
+---
+
+## SERIES HUB (/series)
+
+### Series List:
+- **Series cards**: Click to view series details
+- Shows status badge: "Joined", "Not Interested", "Available"
+
+### Admin Only:
+- **"Add Series" button**: Dashed border button with plus icon
+  - Opens Create Series dialog
+
+### Create Series Dialog:
+- **Series Name field**: Required
+- **Start Date picker**
+- **End Date picker**
+- **Location Type toggles**: "Online" / "Address"
+- **Location Address field**: If Address selected (with autocomplete)
+- **"Create" button**: Save new series
+- **Close button (X)**: Cancel
+
+---
+
+## SERIES DETAIL PAGE (/series/:id)
+
+### Header:
+- **Back arrow button**: Return to series list
+- **Participation button** (right side):
+  - User icon that changes color based on status:
+    - Gray circle = Undecided
+    - Green checkmark = Joined
+    - Red minus = Not Interested
+  - Click to change participation
+
+### Event Filters (if multiple events):
+- **Toggle buttons**: "All Events", "Interested", "Played"
+
+### Event List:
+- **Event cards**: Click to view event details
+- Shows date, title, status badge, buy-in, result
+
+### Participation Dialog:
+- **Options**: "All events", "Some dates", "Cash only", "Not interested"
+- **"Cancel" / "Save" buttons**
+
+### Admin - Add Event Dialog:
+- **Event Name field**
+- **Start/End Date/Time pickers**
+- **Type toggles**: "Cash" / "Tournament"
+- **Location Type toggles**: "Online" / "Address"
+- **Stakes/Buy-in fields**
+- **"Cancel" / "Add Event" buttons**
+
+---
+
+## EVENT DETAIL PAGE (/series/:seriesId/events/:eventId)
+
+### Header:
+- **Back arrow button**: Return to series
+- **Participation button**: Change your status
+
+### Participants List:
+- Shows who's interested/playing/done
+
+### Poker Sessions:
+- Sessions logged for this event
+- **Click session**: Edit it
+- **Delete icon** (trash): Remove session
+
+---
+
+## PERSONAL ACCESS TOKENS PAGE (/pat)
+
+### Header:
+- **"New Token" button**: Key icon + "New Token" text
+  - Opens create token dialog
+
+### Token List:
+- Each token shows: name, scope badge, created date, last used
+- **Revoke button** (trash icon): Delete token immediately
+  - No confirmation - instant revocation
+
+### Create Token Dialog:
+- **Warning**: "This token will only be shown once. Store it securely."
+- **Token Name field**: Give your token a name
+- **Scopes display**: Shows "pokersessions.readwrite"
+- **"Close" / "Create" buttons**
+
+### After Token Created:
+- **Success alert**: Shows the full token (only time it's visible!)
+- **Copy button** (copy icon): Copy token to clipboard
+- **"Close" button**: Dismiss dialog
+
+---
+
+## NOTIFICATIONS PAGE (/notifications)
+
+### "New" Section (Unread):
+- Shows count of unread notifications
+- **Notification cards**: Click to mark as read
+- Full opacity, bold text
+
+### "Past Notifications" Section (Read):
+- Previously read notifications
+- Faded appearance (60% opacity)
+
+### Notification Card Info:
+- Sender emoji + name
+- Message content
+- Time relative ("2 hours ago")
+
+---
+
+## SETTINGS PAGE (/settings)
+
+### Profile Section:
+- **"Edit" button**: Navigate to profile editing
+
+### Display Settings:
+- **Dark Mode toggle**: Switch between light/dark theme
+- **Timezone picker**: Open selector dialog
+- **Date Format picker**: Choose date format
+- **First Day of Week toggle**: Sunday or Monday
+- **Time Format picker**: 12-hour or 24-hour
+
+### Tracking Configuration:
+- **Success Threshold picker**: 0-90% in 10% steps
+- **Reminder Time picker**: Set daily reminder
+- **Show Goal Icons toggle**: Enable/disable icons
+
+### Color Settings:
+- **Unfinished Day Color dropdown**: Select color gradient
+- **Successful Day Color dropdown**: Select color gradient
+- **Overachieved Day Color dropdown**: Select color gradient
+
+### Poker Settings:
+- **Default Game Type picker**: Cash or Tournament
+- **Default Game Variants picker**: Multi-select
+- **Default Big Blinds input**: Opens currency dialog
+- **Default Buy Ins input**: Opens currency dialog
+
+### My Information:
+- **"Erase All Tracking Data" button** (red/danger):
+  - Opens confirmation dialog
+  - **"Yes"** (red) / **"No"** buttons
+
+### Account:
+- **"API Keys" button**: Navigate to PAT page
+- **"Log Out" button** (red): Sign out
+
+---
+
+## PROFILE PAGE (/profile)
+
+### Header:
+- Profile photo display
+- Name and team
+
+### Tab Buttons:
+- **Badges tab** (laurel wreath icon): View your badges
+- **Stats tab** (chart icon): View statistics
+- **Insights tab** (brain icon): AI-generated insights
+
+### Badge Progress:
+- Progress bar showing days to next badge
+
+---
+
+## ONBOARDING FLOW
+
+### Step 1 - Welcome:
+- Animated welcome messages appear one by one
+- **"Let's go!" button**: Proceed to next step
+  - Large rounded button, appears after messages
+
+### Step 2 - Introduction:
+- Explains the onboarding process
+- **"Sounds good!" button**: Continue
+
+### Step 3 - Tasks:
+- Shows actual onboarding tasks/goals to complete
+- Complete each task to progress
+
+---
+
+## SIDEBAR NAVIGATION
+
+### Desktop Sidebar:
+- **Logo/Brand**: Click to go home
+- **Profile Avatar**: Click to go to settings
+- **Profile Menu (...)**: Opens dropdown with Settings and Log Out
+
+### Navigation Items:
+- **Home** (house icon)
+- **Overview** (grid icon)
+- **Leaderboard** (trophy icon)
+- **Deals** (tag icon)
+- **Series Hub** (grid icon)
+- **Learn** (book icon)
+- **My Habits** (gear icon)
+- **Settings** (gear icon)
+
+### Admin Section (admin users only):
+- **Users**, **Teams**, **Content**, **Deals**, **Poker Analytics**
+
+### Mobile:
+- **Hamburger menu** (three lines): Opens mobile drawer
+
+---
+
+## CONFIRMATION DIALOGS (Common Pattern)
+
+### Delete Confirmations:
+- Message: "Are you sure you want to remove [item]?"
+- **"Yes" button**: Confirm deletion (usually primary/red)
+- **"Cancel" button**: Cancel
+
+### Save Confirmations:
+- **Save button**: Shows spinner while saving
+- Success: Shows checkmark animation
+- Error: Shows error message with retry option
+
+---
+
+## IMPERSONATION ALERT (Admin Feature)
+
+When impersonating a user:
+- **Yellow warning banner** at top of screen
+- Shows: User-secret icon + "Impersonating: [name]"
+- **"Cancel Impersonation" button**: Stop impersonating, reload page
+
+---
+
+## OFFLINE MODE
+
+When offline:
+- **Alert banner**: "You are offline"
+- **"Save Changes" button**: Sync pending changes when back online
+- **"Discard" button**: Discard offline changes
+
+---
+
+## TECHNICAL FEATURES
+
+- Responsive design (mobile/desktop)
+- Offline capability with sync
+- Real-time data synchronization
+- Multi-currency support
+- Timezone handling
+- OAuth authentication
+- Role-based access control (admin vs regular user)
+`;
+
+        let apiKey = localStorage.getItem('gemini_api_key') || '';
+        let conversationHistory = [];
+
+        // Check if API key exists
+        function checkApiKey() {
+            if (apiKey) {
+                document.getElementById('apiKeyBanner').classList.add('hidden');
+                document.getElementById('apiKeySaved').classList.remove('hidden');
+            } else {
+                document.getElementById('apiKeyBanner').classList.remove('hidden');
+                document.getElementById('apiKeySaved').classList.add('hidden');
+            }
+        }
+
+        function saveApiKey() {
+            const keyInput = document.getElementById('apiKey');
+            apiKey = keyInput.value.trim();
+            if (apiKey) {
+                localStorage.setItem('gemini_api_key', apiKey);
+                document.getElementById('apiKeyBanner').classList.add('hidden');
+                document.getElementById('apiKeySaved').classList.remove('hidden');
+                addMessage('assistant', 'API key saved! You can now ask me questions about BTG.');
+            }
+        }
+
+        function clearApiKey() {
+            apiKey = '';
+            localStorage.removeItem('gemini_api_key');
+            document.getElementById('apiKey').value = '';
+            document.getElementById('apiKeyBanner').classList.remove('hidden');
+            document.getElementById('apiKeySaved').classList.add('hidden');
+            addMessage('assistant', 'API key cleared. Please enter a new key to continue.');
+        }
+
+        function handleKeyDown(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+
+        function autoResize(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+        }
+
+        function askQuestion(question) {
+            document.getElementById('userInput').value = question;
+            sendMessage();
+        }
+
+        function addMessage(role, content) {
+            const messagesDiv = document.getElementById('messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${role}`;
+
+            const avatar = role === 'assistant' ? '🎯' : '👤';
+
+            // Convert markdown-like formatting to HTML
+            let formattedContent = content
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/\n- /g, '</p><ul><li>')
+                .replace(/\n(\d+)\. /g, '</p><ol><li>')
+                .split('\n').join('<br>');
+
+            // Wrap in paragraph if not already
+            if (!formattedContent.startsWith('<')) {
+                formattedContent = '<p>' + formattedContent + '</p>';
+            }
+
+            messageDiv.innerHTML = `
+                <div class="avatar">${avatar}</div>
+                <div class="content">${formattedContent}</div>
+            `;
+
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function showTyping() {
+            const messagesDiv = document.getElementById('messages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator';
+            typingDiv.id = 'typing';
+            typingDiv.innerHTML = `
+                <div class="avatar">🎯</div>
+                <div class="dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            `;
+            messagesDiv.appendChild(typingDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function hideTyping() {
+            const typing = document.getElementById('typing');
+            if (typing) typing.remove();
+        }
+
+        function showError(message) {
+            const messagesDiv = document.getElementById('messages');
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = message;
+            messagesDiv.appendChild(errorDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('userInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const question = input.value.trim();
+
+            if (!question) return;
+
+            if (!apiKey) {
+                showError('Please enter your Gemini API key first.');
+                return;
+            }
+
+            // Add user message
+            addMessage('user', question);
+            input.value = '';
+            input.style.height = 'auto';
+
+            // Hide suggestions after first question
+            document.getElementById('suggestions').style.display = 'none';
+
+            // Disable input
+            sendBtn.disabled = true;
+            showTyping();
+
+            // Add to conversation history
+            conversationHistory.push({ role: 'user', parts: [{ text: question }] });
+
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [
+                            {
+                                role: 'user',
+                                parts: [{
+                                    text: `You are BTG Assistant, a helpful AI that answers questions about the Beyond The Game (BTG) application. Use ONLY the following knowledge base to answer questions. If the answer is not in the knowledge base, say you don't have that information.
+
+Be concise but helpful. Use formatting like **bold** for emphasis. When giving steps, use numbered lists.
+
+KNOWLEDGE BASE:
+${BTG_KNOWLEDGE_BASE}
+
+USER QUESTION: ${question}`
+                                }]
+                            }
+                        ],
+                        generationConfig: {
+                            temperature: 0.3,
+                            maxOutputTokens: 1024,
+                        }
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.error) {
+                    throw new Error(data.error.message || 'API error');
+                }
+
+                const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Sorry, I could not generate a response.';
+
+                hideTyping();
+                addMessage('assistant', reply);
+
+                // Add to conversation history
+                conversationHistory.push({ role: 'model', parts: [{ text: reply }] });
+
+            } catch (error) {
+                hideTyping();
+                console.error('Error:', error);
+                showError(`Error: ${error.message}. Please check your API key and try again.`);
+            }
+
+            sendBtn.disabled = false;
+        }
+
+        // Initialize
+        checkApiKey();
+    </script>
+</body>
+</html>
