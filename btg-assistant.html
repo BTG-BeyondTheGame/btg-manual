@@ -611,12 +611,21 @@ Automatically calculated statistics:
 - Trends and insights
 
 ### Leaderboards
-- **Points Leaderboard**: Ranking by habit points
-- **Poker Leaderboards**:
-  - By P&L (profit/loss)
-  - By hourly rate
-  - By session count
-- **Team Rankings**: Group-based competition
+The Leaderboard page ranks teams by average points per member on a monthly basis.
+
+**Leaderboard Tabs:**
+- **Tracking tab**: Teams ranked by average habit tracking points per member
+- **Poker tab**: Teams ranked by poker performance, with sub-tabs:
+  - **Profit (BB)**: Average big blind profit
+  - **Volume**: Total poker volume
+
+**Display Features:**
+- Month navigation with left/right arrows (historical data from October 2025)
+- Top 3 teams shown in a podium display with gold, silver, and bronze styling
+- Full Rankings table with: rank, team avatar, team name, session count, and metric value
+- Your team's row is highlighted for easy identification
+- Confetti animation when your team is ranked #1
+
 - Filter by month/year
 
 ---
@@ -723,6 +732,7 @@ The admin section appears in the sidebar only for users with admin privileges. M
 - **Trackings** → /admin/trackings
 - **Email Templates** → /admin/emails
 - **Default Goals** → /admin/default-goals
+- **Advanced Tools** → /admin/advanced-tools
 
 ---
 
@@ -1083,6 +1093,45 @@ The system tracks detailed viewing behavior for each video:
 
 - Set up default habit templates
 - These goals are automatically added for new users
+
+---
+
+### ADVANCED TOOLS PAGE (/admin/advanced-tools)
+
+Admin-only page for leaderboard calculations, Discord upvote management, and utilities.
+
+#### Calculate Leaderboard Section:
+1. Enter **Month** (1-12) and **Year**
+2. Click **"Calculate Leaderboard"** button
+3. On success, shows: "Leaderboard calculated successfully! X users, Y total points"
+4. **"Download Excel (Daily Points)"** button appears - exports CSV with daily point breakdown per user
+   - CSV includes columns: User, each day of the month, Total
+   - Point categories: tracking, discord, day off, weekly, monthly, every day bonus
+
+**Note:** Leaderboard calculation must be run before the Leaderboard page displays data for that month.
+
+#### Calculate Discord Upvotes Section:
+The upvote system captures Discord emoji reactions and converts them into reward points.
+
+1. Enter **Month** (1-12) and **Year**
+2. Click **"Calculate Upvotes"** to fetch Discord reaction data
+3. Review the **Points Distribution** table showing:
+   - **Member** column: Name of the person who received upvotes
+   - **Upvotes Received** column: Total emoji reactions received
+   - **Points** column: Calculated point value (bold)
+   - Members sorted by points descending, only showing members with > 0 points
+   - Total row at the bottom
+4. **"Download Full Sheet"** button: Exports CSV of the full voting matrix (who upvoted whom)
+   - CSV format: Receiver rows × Giver columns, with totals and final points
+5. **"Commit Points"** button: Saves the point allocation to user accounts
+   - Success message: "Upvote points committed successfully for YYYY-MM"
+
+#### Advanced Section (Collapsible):
+- Access via small **"Advanced..."** button at bottom of page
+- **Seed Sample Data**: Populates demo goals, trackings, and poker sessions (dev only)
+- **Remove Sample Data**: Cleans up seeded data
+- **Current Templates Status**: Shows checkmarks for daily/weekly/monthly templates
+- **Download Discord Stats**: Fetches raw Discord statistics
 
 ---
 

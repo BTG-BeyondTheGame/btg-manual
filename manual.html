@@ -363,7 +363,11 @@
                 <li><a href="#railbirds">Railbirds (Social Features)</a></li>
                 <li><a href="#notifications">Notifications</a></li>
                 <li><a href="#settings">Settings &amp; Preferences</a></li>
-                <li><a href="#admin">Admin Features</a></li>
+                <li><a href="#admin">Admin Features</a>
+                    <ul class="toc-subsection">
+                        <li><a href="#advanced-tools">Advanced Tools</a></li>
+                    </ul>
+                </li>
                 <li><a href="#data-management">Data Management</a></li>
             </ol>
         </nav>
@@ -708,29 +712,48 @@
 
             <h3 id="leaderboards">Leaderboards</h3>
             <p>
-                Compare your performance with other BTG members:
+                Compare your team's performance with others across the BTG community. The Leaderboard page
+                is accessible from the sidebar and ranks teams by their average points per member.
             </p>
 
-            <h4>Points Leaderboard</h4>
+            <h4>Leaderboard Tabs</h4>
             <p>
-                Earn points by completing your habits. The points leaderboard ranks all users by their
-                accumulated points for the selected time period.
-            </p>
-
-            <h4>Poker Leaderboards</h4>
-            <p>
-                Multiple poker rankings are available:
+                The leaderboard offers two tabs to switch between ranking types:
             </p>
             <ul>
-                <li><strong>By P&amp;L</strong> &ndash; Total profit/loss ranking</li>
-                <li><strong>By Hourly Rate</strong> &ndash; Efficiency ranking</li>
-                <li><strong>By Sessions</strong> &ndash; Volume ranking</li>
+                <li><strong>Tracking</strong> &ndash; Teams ranked by average habit tracking points per member</li>
+                <li><strong>Poker</strong> &ndash; Teams ranked by poker performance, with sub-tabs for:
+                    <ul>
+                        <li><strong>Profit (BB)</strong> &ndash; Average big blind profit</li>
+                        <li><strong>Volume</strong> &ndash; Total poker volume</li>
+                    </ul>
+                </li>
             </ul>
 
-            <h4>Team Rankings</h4>
+            <h4>Month Navigation</h4>
             <p>
-                If you're part of a team, view team-based leaderboards to see how your group compares to others.
+                Use the left and right arrow buttons to browse leaderboard data for different months.
+                Historical data is available going back to October 2025.
             </p>
+
+            <h4>Podium &amp; Rankings Display</h4>
+            <p>
+                The top 3 teams are displayed in a visual podium with gold, silver, and bronze styling.
+                Each podium entry shows the team initials, name, and key metric. If your team is ranked #1,
+                a confetti animation celebrates the achievement.
+            </p>
+            <p>
+                Below the podium, the <strong>Full Rankings</strong> table lists all teams with:
+            </p>
+            <ul>
+                <li><strong>Rank</strong> &ndash; Position with color-coded border (gold, silver, bronze for top 3)</li>
+                <li><strong>Team</strong> &ndash; Team avatar and name</li>
+                <li><strong>Sessions</strong> &ndash; Number of sessions for the month</li>
+                <li><strong>Points / Metric</strong> &ndash; Average points, BB profit, or volume depending on the selected tab</li>
+            </ul>
+            <div class="tip">
+                Your team's row is highlighted so you can quickly spot your ranking.
+            </div>
         </section>
 
         <!-- Section 7: Educational Content -->
@@ -1006,6 +1029,7 @@
                 <li><strong>Trackings</strong> &ndash; Habit tracking reports</li>
                 <li><strong>Email Templates</strong> &ndash; Email template management</li>
                 <li><strong>Default Goals</strong> &ndash; Default habit templates</li>
+                <li><strong>Advanced Tools</strong> &ndash; Leaderboard calculation, Discord upvotes, and utilities</li>
             </ul>
 
             <h3>User Management</h3>
@@ -1131,6 +1155,50 @@
                 <li>Rich text HTML editor</li>
                 <li>Use templates when sending emails to users</li>
             </ul>
+
+            <h3 id="advanced-tools">Advanced Tools</h3>
+            <p>
+                The Advanced Tools page provides administrative utilities for calculating leaderboards,
+                managing Discord upvote points, and other maintenance tasks. Access it from the sidebar
+                under <strong>Admin &gt; Advanced Tools</strong>.
+            </p>
+
+            <h4>Calculate Leaderboard</h4>
+            <p>
+                Generate the monthly leaderboard rankings based on user tracking data:
+            </p>
+            <ol class="steps">
+                <li>Enter the <strong>Month</strong> (1&ndash;12) and <strong>Year</strong></li>
+                <li>Click <strong>"Calculate Leaderboard"</strong></li>
+                <li>On success, a summary displays the total number of users and total points distributed</li>
+                <li>Click <strong>"Download Excel (Daily Points)"</strong> to export a CSV with a day-by-day breakdown of points per user, including tracking, Discord, day off, weekly, monthly, and every-day bonus categories</li>
+            </ol>
+            <div class="note">
+                Leaderboard calculation must be run before the Leaderboard page displays data for that month.
+            </div>
+
+            <h4>Calculate Discord Upvotes</h4>
+            <p>
+                The upvote system captures emoji reactions from the BTG Discord community channel
+                and converts them into reward points for members:
+            </p>
+            <ol class="steps">
+                <li>Enter the <strong>Month</strong> (1&ndash;12) and <strong>Year</strong></li>
+                <li>Click <strong>"Calculate Upvotes"</strong> to fetch and process Discord reaction data</li>
+                <li>Review the <strong>Points Distribution</strong> table showing each member's upvote count and calculated points</li>
+                <li>Click <strong>"Download Full Sheet"</strong> to export a CSV of the full voting matrix (who upvoted whom)</li>
+                <li>Click <strong>"Commit Points"</strong> to save the point allocation to user accounts</li>
+            </ol>
+            <div class="feature-box">
+                <h4>Upvote Points Distribution</h4>
+                <p>After calculation, the points distribution table displays:</p>
+                <ul>
+                    <li><strong>Member</strong> &ndash; The team member who received upvotes</li>
+                    <li><strong>Upvotes Received</strong> &ndash; Total number of emoji reactions received</li>
+                    <li><strong>Points</strong> &ndash; Calculated point value based on the upvote count</li>
+                </ul>
+                <p>Members are sorted by points in descending order. Only members with points greater than zero are shown.</p>
+            </div>
         </section>
 
         <!-- Section 12: Data Management -->
