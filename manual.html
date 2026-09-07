@@ -360,7 +360,7 @@
                         <li><a href="#questionnaires">Questionnaires</a></li>
                     </ul>
                 </li>
-                <li><a href="#railbirds">Railbirds (Social Features)</a></li>
+                <li><a href="#sharing">Sharing Habits</a></li>
                 <li><a href="#notifications">Notifications</a></li>
                 <li><a href="#settings">Settings &amp; Preferences</a></li>
                 <li><a href="#admin">Admin Features</a>
@@ -391,7 +391,7 @@
                     <li><strong>Poker Session Logging</strong> &ndash; Record all your poker sessions with detailed analytics</li>
                     <li><strong>Educational Content</strong> &ndash; Access lectures, videos, and questionnaires</li>
                     <li><strong>Leaderboards</strong> &ndash; Compete with other players and track your ranking</li>
-                    <li><strong>Railbirds</strong> &ndash; Follow other players and support their journey</li>
+                    <li><strong>Sharing</strong> &ndash; Share individual habits with members you want to keep you accountable</li>
                 </ul>
             </div>
         </section>
@@ -822,76 +822,86 @@
             </div>
         </section>
 
-        <!-- Section 8: Railbirds -->
-        <section id="railbirds">
-            <h2>8. Railbirds (Social Features)</h2>
+        <!-- Section 8: Sharing Habits -->
+        <section id="sharing">
+            <h2>8. Sharing Habits</h2>
             <p>
-                The Railbirds feature lets you follow other players and build a supportive community.
+                Every habit you track is private by default. You can share individual habits with
+                specific members, so they can see that habit and how you are getting on with it.
+                Sharing is per habit, not all or nothing &ndash; you decide one habit at a time.
             </p>
 
-            <h3>Following Players</h3>
-            <p>
-                Add other BTG members as railbirds to follow their progress:
-            </p>
+            <h3>Sharing a Habit</h3>
             <ol class="steps">
-                <li>Navigate to the <strong>Railbirds</strong> section</li>
-                <li>Click the <strong>"Add Railbird"</strong> button</li>
-                <li>Select a member from the dropdown (organized by "My Team" and "Rest of BTG")</li>
-                <li>Click <strong>"Next"</strong></li>
-                <li>Choose access level: <strong>"From this moment forward"</strong> (new data only) or <strong>"Include past data"</strong> (historical access)</li>
-                <li>Click <strong>"Add Railbird"</strong> to confirm</li>
+                <li>Go to <strong>My Habits</strong></li>
+                <li>Click the <strong>people icon</strong> on the habit you want to share</li>
+                <li>Tick the members you want to share it with, grouped by team</li>
+                <li>Click <strong>Save</strong></li>
             </ol>
-
-            <h3>Removing Railbirds</h3>
             <p>
-                To stop following someone, click the <strong>X icon</strong> on their card in the "My Rail" section,
-                then confirm by clicking <strong>"Yes"</strong>.
+                The habit then shows a <strong>Shared with</strong> label on its card, so you can see
+                at a glance which of your habits are visible to someone else.
             </p>
 
-            <h3>Player Overview</h3>
+            <h3>What Other People See</h3>
             <p>
-                Click on any railbird card to view their detailed Overview page showing:
+                Someone you share a habit with sees the habit's name and your day-by-day progress on
+                it for the month they are looking at. They do not see your other habits, your points,
+                your poker results, or who else you share with.
             </p>
-            <ul>
-                <li>Habit completion rates and streaks</li>
-                <li>Poker session statistics</li>
-                <li>Monthly progress data</li>
-                <li>Recent activity</li>
-            </ul>
 
-            <h3>Support &amp; Encouragement</h3>
+            <h3>Sharing Starts From the Day You Share</h3>
             <p>
-                When viewing a player's overview, use the floating action buttons in the bottom right corner:
+                By default, a member sees your progress from the day you shared the habit with them
+                onwards &ndash; not your history before that. Days before that point show as
+                &ldquo;not applicable&rdquo; to them, the same as a day the habit was not scheduled.
+            </p>
+            <p>
+                Each person gets their own starting point. If you share a habit with one member today
+                and another next month, the second sees a month less history than the first. When you
+                are adding someone, you can switch on <strong>Include progress from before today</strong>
+                to give them your full history instead. That choice applies only to the people you are
+                adding at that moment &ndash; it never widens what someone already on the list can see.
+            </p>
+
+            <h3>Stopping Sharing</h3>
+            <p>
+                Open the same dialog and untick the member, then save. Their access ends immediately.
+                If you later share with them again, they start from that new day &ndash; adding someone
+                back does not restore the history they could see before.
+            </p>
+
+            <h3>Habits Shared With You</h3>
+            <p>
+                Habits other members share with you appear in the <strong>Shared with me</strong> panel
+                on the <strong>Overview</strong> page, under the Insights tab. Each habit shows a square
+                per day of the month:
             </p>
             <table>
                 <thead>
                     <tr>
-                        <th>Button</th>
-                        <th>Color</th>
-                        <th>Purpose</th>
+                        <th>Square</th>
+                        <th>Meaning</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>🎉 Cheer</strong></td>
-                        <td>Green</td>
-                        <td>Send encouragement for good performance</td>
+                        <td><strong>Green</strong></td>
+                        <td>Completed that day</td>
                     </tr>
                     <tr>
-                        <td><strong>💙 Comfort</strong></td>
-                        <td>Blue</td>
-                        <td>Offer support during tough times</td>
+                        <td><strong>Red</strong></td>
+                        <td>The habit was due that day and was not completed</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Grey</strong></td>
+                        <td>Not applicable &ndash; the habit was not scheduled, the day is still to come, or it falls before the habit was shared with you</td>
                     </tr>
                 </tbody>
             </table>
             <p>
-                Each button opens a dialog where you can write a personal message before sending.
-            </p>
-
-            <h3>People Watching Me</h3>
-            <p>
-                The "People Watching Me" section shows who has added you as a railbird. Build accountability
-                by knowing others are following your journey.
+                The panel follows the month shown at the top of the Overview page, so you can look back
+                at earlier months. Hovering a square tells you what it means.
             </p>
         </section>
 
@@ -908,7 +918,7 @@
             </p>
             <ul>
                 <li>System announcements</li>
-                <li>Railbird activity</li>
+                <li>Habits shared with you</li>
                 <li>Leaderboard changes</li>
                 <li>Content updates</li>
             </ul>

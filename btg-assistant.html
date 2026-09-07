@@ -457,7 +457,7 @@
                         <li>How do I create a new habit?</li>
                         <li>Where can I see my poker statistics?</li>
                         <li>How do I view email histories for a user?</li>
-                        <li>What are railbirds?</li>
+                        <li>How do I share a habit?</li>
                     </ul>
                     <p>What would you like to know?</p>
                 </div>
@@ -468,7 +468,7 @@
             <div class="suggestion" onclick="askQuestion(this.textContent)">How do I create a goal?</div>
             <div class="suggestion" onclick="askQuestion(this.textContent)">Where are poker analytics?</div>
             <div class="suggestion" onclick="askQuestion(this.textContent)">How do I see email histories?</div>
-            <div class="suggestion" onclick="askQuestion(this.textContent)">What are railbirds?</div>
+            <div class="suggestion" onclick="askQuestion(this.textContent)">How do I share a habit?</div>
         </div>
 
         <div class="input-area">
@@ -653,24 +653,41 @@ The Leaderboard page ranks teams by average points per member on a monthly basis
 
 ---
 
-## RAILBIRDS (Social Features)
+## SHARING HABITS
 
-### What are Railbirds?
-Railbirds let you follow other players' progress and build a supportive community.
+### How sharing works
+Every habit is private by default. You share individual habits with specific members - it is
+per habit, not all or nothing. Someone you share with sees that habit's name and your
+day-by-day progress on it. They do not see your other habits, your points, your poker
+results, or who else you share with.
 
-### Adding Railbirds
-1. Go to Railbirds section
-2. Search for a player
-3. Tap "Add Railbird"
-4. Optionally include historical data
+### Sharing a habit
+1. Go to My Habits
+2. Click the people icon on the habit
+3. Tick the members to share it with (grouped by team)
+4. Save
 
-### Features
-- View player statistics
-- See habit completion rates
-- Track poker performance
-- Send encouragement ("Cheer")
-- Send support messages
-- "People Watching Me" shows who follows you
+The habit card then shows a "Shared with" label.
+
+### Sharing windows
+By default someone sees your progress from the day you shared with them onwards, not your
+history before it. Each person gets their own starting point, so someone added next month
+sees less history than someone added today. While adding people you can switch on "Include
+progress from before today" to give them your full history - it applies only to the people
+being added at that moment and never widens what an existing member can already see.
+
+### Stopping sharing
+Untick the member and save; access ends immediately. Sharing with them again later starts
+from that new day - it does not restore the history they used to see.
+
+### Habits shared with you
+They appear in the "Shared with me" panel on the Overview page, under the Insights tab, with
+one square per day of the month:
+- Green: completed
+- Red: was due that day and not completed
+- Grey: not applicable - not scheduled, still to come, or before it was shared with you
+
+The panel follows the month selected at the top of Overview.
 
 ---
 
@@ -679,7 +696,7 @@ Railbirds let you follow other players' progress and build a supportive communit
 ### In-App Notifications
 - Access via bell icon
 - System announcements
-- Railbird activity
+- Habits shared with you
 - Leaderboard changes
 - Content updates
 - Mark as read
@@ -1297,49 +1314,33 @@ The upvote system captures Discord emoji reactions and converts them into reward
 
 ---
 
-## RAILBIRDS PAGE (/railbirds)
+## SHARING A HABIT (from /goals)
 
-### "My Rail" Section (People I Follow):
-- **"Add Railbird" button**: Opens dialog to add someone to follow
-  - Disabled if no members available
-- **Railbird cards**: Shows each person you follow
-  - **X icon button**: Remove this railbird (opens confirmation)
+### Habit card actions:
+- **People icon**: Opens the sharing dialog for that habit
+- **Pencil icon**: Edit the habit
+- **X icon**: Delete the habit
+- **"Shared with N" label**: Appears on habits that are shared
 
-### "People Watching Me" Section:
-- Shows who is following you
-- Click a card to view their profile
+### Sharing dialog:
+1. **Member list**: Checkboxes, grouped by team with your own team first
+2. Under each ticked member: what they will see ("from 12 Sep", or "all progress")
+3. **"Include progress from before today" switch**: Only shown when you are adding someone
+   new. Applies to those people only.
+4. **"Cancel" / "Save"** buttons
 
-### Add Railbird Dialog:
-1. **"Select Member" dropdown**: Choose who to follow
-   - Organized by "My Team" and "Rest of BTG"
-2. **"Cancel" / "Next" buttons**
-3. **Access Level selection**:
-   - "From this moment forward" (new data only)
-   - "Include past data" (historical access)
-4. **"Back" / "Add Railbird" buttons**
-
-### Remove Railbird Confirmation:
-- Message: "Remove railbird?"
-- **"Yes"** button: Confirm removal
-- **"Cancel"** button: Keep following
+Ticking nobody makes the habit private again.
 
 ---
 
-## RAILBIRD PLAYER OVERVIEW (/railbirds/player/:id)
+## SHARED WITH ME PANEL (on /overview, Insights tab)
 
-### Viewing Someone's Progress:
-- Shows their Overview page data (habits, poker stats)
-
-### Floating Action Buttons (FABs) - Bottom Right:
-1. **Cheer button (🎉)**: Green FAB
-   - Opens "Send Cheer" dialog
-   - Message field to write encouragement
-   - **"Cancel" / "Send Cheer"** buttons
-
-2. **Comfort button (💙)**: Blue FAB
-   - Opens "Send Comfort" dialog
-   - Message field to write support
-   - **"Cancel" / "Send Comfort"** buttons
+- One block per member sharing with you, showing their name
+- Under each: their shared habits, with a square per day and a completed/total count
+- Green = completed, Red = due and not completed, Grey = not applicable
+- Hovering a square explains it
+- Follows the month selected at the top of the Overview page
+- If nobody is sharing with you, it says so and links to Manage habits
 
 ---
 
