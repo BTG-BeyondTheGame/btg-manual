@@ -350,13 +350,14 @@
                 <li><a href="#poker-events">Poker Events &amp; Series</a></li>
                 <li><a href="#analytics">Analytics &amp; Dashboards</a>
                     <ul class="toc-subsection">
-                        <li><a href="#overview">Overview Dashboard</a></li>
+                        <li><a href="#dashboard">Dashboard</a></li>
+                        <li><a href="#stats">Stats</a></li>
                         <li><a href="#leaderboards">Leaderboards</a></li>
                     </ul>
                 </li>
                 <li><a href="#educational-content">Educational Content</a>
                     <ul class="toc-subsection">
-                        <li><a href="#lectures">Lectures &amp; Videos</a></li>
+                        <li><a href="#library">The Library</a></li>
                         <li><a href="#questionnaires">Questionnaires</a></li>
                     </ul>
                 </li>
@@ -418,7 +419,8 @@
 
             <h3 id="navigation">Navigating the App</h3>
             <p>
-                BTG uses a bottom navigation bar (on mobile) or sidebar (on desktop) to access the main sections:
+                On mobile, a bottom navigation bar holds the five main sections. On desktop, the same sections sit
+                in the sidebar under slightly longer names:
             </p>
             <table>
                 <thead>
@@ -429,31 +431,33 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Home</strong></td>
-                        <td>Your daily habit tracking view and quick actions</td>
+                        <td><strong>Dash</strong> (Dashboard)</td>
+                        <td>Today at a glance: your streak, today&rsquo;s habits, this week, and quick links to your month, team and poker</td>
                     </tr>
                     <tr>
-                        <td><strong>Overview</strong></td>
-                        <td>Analytics dashboard with monthly summaries</td>
+                        <td><strong>Track</strong> (Tracking)</td>
+                        <td>Log any day in full: all your habits and that day&rsquo;s poker sessions</td>
                     </tr>
                     <tr>
-                        <td><strong>Poker</strong></td>
-                        <td>Session logging and poker statistics</td>
+                        <td><strong>Stats</strong></td>
+                        <td>Your habits and poker over a week, month or year</td>
                     </tr>
                     <tr>
-                        <td><strong>Learn</strong></td>
-                        <td>Educational content, lectures, and resources</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Leaderboard</strong></td>
+                        <td><strong>Leaders</strong> (Leaderboard)</td>
                         <td>Rankings and competitive standings</td>
                     </tr>
                     <tr>
-                        <td><strong>Settings</strong></td>
-                        <td>Account preferences and configuration</td>
+                        <td><strong>Library</strong></td>
+                        <td>Main calls, study panels, homework, tutorials and onboarding content</td>
                     </tr>
                 </tbody>
             </table>
+            <p>
+                The desktop sidebar (and the menu behind the three-line icon on mobile) also links to
+                <strong>Deals</strong>, the member <strong>Directory</strong>, <strong>My Habits</strong> (where you
+                create and manage habits) and your <strong>Profile</strong>. <strong>Settings</strong> and
+                <strong>Log out</strong> are in the account menu at the foot of the sidebar.
+            </p>
         </section>
 
         <!-- Section 3: Goals & Habits -->
@@ -467,8 +471,8 @@
             <h3 id="creating-goals">Creating Goals</h3>
             <p>To create a new goal:</p>
             <ol class="steps">
-                <li>Navigate to the <strong>Home</strong> screen</li>
-                <li>Tap the <strong>+ Add Goal</strong> button</li>
+                <li>Open <strong>My Habits</strong> from the sidebar (or the menu on mobile)</li>
+                <li>Under <strong>Add Habit</strong>, add one of the suggested habits, or tap <strong>+ Custom habit</strong> to build your own</li>
                 <li>Choose a goal type (Yes/No, Quantitative, or Habit)</li>
                 <li>Fill in the goal details: name, description, category, and icon</li>
                 <li>Configure the frequency (daily, weekly, monthly)</li>
@@ -508,13 +512,44 @@
 
             <h3 id="tracking-habits">Tracking Your Habits</h3>
             <p>
-                Your daily habits appear on the Home screen. To track completion:
+                You can tick off habits in two places:
             </p>
             <ul>
-                <li><strong>Yes/No Goals:</strong> Tap the goal card to toggle completion (shows swipe animation)</li>
-                <li><strong>Quantitative Goals:</strong> Tap to open the input dialog</li>
+                <li><strong>Dashboard</strong> &ndash; The <strong>Today</strong> card lists today&rsquo;s daily habits,
+                    followed by your <strong>Weekly</strong> and <strong>Monthly</strong> habits, each with how
+                    much of the week or month has already gone. Tap a day in the <strong>Last 7 days</strong> strip
+                    above it to show that day in the card instead</li>
+                <li><strong>Tracking</strong> &ndash; Any day, past or present. Pick a day from the week strip at the top
+                    (the arrows step a week back or forward). All your habits are in one <strong>Habits</strong> card,
+                    split into <strong>Daily</strong>, <strong>Weekly</strong> and <strong>Monthly</strong> sections.
+                    Under Weekly and Monthly, the weekly and monthly targets of your daily habits are shown as small
+                    tiles below the habits themselves</li>
+            </ul>
+            <p>
+                Everywhere in the app, habits within each section follow the order you set on the
+                <strong>My Habits</strong> page.
+            </p>
+            <p>To track a habit:</p>
+            <ul>
+                <li><strong>Yes/No Goals:</strong> Tap the habit (the name or the box). Each tap moves it on one step:
+                    not done &rarr; done &rarr; not applicable &rarr; not done. &ldquo;Not applicable&rdquo; excuses the
+                    habit for that day</li>
+                <li><strong>Quantitative Goals:</strong> Tap the <strong>+</strong> button to add one step, or tap the
+                    habit&rsquo;s name to open the input dialog and correct the value</li>
                 <li><strong>Time-based Goals:</strong> Enter time in hours:minutes format</li>
             </ul>
+            <p>
+                The button in the corner of the Today card (and of Tracking&rsquo;s Habits card) shows what kind of day
+                it is. Tap it to switch to another set of habits you have set up, or to mark the day as a
+                <strong>Day off</strong>. <strong>Reset day</strong>, at the foot of the same menu, deletes everything
+                logged on that day.
+            </p>
+            <div class="note">
+                A day you have tracked keeps the habits it had, so changing your habits later does not rewrite days
+                that are already over. Changes you make show on today straight away, and days you never tracked always
+                show your current habits. If a past day shows an old list you do not want and nothing you need is logged
+                on it, <strong>Reset day</strong> brings it back to your current habits.
+            </div>
 
             <h4>Quantitative Input Dialog</h4>
             <p>When logging quantitative goals, a dialog appears with:</p>
@@ -526,13 +561,13 @@
                 <li><strong>Log button</strong> &ndash; Save the tracked value</li>
             </ul>
             <div class="tip">
-                You can reorganize your goals by dragging and dropping them into your preferred order.
+                You can reorganize your goals on the <strong>My Habits</strong> page by dragging and dropping them into your preferred order.
             </div>
 
             <h3 id="streaks">Streaks &amp; Progress</h3>
             <p>
                 BTG tracks your consistency through streaks. A streak counts how many consecutive days, weeks,
-                or months you've completed a goal. Streaks are displayed on each goal card and in the overview.
+                or months you've completed a goal. Your day streak is shown at the top of the Dashboard and on the Stats page.
             </p>
             <p>
                 Visual indicators help you see your progress at a glance:
@@ -554,8 +589,9 @@
             <h3 id="logging-sessions">Logging Sessions</h3>
             <p>To log a new poker session:</p>
             <ol class="steps">
-                <li>On the Home screen, find the <strong>Poker Sessions</strong> section</li>
-                <li>Click the <strong>"Log Session"</strong> button (plus icon)</li>
+                <li>On the Dashboard, tap <strong>&ldquo;Log a poker session&rdquo;</strong> at the foot of the Today card
+                    &ndash; or, to log a session on another day, open <strong>Tracking</strong>, pick the day, and click
+                    <strong>&ldquo;Log session&rdquo;</strong> (plus icon) in the <strong>Poker sessions</strong> card</li>
                 <li>Select game type: <strong>Cash Game</strong>, <strong>Tournament</strong>, or <strong>Rakeback</strong></li>
                 <li>Choose game variants (NLH, PLO, etc.) from the autocomplete dropdown</li>
                 <li>Enter session details based on game type</li>
@@ -564,7 +600,9 @@
                 <li>Click <strong>"Log Session"</strong> to save</li>
             </ol>
             <div class="tip">
-                Click any existing session card to edit it. Use the <strong>"Delete Session"</strong> button (red) to remove a session.
+                On Tracking, each session is a row in that day&rsquo;s <strong>Poker sessions</strong> card, showing the game,
+                its details, your Focus, Power and Discipline ratings, and the result; the card&rsquo;s header shows the
+                day&rsquo;s total. Click a session to edit it. Use the <strong>"Delete Session"</strong> button (red) to remove a session.
             </div>
 
             <h3 id="session-details">Session Details</h3>
@@ -632,7 +670,8 @@
                 <li><strong>Win Rate by Game Type</strong> &ndash; Performance breakdown by variant</li>
             </ul>
             <p>
-                View your statistics on a monthly basis or filter by date range, game type, and stakes.
+                Your poker figures for the current month are on the Dashboard. For any week, month or year, open
+                <strong>Stats</strong> and choose the <strong>Poker</strong> tab (see <a href="#stats">Stats</a>).
             </p>
         </section>
 
@@ -698,16 +737,62 @@
         <section id="analytics">
             <h2>6. Analytics &amp; Dashboards</h2>
 
-            <h3 id="overview">Overview Dashboard</h3>
+            <h3 id="dashboard">Dashboard</h3>
             <p>
-                The Overview screen provides a comprehensive view of your progress:
+                The Dashboard (<strong>Dash</strong> in the bottom bar) is the first screen you see. It is about today:
             </p>
             <ul>
-                <li><strong>Monthly View</strong> &ndash; See your habit completion rate for the current month</li>
-                <li><strong>Daily Breakdown</strong> &ndash; Tap any day to see detailed completion data</li>
-                <li><strong>Weekly Summaries</strong> &ndash; Track week-over-week progress</li>
-                <li><strong>Poker Stats</strong> &ndash; Monthly P&amp;L, hours, and session summaries</li>
-                <li><strong>Insights</strong> &ndash; Trends and patterns in your data</li>
+                <li><strong>Header</strong> &ndash; Today&rsquo;s date, how many habits are left today, and your day streak</li>
+                <li><strong>Month tile</strong> &ndash; The share of this month&rsquo;s days you have kept so far; tap it to open Stats</li>
+                <li><strong>Team standing</strong> &ndash; Your team&rsquo;s place on this month&rsquo;s leaderboard and how far it is
+                    behind first; tap it to open the Leaderboard</li>
+                <li><strong>Poker, this month</strong> &ndash; This month&rsquo;s P&amp;L, hours and number of sessions; tap it to open
+                    the Poker tab in Stats. The eye icon hides or shows the P&amp;L</li>
+                <li><strong>Last 7 days</strong> &ndash; One cell per day with how many habits you completed; tap a day to show it
+                    in the Today card below (<strong>Back to today</strong> returns to today)</li>
+                <li><strong>Today</strong> &ndash; Today&rsquo;s habits and your weekly and monthly habits, ready to tick off (see
+                    <a href="#tracking-habits">Tracking Your Habits</a>), and any poker sessions logged that day, plus
+                    <strong>&ldquo;Log a poker session&rdquo;</strong> and <strong>&ldquo;Open full day&rdquo;</strong>, which
+                    takes you to Tracking</li>
+                <li><strong>Shared with me</strong> &ndash; This week&rsquo;s progress on habits other members share with you (see
+                    <a href="#sharing">Sharing Habits</a>)</li>
+                <li><strong>From the library</strong> &ndash; Pick up where you left off: the video you are part-way through, the
+                    latest main call and a study panel</li>
+            </ul>
+
+            <h3 id="stats">Stats</h3>
+            <p>
+                The Stats page shows your habits and poker over a period you choose. (It replaces the old Overview page;
+                old Overview links open Stats.)
+            </p>
+            <ul>
+                <li><strong>Period</strong> &ndash; Choose <strong>Week</strong>, <strong>Month</strong> or <strong>Year</strong>,
+                    and use the arrows to step to the previous or next one. Everything on the page follows the period you pick</li>
+                <li><strong>Streak</strong> &ndash; Your current day streak, counting back from today</li>
+                <li><strong>Days kept</strong> &ndash; The share of days in the period on which you kept your habits, with the change
+                    against the period before</li>
+                <li><strong>Points</strong> &ndash; Points earned from habits in the period</li>
+                <li><strong>Poker P&amp;L</strong> &ndash; Your result for the period, with hours and hourly rate. The eye icon hides
+                    your P&amp;L; hiding it here also hides it on the Dashboard, and the reverse</li>
+            </ul>
+            <p>Below the figures are two tabs:</p>
+            <ul>
+                <li><strong>Habits</strong> &ndash; Three sections, the same as on Tracking, laid out on the same columns (a column
+                    per day for a week or month, a column per month for a year):
+                    <ul>
+                        <li><strong>Daily</strong> &ndash; A row per daily habit. The <strong>Whole day</strong> row at the top is
+                            shaded by how close each day came to your target; tap a day to open it in Tracking</li>
+                        <li><strong>Weekly</strong> &ndash; Your weekly habits, then the weekly targets of your daily habits. Each row
+                            says what it asks for (for example &ldquo;500 hoops a week&rdquo; or &ldquo;3 days a week&rdquo;), each
+                            cell shows that week&rsquo;s progress, and the figure on the right counts the weeks you hit the target
+                            out of the weeks finished so far (&ldquo;2/3 weeks&rdquo;)</li>
+                        <li><strong>Monthly</strong> &ndash; Your monthly habits, then the monthly targets of your daily habits</li>
+                    </ul>
+                    When the period is a single week, the Weekly section shows a progress bar per target instead of a
+                    grid, and so does the Monthly section for a single month. Below the sections are a <strong>By weekday</strong> chart of your all-time average for
+                    each day of the week and the <strong>Shared with me</strong> panel</li>
+                <li><strong>Poker</strong> &ndash; A running P&amp;L chart for the period and the list of sessions in it, each with its
+                    details, ratings, notes and result. When P&amp;L is hidden, the chart and every result are hidden too</li>
             </ul>
 
             <h3 id="leaderboards">Leaderboards</h3>
@@ -763,20 +848,33 @@
                 BTG provides a rich library of educational content to support your poker development.
             </p>
 
-            <h3 id="lectures">Lectures &amp; Videos</h3>
+            <h3 id="library">The Library</h3>
             <p>
-                Access a curated collection of video lectures and educational materials organized into tabs:
+                The <strong>Library</strong> (formerly Learn) holds BTG&rsquo;s video lectures, readings and questionnaires,
+                organized into tabs:
             </p>
             <ul>
-                <li><strong>New &amp; Noteworthy</strong> &ndash; Recently added content</li>
+                <li><strong>Overview</strong> &ndash; The Library&rsquo;s front page (opens by default): <strong>Continue watching</strong>
+                    (videos you have started), <strong>Latest main calls</strong>, <strong>Homework to do</strong> and
+                    <strong>Expiring soon</strong> (study panels that expire within two weeks). Each list links to its full tab</li>
                 <li><strong>Onboarding</strong> &ndash; Essential content for new members</li>
-                <li><strong>Main Calls</strong> &ndash; Archive of live coaching calls</li>
+                <li><strong>Main Calls</strong> &ndash; Archive of live coaching calls, grouped by month</li>
                 <li><strong>Study Panels</strong> &ndash; Deep-dive study sessions</li>
                 <li><strong>Homework</strong> &ndash; Practice assignments</li>
+                <li><strong>Tutorials</strong></li>
             </ul>
             <p>
-                Each content card shows: thumbnail, title, duration (clock icon), comment count, and star rating.
-                A <strong>green checkmark badge</strong> indicates completed content.
+                Each item shows its title, with its date, length and any expiry date underneath. A
+                <strong>green checkmark badge</strong> indicates completed content, and a thin progress bar shows how far
+                you are through a video you have started. On Main Calls and Study Panels you can filter by watch status.
+            </p>
+
+            <h4>Searching the Library</h4>
+            <p>
+                The search box at the top of the page searches the whole Library, not just the open tab. It matches
+                titles, topics and presenters, and every word you type must appear, in any order &ndash; so
+                &ldquo;phil bankroll&rdquo; finds a call titled &ldquo;Bankroll and Finance Q&amp;A w/ Phil&rdquo;. Results are grouped by
+                tab. Pick a tab to clear the search.
             </p>
 
             <h4>Video Player Features</h4>
@@ -786,7 +884,12 @@
                 <li><strong>Playback speed</strong> &ndash; Options from 0.5x to 2x speed</li>
                 <li><strong>Full-screen mode</strong> &ndash; Immersive viewing</li>
                 <li><strong>Volume control</strong> &ndash; Adjust audio level</li>
-                <li><strong>Chat overlay</strong> &ndash; Some videos include synced live chat replay</li>
+                <li><strong>Chat replay</strong> &ndash; Some videos include the live chat from the call, shown beside the video
+                    (below it on narrow screens) and kept in step with playback</li>
+                <li><strong>Previous / Next</strong> &ndash; Step to the neighbouring lecture without going back to the list</li>
+                <li><strong>Mark as watched</strong> &ndash; Mark a video complete yourself (or undo it with <strong>Mark as not
+                    watched</strong>); a Library video is also marked complete automatically once you have actually watched
+                    90% of it</li>
             </ul>
             <div class="feature-box">
                 <h4>Automatic Progress Tracking</h4>
@@ -799,19 +902,13 @@
                 </ul>
             </div>
 
-            <h4>Rating Content</h4>
-            <p>
-                Rate videos and content using the 5-star rating system. You can rate in 0.5 star increments
-                using either star buttons or a slider control.
-            </p>
-
             <h3 id="questionnaires">Questionnaires</h3>
             <p>
                 Interactive questionnaires test your understanding and reinforce learning.
             </p>
             <h4>Completing Questionnaires</h4>
             <ol class="steps">
-                <li>Open a questionnaire from the Learn section</li>
+                <li>Open a questionnaire from the Library</li>
                 <li>Progress through questions (progress bar shows Q1, Q2, Q3...)</li>
                 <li>Answer using: multiple choice, checkboxes, or text input (depending on question type)</li>
                 <li>Questions marked as <strong>required</strong> must be answered before submitting</li>
@@ -873,10 +970,17 @@
 
             <h3>Habits Shared With You</h3>
             <p>
-                Habits other members share with you appear in the <strong>Shared with me</strong> panel
-                on the <strong>Overview</strong> page, under the Insights tab. Each habit shows a square
-                per day of the month:
+                Habits other members share with you appear in the <strong>Shared with me</strong> panel,
+                in two places:
             </p>
+            <ul>
+                <li><strong>Dashboard</strong> &ndash; This week at a glance: one line per habit, with what the habit asks
+                    for, a dot for each day of the current week and, for a counted habit, today&rsquo;s figure. If there are
+                    many, the first three are shown and a <strong>Show more</strong> button reveals the rest</li>
+                <li><strong>Stats</strong> &ndash; At the foot of the <strong>Habits</strong> tab, with a square per day of the
+                    month and a completed/total count</li>
+            </ul>
+            <p>The colours mean the same in both:</p>
             <table>
                 <thead>
                     <tr>
@@ -900,8 +1004,9 @@
                 </tbody>
             </table>
             <p>
-                The panel follows the month shown at the top of the Overview page, so you can look back
-                at earlier months. Hovering a square tells you what it means.
+                On Stats the panel follows the period chosen at the top of the page (for a week or a year, the
+                month that period has reached), so you can look back at earlier months. Hovering a square or
+                dot tells you what it means.
             </p>
         </section>
 
@@ -1184,7 +1289,9 @@
                 <li>Click <strong>"Download Excel (Daily Points)"</strong> to export a CSV with a day-by-day breakdown of points per user, including tracking, Discord, day off, weekly, monthly, and every-day bonus categories</li>
             </ol>
             <div class="note">
-                Leaderboard calculation must be run before the Leaderboard page displays data for that month.
+                You do not need to run this for the Leaderboard page to show the current month: it is recalculated
+                automatically every two hours. Use it to recalculate a past month, or to refresh the current one
+                straight away.
             </div>
 
             <h4>Calculate Discord Upvotes</h4>

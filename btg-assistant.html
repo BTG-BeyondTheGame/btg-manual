@@ -498,13 +498,16 @@
 BTG (Beyond The Game) is a comprehensive habit tracking and poker analytics platform designed for poker players. It combines personal development tools with poker-specific analytics to help players improve their game through disciplined habit tracking, session logging, educational content, and community engagement.
 
 ## Main Navigation Sections
-- **Home**: Daily habit tracking view and quick actions
-- **Overview**: Analytics dashboard with monthly summaries
-- **Poker**: Session logging and poker statistics
-- **Learn**: Educational content, lectures, and resources
-- **Leaderboard**: Rankings and competitive standings
-- **Settings**: Account preferences and configuration
-- **Admin** (admin users only): User management, analytics, content management
+On mobile the bottom navigation bar has five items; the desktop sidebar has the same sections under longer names (shown in brackets):
+- **Dash** (Dashboard, /): Today at a glance - streak, today's habits, this week, month/team/poker summary tiles
+- **Track** (Tracking, /tracking): Log any day in full - all habits plus that day's poker sessions
+- **Stats** (/stats): Habits and poker over a week, month or year (replaces the old Overview page; /overview redirects here)
+- **Leaders** (Leaderboard): Rankings and competitive standings
+- **Library** (/library): Main calls, study panels, homework, tutorials and onboarding content (formerly "Learn")
+
+The desktop sidebar (and the mobile menu behind the three-line icon) also has **Deals**, **Directory**, **My Habits** (/goals - create and manage habits) and **Profile**. **Settings** and **Log out** are in the account menu at the foot of the sidebar. Admin users also get an **Admin** section: user management, analytics, content management.
+
+There is no separate "Home", "Overview", "Poker" or "Learn" page any more: Home became the Dashboard, Overview became Stats, Learn became the Library, and poker sessions are logged from the Dashboard or Tracking.
 
 ---
 
@@ -512,8 +515,8 @@ BTG (Beyond The Game) is a comprehensive habit tracking and poker analytics plat
 
 ### Creating Goals
 To create a new goal:
-1. Navigate to the Home screen
-2. Tap the "+ Add Goal" button
+1. Open My Habits (/goals) from the sidebar, or the menu on mobile
+2. Under "Add Habit", add one of the suggested habits, or tap "+ Custom habit" to build your own
 3. Choose a goal type (Yes/No, Quantitative, or Habit)
 4. Fill in details: name, description, category, icon
 5. Configure frequency (daily, weekly, monthly)
@@ -544,13 +547,25 @@ To create a new goal:
 - Target values and step increments
 
 ### Tracking Habits
-- Yes/No: Tap the goal card to toggle completion
-- Quantitative: Tap to open input dialog
+Habits can be ticked off in two places:
+- **Dashboard**: the "Today" card lists today's daily habits, then "Weekly" and "Monthly" habits (each showing how much of the week/month has elapsed). Tapping a day in the "Last 7 days" strip above it shows that day in the card instead
+- **Tracking** (/tracking): any day - pick it from the week strip at the top (arrows step a week back/forward). All habits are in one "Habits" card with Daily, Weekly and Monthly sections. Under Weekly and Monthly, the weekly/monthly targets of daily habits appear as small tiles below the habits themselves
+
+How to track:
+- Yes/No: Tap the habit (name or box). Each tap cycles: not done -> done -> not applicable -> not done. "Not applicable" excuses the habit for that day
+- Quantitative: Tap "+" to add one step, or tap the habit's name to open the input dialog and correct the value
 - Time-based: Use built-in timer or enter manually
-- Goals can be reordered via drag-and-drop
+- Day type: the button in the corner of the Today card (and of Tracking's Habits card) shows what kind of day it is; tap it to switch to another habit set or mark a "Day off". "Reset day" at the foot of the same menu deletes everything logged that day
+- Goals can be reordered via drag-and-drop on the My Habits page. That order is used everywhere: within each Daily/Weekly/Monthly section on the Dashboard, Tracking and Stats, habits follow it
+
+### Which habits a day shows
+- A day you have tracked keeps the habits it had, so changing your habits later does not rewrite days that are already over
+- Changes to your habits show on today straight away
+- Days you never tracked always show your current habits
+- If a past day shows an old habit list the member does not want, and nothing they need is logged on it, "Reset day" (in the day type menu on Tracking) brings it back to the current habits. It deletes everything logged that day, so warn them first
 
 ### Streaks & Progress
-- Streak counter shows consecutive completion days
+- Streak counter shows consecutive completion days (at the top of the Dashboard and on Stats)
 - Dots show completion for each day of current week
 - Progress bars display weekly/monthly targets
 - Calendar view shows historical completion
@@ -560,12 +575,13 @@ To create a new goal:
 ## POKER SESSION TRACKING
 
 ### Logging a Poker Session
-1. Navigate to the Poker section
-2. Tap "+ New Session"
-3. Select game type and variant
-4. Enter session details
-5. Add performance ratings and notes
-6. Save
+1. On the Dashboard, tap "Log a poker session" at the foot of the Today card - or, for another day, open Tracking, pick the day, and click "Log session" (plus icon) in the "Poker sessions" card
+2. Select game type and variant
+3. Enter session details
+4. Add performance ratings and notes
+5. Save
+
+On Tracking, each session is a row in that day's "Poker sessions" card showing the game, its details, the Focus/Power/Discipline ratings and the result; the card header shows the day's total. Click a session to edit or delete it.
 
 ### Session Details Fields
 - **Date & Time**: When session occurred
@@ -586,7 +602,8 @@ Automatically calculated statistics:
 - Session count
 - Total hours played
 - Win rate by game type
-- Monthly/date range filtering
+
+Where to see them: this month's P&L, hours and session count are on the Dashboard's "Poker, this month" tile; for any week, month or year use the Poker tab on Stats (/stats).
 
 ---
 
@@ -603,12 +620,22 @@ Automatically calculated statistics:
 
 ## ANALYTICS & DASHBOARDS
 
-### Overview Dashboard
-- Monthly habit completion view
-- Daily breakdown (tap any day for details)
-- Weekly summaries
-- Poker stats (P&L, hours, sessions)
-- Trends and insights
+### Dashboard (/)
+The first screen, focused on today:
+- Header: today's date, how many habits are left today, day streak
+- Month tile: share of this month's days kept so far (tap -> Stats)
+- Team standing tile: your team's place on this month's leaderboard and how far behind first (tap -> Leaderboard)
+- "Poker, this month" tile: this month's P&L, hours, sessions (tap -> Stats Poker tab); eye icon hides/shows P&L
+- Today card: today's habits plus weekly and monthly targets to tick off, with "Log a poker session" and "Open full day" (goes to Tracking)
+- This week: one cell per day with habits completed; tap a day to open it in Tracking
+- Shared with me: this week's progress on habits others share with you
+- From the library: continue watching, latest main call, a study panel
+
+### Stats (/stats)
+Replaces the old Overview page (/overview redirects here). See STATS PAGE below for details.
+- Week / Month / Year period switch with previous/next arrows
+- Stat tiles: Streak, Days kept, Points, Poker P&L (eye toggle hides P&L)
+- Two tabs: Habits and Poker
 
 ### Leaderboards
 The Leaderboard page ranks teams by average points per member on a monthly basis.
@@ -630,14 +657,15 @@ The Leaderboard page ranks teams by average points per member on a monthly basis
 
 ---
 
-## EDUCATIONAL CONTENT (Learn Section)
+## EDUCATIONAL CONTENT (The Library, formerly "Learn")
 
-### Content Organization
-- New & Noteworthy
-- Onboarding Series
+### Content Organization (Library tabs)
+- Overview (front page, the default tab)
+- Onboarding
 - Main Calls archive
 - Study Panels
 - Homework assignments
+- Tutorials
 
 ### Content Types
 - **Video Lectures**: With Video.js player, YouTube support
@@ -645,11 +673,10 @@ The Leaderboard page ranks teams by average points per member on a monthly basis
 - **Questionnaires**: Interactive Q&A
 
 ### Features
-- Progress tracking (resume where you left off)
-- Mark as watched
-- Rate content
-- Add comments
-- Folder organization
+- Progress tracking (resume where you left off; "Continue watching" on the Library front page)
+- Mark as watched (and automatic completion once 90% of a video has actually been watched)
+- Search across the whole Library
+- Content ratings and public comments are no longer available
 
 ---
 
@@ -681,13 +708,18 @@ Untick the member and save; access ends immediately. Sharing with them again lat
 from that new day - it does not restore the history they used to see.
 
 ### Habits shared with you
-They appear in the "Shared with me" panel on the Overview page, under the Insights tab, with
-one square per day of the month:
+They appear in the "Shared with me" panel, in two places:
+- **Dashboard**: this week - one line per habit with what it asks for, a dot per day of the
+  current week and, for counted habits, today's figure. Shows three habits, with "Show more" for the rest
+- **Stats**: at the foot of the Habits tab - one square per day of the month and a completed/total count
+
+Colours are the same in both:
 - Green: completed
 - Red: was due that day and not completed
 - Grey: not applicable - not scheduled, still to come, or before it was shared with you
 
-The panel follows the month selected at the top of Overview.
+On Stats the panel follows the period chosen at the top of the page (for a week or year, the month
+that period has reached), so you can look back at earlier months.
 
 ---
 
@@ -1125,7 +1157,7 @@ Admin-only page for leaderboard calculations, Discord upvote management, and uti
    - CSV includes columns: User, each day of the month, Total
    - Point categories: tracking, discord, day off, weekly, monthly, every day bonus
 
-**Note:** Leaderboard calculation must be run before the Leaderboard page displays data for that month.
+**Note:** You do not need to run this for the Leaderboard page to show the current month - it is recalculated automatically every two hours. Use it to recalculate a past month, or to refresh the current one straight away.
 
 #### Calculate Discord Upvotes Section:
 The upvote system captures Discord emoji reactions and converts them into reward points.
@@ -1152,23 +1184,45 @@ The upvote system captures Discord emoji reactions and converts them into reward
 
 ---
 
-## HOME PAGE (Daily Tracking)
+## DASHBOARD (/) - "Dash" in the bottom bar
+
+The old Home page is now the Dashboard. Top to bottom:
+- **Header**: today's date, "N habits left today" (or "All done for today" / "Day off"), and a Day streak counter
+- **Three tiles**:
+  - Month tile: % of this month's days kept, "X of Y days" - tap to open Stats
+  - Team standing: your team's rank this month and points behind 1st - tap to open Leaderboard
+  - Poker, this month: P&L, hours and session count - tap to open the Stats Poker tab. Eye icon hides/shows the P&L (the same setting as on Stats)
+- **Last 7 days**: a cell per day (the last seven, ending today) showing habits done (e.g. 3/5); tap a day to show it in the Today card below
+- **Today card** (headed "Today", or the picked day - with a "Back to today" button):
+  - Day type button (top right): switch habit set, mark a Day off, or "Reset day" (deletes everything logged that day)
+  - The day's daily habits, then "Weekly" and "Monthly" habits with "% elapsed"
+  - Yes/No habits: tap to cycle not done -> done -> not applicable
+  - Counted habits: "+" adds a step; tap the name/figure to open the input dialog
+  - "Poker sessions": the sessions logged that day, if any; click one to edit it
+  - "Log a poker session" button (opens the poker session dialog right here)
+  - "Open full day" button (goes to Tracking)
+- **Shared with me**: this week's progress on habits shared with you
+- **From the library**: Continue watching, Latest main call, Study panel; "See all" opens the Library
+
+---
+
+## TRACKING PAGE (/tracking) - "Track" in the bottom bar
 
 ### Main Elements:
-- **Day Selector** at top: Navigate between days with left/right arrows
-- **Day Mode dropdown**: Change tracking mode for the day
-- **Goal cards**: Click to log/track, drag to reorder
+- **Week strip** at top: tap a day to open it; arrows step to the previous/next week
+- **Habits card**: one card with Daily, Weekly and Monthly sections (weekly/monthly show "% elapsed"). Weekly and Monthly list their own habits first, then the weekly/monthly targets of daily habits as small tiles. Habits follow the My Habits order
+- A past day you tracked shows the habits it had then; a day you never tracked shows your current habits (see "Which habits a day shows")
+- **Day type button** (Habits card header): switch habit set, mark a Day off, or "Reset day" (deletes everything logged that day)
 
-### Poker Sessions Section:
-- **"Log Session" button**: Opens poker session dialog
-  - Icon: Plus sign
-  - Click to log a new poker session
-- **Session cards**: Click any session card to edit it
+### Poker Sessions Card:
+- Header shows the day's total P&L
+- Each session is a row: game type, details, Focus / Power / Discipline ratings (out of 5), and result
+- **Click a session row**: edit it
+- **"Log session" button** (plus icon): log a new poker session for that day
 
 ### Goal Tracking Actions:
-- **Yes/No goals**: Tap the card to toggle completion (shows swipe animation)
-- **Quantitative goals**: Tap to open input dialog with +/- buttons
-- **Completed goals**: Shown in collapsible "Done" section at bottom
+- **Yes/No goals**: Tap the habit to cycle not done -> done -> not applicable -> not done
+- **Quantitative goals**: "+" adds a step; tap the habit to open the input dialog
 
 ### Quantitative Input Dialog:
 - **Minus button (-)**: Decrease value by step amount
@@ -1206,38 +1260,44 @@ The upvote system captures Discord emoji reactions and converts them into reward
 
 ---
 
-## OVERVIEW PAGE (/overview)
+## STATS PAGE (/stats) - formerly the Overview page
 
-### Month Navigation:
-- **Left arrow (<)**: Go to previous month
-- **Right arrow (>)**: Go to next month (disabled if current month)
+The old Overview page (/overview) now redirects to Stats. There are no Insights, Weeks or Year tabs any more - everything is one period and two tabs.
 
-### Tab Buttons:
-- **Insights tab**: Day-of-week analysis
-- **Habits tab**: Daily/weekly/monthly heatmaps
-- **Weeks tab**: Week cards with scores
-- **Poker tab**: Poker statistics and chart
+### Period Controls (top right):
+- **Week / Month / Year switch**: choose the period (Month is the default)
+- **Left / right arrows**: previous / next week, month or year (next is disabled once you reach the current one)
+- Everything on the page follows the chosen period
 
-### Insights Tab:
-- **Week navigation arrows**: Previous/next week within month
-- **Day cells**: Click any day to navigate to Home page for that date
-- **Weekly goals list**: Shows progress dots for each goal
+### Stat Tiles:
+- **Streak**: current day streak, counting back from today
+- **Days kept**: % of days in the period on which you kept your habits, "X of Y days", and the change vs the previous period
+- **Points**: points earned from habits in the period
+- **Poker P&L**: result for the period with hours and hourly rate. Eye icon hides/shows P&L (shared with the Dashboard setting)
 
-### Weeks Tab:
-- **Week cards**: Click to navigate to that week's start date
-- Shows score percentage, day pips, habit completion bars
+### Habits Tab (default):
+Three sections, the same as on Tracking, on the same columns (a column per day for a week or month, a column per month for a year). Habits follow the My Habits order.
+- **Daily**: a row per daily habit (every habit in Tracking's Daily section, including ones that also have a weekly or monthly target), with hits/days and a %
+- **"Whole day" row** at the top of Daily: shaded by how close each day came to your target; tap a day to open it in Tracking
+- **Weekly**: weekly habits first, then the weekly targets of daily habits. Each row says what it asks for ("500 hoops a week", "3 days a week"); each cell is that week's progress (e.g. 120/500); the figure on the right is weeks the target was hit out of the weeks finished so far ("2/3 weeks" - the current week only counts once it is hit)
+- **Monthly**: monthly habits first, then the monthly targets of daily habits (e.g. "15 days a month")
+- For a single week, Weekly shows a progress bar per target instead of a grid; for a single month, so does Monthly
+- Counted habits add up the amounts logged towards their weekly/monthly targets; yes/no habits count the days ticked
+- **By weekday** chart: your all-time average for each day of the week
+- **Shared with me** panel at the foot of the tab
 
 ### Poker Tab:
-- **Statistics cards**: Display P&L, Hours, $/Hour, Sessions
-- **Chart**: Hover for tooltips showing daily data
+- **Running P&L** chart for the period
+- **Sessions** list: date, game, details, Focus/Power/Discipline ratings, notes and result (newest first; "Show all" if there are many)
+- When P&L is hidden, the chart and every session result are hidden too ("Show P&L" brings them back)
 
 ---
 
 ## GOALS PAGE (/goals - My Habits)
 
 ### Main Actions:
-- **Add Goal button (FAB)**: Floating button with plus icon at bottom
-  - Opens goal creation wizard
+- **"Add Habit" section** (below your habit list): search the suggested habits and add one, or click
+  **"+ Custom habit"** to open the goal editor and build your own
 
 ### Goal Cards:
 - **Click card**: Opens goal editor
@@ -1256,26 +1316,33 @@ The upvote system captures Discord emoji reactions and converts them into reward
 
 ---
 
-## LEARN PAGE (/resources/lectures)
+## LIBRARY PAGE (/library) - formerly the "Learn" page
+
+The Library replaced Learn; old Learn links still open the Library.
 
 ### Tab Navigation:
-- **New & Noteworthy**: Latest content
+- **Overview** (default, the front page): Continue watching (videos you've started), Latest main calls, Homework to do, Expiring soon (study panels expiring within 14 days). Each list has a link to its full tab
 - **Onboarding**: Getting started content
-- **Main Calls**: Call recordings archive
+- **Main Calls**: Call recordings archive, grouped by month
 - **Study Panels**: Study session recordings
 - **Homework**: Assignments
+- **Tutorials**
 
-### Resource Cards:
-- **Click any card**: Opens viewer dialog (video, HTML, or questionnaire)
+### Resource Rows:
+- **Click any row**: Opens the lecture (video, reading, or questionnaire)
+- **Meta line**: date, length, and expiry date where there is one
 - **Completion badge**: Green checkmark shows if completed
-- **Meta icons**: Clock (duration), comment (comments), star (rating)
+- **Progress bar**: shows how far through a started video you are
+- **Filters** (Main Calls and Study Panels): filter by watch status
 
 ### Search:
-- **Search box**: Filter resources by name
+- **"Search the library" box** (top of page): searches the whole Library, not just the open tab
+- Matches titles, topics and presenters; every word must appear, in any order
+- Results are grouped by tab; picking a tab clears the search
 
 ---
 
-## VIDEO PLAYER (in Learn section)
+## VIDEO PLAYER (in the Library)
 
 ### Player Controls:
 - **Play/Pause**: Standard video controls
@@ -1288,23 +1355,17 @@ The upvote system captures Discord emoji reactions and converts them into reward
 - System automatically tracks: play/pause events, seek positions, milestones (25%, 50%, 75%, 100%), engaged time
 
 ### Additional Features:
-- **Chat overlay**: Some videos have live chat replay
-  - Minimize/maximize chat button
+- **Chat replay**: Some videos include the call's live chat, shown beside the video (below it on narrow screens) and kept in step with playback
+- **Previous / Next**: step to the neighbouring lecture
+- **"Mark as watched" / "Mark as not watched"**: set completion yourself; a video is also marked complete automatically once 90% of it has actually been watched
 - **Watermark**: Animated watermark for security
 
----
-
-## RATING CONTENT (in Learn section)
-
-### How to Rate:
-1. Open any video or content
-2. Look for the star rating display
-3. **Star buttons or slider**: Rate 1-5 stars (0.5 increments)
-4. **Save**: Rating is saved automatically
+### Rating Content:
+Star ratings and public comments on content have been removed; there is nothing to rate.
 
 ---
 
-## QUESTIONNAIRES (in Learn section)
+## QUESTIONNAIRES (in the Library)
 
 ### Questionnaire Dialog:
 - **Progress indicator**: Shows Q1, Q2, Q3... progress
@@ -1333,13 +1394,13 @@ Ticking nobody makes the habit private again.
 
 ---
 
-## SHARED WITH ME PANEL (on /overview, Insights tab)
+## SHARED WITH ME PANEL (on the Dashboard, and on /stats at the foot of the Habits tab)
 
 - One block per member sharing with you, showing their name
-- Under each: their shared habits, with a square per day and a completed/total count
+- **On Stats**: their shared habits, with a square per day of the month and a completed/total count; follows the period chosen at the top of Stats (for a week or year, the month it has reached)
+- **On the Dashboard**: one line per habit - what it asks for, a dot per day of the current week, and today's figure for counted habits. Shows 3 habits, with "Show N more" for the rest
 - Green = completed, Red = due and not completed, Grey = not applicable
-- Hovering a square explains it
-- Follows the month selected at the top of the Overview page
+- Hovering a square or dot explains it
 - If nobody is sharing with you, it says so and links to Manage habits
 
 ---
@@ -1468,14 +1529,8 @@ Ticking nobody makes the habit private again.
 - **Time Format picker**: 12-hour or 24-hour
 
 ### Tracking Configuration:
-- **Success Threshold picker**: 0-90% in 10% steps
-- **Reminder Time picker**: Set daily reminder
+- **Success Threshold picker**: 0-90% in 10% steps. The share of a day's points that makes it a successful day. It decides which days show as full in the week strips on the Dashboard and Tracking pages, and how each day is shaded on Stats.
 - **Show Goal Icons toggle**: Enable/disable icons
-
-### Color Settings:
-- **Unfinished Day Color dropdown**: Select color gradient
-- **Successful Day Color dropdown**: Select color gradient
-- **Overachieved Day Color dropdown**: Select color gradient
 
 ### Poker Settings:
 - **Default Game Type picker**: Cash or Tournament
@@ -1530,25 +1585,33 @@ Ticking nobody makes the habit private again.
 ## SIDEBAR NAVIGATION
 
 ### Desktop Sidebar:
-- **Logo/Brand**: Click to go home
-- **Profile Avatar**: Click to go to settings
-- **Profile Menu (...)**: Opens dropdown with Settings and Log Out
+- **Logo/Brand**: Click to go to the Dashboard
+- **Profile Avatar**: Click to go to your Profile
+- **Profile Menu (...)**: Opens dropdown with Profile, Settings and Log out
 
 ### Navigation Items:
-- **Home** (house icon)
-- **Overview** (grid icon)
+Main:
+- **Dashboard** (house icon)
+- **Tracking** (calendar icon)
+- **Stats** (grid icon)
 - **Leaderboard** (trophy icon)
 - **Deals** (tag icon)
-- **Series Hub** (grid icon)
-- **Learn** (book icon)
-- **My Habits** (gear icon)
-- **Settings** (gear icon)
+- **Directory** (people icon)
+
+Resources:
+- **Library** (book icon)
+
+Account:
+- **My Habits**
+- **Profile**
+- **Settings** and **Log out**: in the account menu at the foot of the sidebar
 
 ### Admin Section (admin users only):
-- **Users**, **Teams**, **Content**, **Deals**, **Poker Analytics**
+- **Users**, **Teams**, **Content**, **Deals**, **Poker Analytics**, and further admin tools
 
 ### Mobile:
-- **Hamburger menu** (three lines): Opens mobile drawer
+- **Bottom navigation bar**: Dash, Track, Stats, Leaders, Library
+- **Hamburger menu** (three lines): Opens mobile drawer with the full list above
 
 ---
 
