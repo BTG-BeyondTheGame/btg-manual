@@ -1274,6 +1274,7 @@ The old Overview page (/overview) now redirects to Stats. There are no Insights,
 - **Days kept**: % of days in the period on which you kept your habits, "X of Y days", and the change vs the previous period
 - **Points**: points earned from habits in the period
 - **Poker P&L**: result for the period with hours and hourly rate. Eye icon hides/shows P&L (shared with the Dashboard setting)
+- Days before the member set up their habits (for the first time, or again after "Reset all tracking data") are not counted anywhere: not in "X of Y days", not as misses in the grids or target weeks/months, and they show as "–" (nothing scheduled) in Tracking's week strip and the Dashboard's Last 7 days. Such a day can still be logged in Tracking or from the Dashboard's Today card, and the history then starts from that day
 
 ### Habits Tab (default):
 Three sections, the same as on Tracking, on the same columns (a column per day for a week or month, a column per month for a year). Habits follow the My Habits order.
@@ -1541,6 +1542,7 @@ Ticking nobody makes the habit private again.
 ### My Information:
 - **"Reset all tracking data" button** (red/danger):
   - Erases the member's habits, their whole habit tracking history and all their poker sessions, so they start again from scratch. Anyone they shared a habit with stops seeing it. It cannot be undone
+  - Their history starts again on the day they choose new habits; the days before that are not counted as missed
   - Opens a confirmation dialog with **"Cancel"** / **"Reset"** (red) buttons
   - If the reset fails part-way, the dialog says so; pressing Reset again erases the rest
 
