@@ -594,7 +594,10 @@
                     <strong>&ldquo;Log session&rdquo;</strong> (plus icon) in the <strong>Poker sessions</strong> card</li>
                 <li>Select game type: <strong>Cash Game</strong>, <strong>Tournament</strong>, or <strong>Rakeback</strong></li>
                 <li>Choose game variants (NLH, PLO, etc.) from the autocomplete dropdown</li>
-                <li>Enter session details based on game type</li>
+                <li>Optionally pick <strong>Live</strong> or <strong>Online</strong> under <strong>Location</strong>, and for a
+                    live session the <strong>Venue</strong></li>
+                <li>Enter session details based on game type. Hours played is required for cash games and tournaments;
+                    start time and, for cash games, hands played are optional</li>
                 <li>Optionally rate your performance (Focus, Power, Discipline)</li>
                 <li>Add notes</li>
                 <li>Click <strong>"Log Session"</strong> to save</li>
@@ -616,8 +619,24 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Date &amp; Time</strong></td>
-                        <td>When the session took place</td>
+                        <td><strong>Date</strong></td>
+                        <td>The day the session took place</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Location</strong></td>
+                        <td>Optional. <strong>Live</strong> or <strong>Online</strong>. Tap the selected one again to clear it.
+                            You can set a default in Settings</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Venue</strong></td>
+                        <td>Optional, live sessions only. The casino or card room. As you type, the venues you have used
+                            before are suggested, even if you misspell one; pick one to keep your sessions at a place together.
+                            A different capitalisation or extra spaces are saved as the name you already use</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Start Time</strong></td>
+                        <td>Optional. When you started, on your own clock. The end time is worked out from the hours
+                            played, so a session that runs past midnight needs nothing special</td>
                     </tr>
                     <tr>
                         <td><strong>Game Type</strong></td>
@@ -637,7 +656,11 @@
                     </tr>
                     <tr>
                         <td><strong>Hours Played</strong></td>
-                        <td>Session duration</td>
+                        <td>Session duration. Required for cash games and tournaments</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hands Played</strong></td>
+                        <td>Optional, cash games only. Useful if you play online and your tracker counts them</td>
                     </tr>
                     <tr>
                         <td><strong>Currency</strong></td>
@@ -668,6 +691,10 @@
                 <li><strong>Session Count</strong> &ndash; Number of sessions played</li>
                 <li><strong>Hours Played</strong> &ndash; Total time at the tables</li>
                 <li><strong>Win Rate by Game Type</strong> &ndash; Performance breakdown by variant</li>
+                <li><strong>Live and online</strong> &ndash; Sessions, hours, hourly rate and P&amp;L for live sessions, online
+                    sessions, and sessions with no location</li>
+                <li><strong>Time of day</strong> &ndash; The same, grouped by when sessions started: morning (6am&ndash;noon),
+                    afternoon (noon&ndash;6pm), evening (6pm&ndash;midnight) and night (midnight&ndash;6am)</li>
             </ul>
             <p>
                 Your poker figures for the current month are on the Dashboard. For any week, month or year, open
@@ -791,8 +818,11 @@
                     When the period is a single week, the Weekly section shows a progress bar per target instead of a
                     grid, and so does the Monthly section for a single month. Below the sections are a <strong>By weekday</strong> chart of your all-time average for
                     each day of the week and the <strong>Shared with me</strong> panel</li>
-                <li><strong>Poker</strong> &ndash; A running P&amp;L chart for the period and the list of sessions in it, each with its
-                    details, ratings, notes and result. When P&amp;L is hidden, the chart and every result are hidden too</li>
+                <li><strong>Poker</strong> &ndash; A running P&amp;L chart for the period, then <strong>Live and online</strong>
+                    and <strong>Time of day</strong> cards, and the list of sessions in it, each with its details, ratings,
+                    notes and result. The two cards appear once some of your sessions have a location or a start time; they
+                    leave out promos and rakeback, which aren&rsquo;t played anywhere or at any time. When P&amp;L is hidden,
+                    the chart, the hourly rates and every result are hidden too</li>
             </ul>
             <p>Days before you set up your habits (for the first time, or again after resetting your tracking data) are not
                 counted anywhere: Stats, Tracking and the Dashboard show them as not tracked rather than missed. You can still
@@ -1058,21 +1088,33 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Time Format</strong></td>
-                        <td>12-hour or 24-hour</td>
+                        <td><strong>Appearance</strong></td>
+                        <td>Light, Dark or System</td>
                     </tr>
                     <tr>
-                        <td><strong>Theme</strong></td>
-                        <td>Light or Dark mode</td>
+                        <td><strong>Timezone</strong></td>
+                        <td>Type to search for yours</td>
                     </tr>
                     <tr>
-                        <td><strong>First Day of Week</strong></td>
+                        <td><strong>Date format</strong></td>
+                        <td>DD/MM/YYYY or MM/DD/YYYY</td>
+                    </tr>
+                    <tr>
+                        <td><strong>First day of the week</strong></td>
                         <td>Sunday or Monday</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Time format</strong></td>
+                        <td>12-hour or 24-hour</td>
                     </tr>
                 </tbody>
             </table>
+            <p>
+                Settings with a few options are buttons: tap one and it is saved. If a change can&rsquo;t be saved,
+                for example with no connection, you can try again or discard it.
+            </p>
 
-            <h3>Poker Settings</h3>
+            <h3>Poker session defaults</h3>
             <table>
                 <thead>
                     <tr>
@@ -1082,12 +1124,24 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Default Currency</strong></td>
-                        <td>Currency for new poker sessions</td>
+                        <td><strong>Currency</strong></td>
+                        <td>Currency for new poker sessions. Type to search for yours</td>
                     </tr>
                     <tr>
-                        <td><strong>Game Variants</strong></td>
+                        <td><strong>Game type</strong></td>
+                        <td>Cash or Tournament</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Game variants</strong></td>
                         <td>Your preferred game types for quick selection</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Location</strong></td>
+                        <td>Live, Online or None. New poker sessions start with it picked</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Big blind / Buy-in</strong></td>
+                        <td>What new cash game and tournament sessions start with. &ldquo;Not set&rdquo; until you set one</td>
                     </tr>
                 </tbody>
             </table>
@@ -1235,7 +1289,7 @@
             <p>The Poker Analytics page provides comprehensive session data with filters:</p>
             <ul>
                 <li><strong>Game Type</strong> &ndash; All, Cash, or MTT</li>
-                <li><strong>Tracking</strong> &ndash; Hours or Hands</li>
+                <li><strong>Tracking</strong> &ndash; Sessions with hours, or sessions with hands</li>
                 <li><strong>Stakes/Variants</strong> &ndash; Multi-select filters</li>
                 <li><strong>Date Range</strong> &ndash; From/To date pickers</li>
                 <li><strong>Team/Players</strong> &ndash; Filter by team or specific players</li>

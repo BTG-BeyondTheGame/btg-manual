@@ -577,19 +577,24 @@ How to track:
 ### Logging a Poker Session
 1. On the Dashboard, tap "Log a poker session" at the foot of the Today card - or, for another day, open Tracking, pick the day, and click "Log session" (plus icon) in the "Poker sessions" card
 2. Select game type and variant
-3. Enter session details
-4. Add performance ratings and notes
-5. Save
+3. Optionally pick Live or Online under Location, and for a live session the Venue
+4. Enter session details. Hours played is required for cash games and tournaments; start time and (cash games only) hands played are optional
+5. Add performance ratings and notes
+6. Save
 
 On Tracking, each session is a row in that day's "Poker sessions" card showing the game, its details, the Focus/Power/Discipline ratings and the result; the card header shows the day's total. Click a session to edit or delete it.
 
 ### Session Details Fields
-- **Date & Time**: When session occurred
+- **Date**: The day the session took place
+- **Location**: Optional - Live or Online. Tapping the selected one again clears it. A default can be set in Settings
+- **Venue**: Optional, live sessions only (the field appears when Live is picked) - the casino or card room. Typing suggests the member's own past venues, including for typos ("Meritt" suggests "Merit"); a different capitalisation or extra spaces are saved under the name already used. A new name is kept as typed, since nearby casinos can share names. There is no shared list of venues - each member's comes from their own sessions
+- **Start Time**: Optional - when the member started, on their own clock. The end time is worked out from the hours played (it is never typed), so a session past midnight needs nothing special
 - **Game Type**: NLH, PLO, PLO5c, PLO6c, Short Deck, HORSE, Razz, Stud, etc.
 - **Stakes/Big Blind**: Blind level
 - **Buy-in**: Total amount bought in
 - **Cash-out**: Amount cashed out
-- **Hours Played**: Session duration
+- **Hours Played**: Session duration. Required for cash games and tournaments
+- **Hands Played**: Optional, cash games only. Cash sessions used to take hours OR hands; they now have a box for each. Older sessions logged in hands only show their hands, and need hours added if edited
 - **Currency**: Session currency
 - **Promotions/Rakeback**: Additional earnings
 - **Performance Ratings**: Self-assessment (1-5) for Focus, Power, Discipline
@@ -602,6 +607,8 @@ Automatically calculated statistics:
 - Session count
 - Total hours played
 - Win rate by game type
+- Live and online: sessions, hours, hourly rate and P&L for live, online, and sessions with no location
+- Time of day: the same, grouped by start time - morning (6am-noon), afternoon (noon-6pm), evening (6pm-midnight), night (midnight-6am)
 
 Where to see them: this month's P&L, hours and session count are on the Dashboard's "Poker, this month" tile; for any week, month or year use the Poker tab on Stats (/stats).
 
@@ -743,13 +750,18 @@ that period has reached), so you can look back at earlier months.
 ## SETTINGS & PREFERENCES
 
 ### Display Settings
-- **Time Format**: 12-hour or 24-hour
-- **Theme**: Light or Dark mode
-- **First Day of Week**: Sunday or Monday
+- **Appearance**: Light, Dark or System
+- **Timezone**: searchable
+- **Date format**: DD/MM/YYYY or MM/DD/YYYY
+- **First day of the week**: Sunday or Monday
+- **Time format**: 12-hour or 24-hour
 
-### Poker Settings
-- **Default Currency**: For new sessions
-- **Game Variants**: Preferred game types
+### Poker session defaults (Settings section; each is what a new session starts with)
+- **Currency**: For new sessions, and the currency Stats shows P&L in (searchable)
+- **Game type**: Cash or Tournament
+- **Game variants**: Preferred game types
+- **Location**: Live, Online or None
+- **Big blind / Buy-in**: what new cash / tournament sessions start with
 
 ### Notification Settings
 - Enable/disable push notifications
@@ -934,7 +946,7 @@ The admin section appears in the sidebar only for users with admin privileges. M
 
 **Row 1:**
 - **Game Type toggle:** "All" | "Cash" | "MTT"
-- **Tracking toggle:** "All" | "Hours" | "Hands"
+- **Tracking toggle:** "All" | "Hours" | "Hands" (sessions that have hours / sessions that have hands - a session can have both)
 - **Stakes dropdown:** Multi-select, placeholder "All stakes"
 - **Variants dropdown:** Multi-select, placeholder "All variants"
 
@@ -1246,9 +1258,13 @@ The old Home page is now the Dashboard. Top to bottom:
 
 ### Form Fields:
 - **Game Variant**: Autocomplete dropdown (NLH, PLO, PLO5c, etc.)
+- **Location**: "Live" | "Online" toggle, optional (cash and tournaments)
+- **Venue**: text field with suggestions - shown only when Live is picked
 - **Currency selector**: Dropdown with all currencies
 - **Big Blind input**: Number field (for cash games)
-- **Hours/Hands toggle**: Switch between tracking hours or hands
+- **Start Time**: Time field, optional (cash and tournaments). Under its label it shows when the session ended ("Ends 2:00 am next day") once hours are filled in
+- **Hours Played**: Number field, required (cash and tournaments)
+- **Hands Played**: Number field, optional (cash games)
 - **Result input**: Profit/loss amount
 - **Buy-ins/Cashes**: For tournaments
 - **Notes**: Multi-line text field
@@ -1289,8 +1305,11 @@ Three sections, the same as on Tracking, on the same columns (a column per day f
 
 ### Poker Tab:
 - **Running P&L** chart for the period
-- **Sessions** list: date, game, details, Focus/Power/Discipline ratings, notes and result (newest first; "Show all" if there are many)
-- When P&L is hidden, the chart and every session result are hidden too ("Show P&L" brings them back)
+- **Live and online** card: a row each for Live, Online and "Not set", with sessions, hours, hourly rate and P&L
+- **Time of day** card: the same by when sessions started - Morning, Afternoon, Evening, Night, and "No start time"
+- The two cards only appear once some sessions in the period have a location / a start time, and they leave out promos and rakeback ("Rakeback not included"), so their rows can add up to less than the P&L tile
+- **Sessions** list: date, game ("Live cash · NLH", "Online tournament"), details (start-end time, hours, hands, big blind or buy-ins), Focus/Power/Discipline ratings, notes and result (newest first; "Show all" if there are many). The card header counts sessions, hours and hands
+- When P&L is hidden, the chart, the hourly rates and every result are hidden too ("Show P&L" brings them back)
 
 ---
 
@@ -1519,37 +1538,45 @@ Ticking nobody makes the habit private again.
 
 ## SETTINGS PAGE (/settings)
 
+Settings with two or three options are button rows (one tap saves; on a phone the buttons sit under the label). Settings with more open a small dialog with Cancel / Save; Cancel always discards what was picked. If a change can't be saved (e.g. no connection), a "Your change wasn't saved" dialog offers "Try again" or "Discard change" (puts the setting back).
+
 ### Profile Section:
 - **"Edit" button**: Navigate to profile editing
+- "Member since" under the name (hidden when the join date is unknown)
 
-### Display Settings:
-- **Dark Mode toggle**: Switch between light/dark theme
-- **Timezone picker**: Open selector dialog
-- **Date Format picker**: Choose date format
-- **First Day of Week toggle**: Sunday or Monday
-- **Time Format picker**: 12-hour or 24-hour
+### General:
+- **Display name**: opens a dialog
+- **Appearance buttons**: Light / Dark / System
 
-### Tracking Configuration:
-- **Success Threshold picker**: 0-90% in 10% steps. The share of a day's points that makes it a successful day. It decides which days show as full in the week strips on the Dashboard and Tracking pages, and how each day is shaded on Stats.
-- **Show Goal Icons toggle**: Enable/disable icons
+### Localization:
+- **Timezone**: dialog with a search box (type to find a zone)
+- **Date format buttons**: DD/MM/YYYY / MM/DD/YYYY
+- **First day of the week buttons**: Sunday / Monday
+- **Time format buttons**: 12-hour / 24-hour
 
-### Poker Settings:
-- **Default Game Type picker**: Cash or Tournament
-- **Default Game Variants picker**: Multi-select
-- **Default Big Blinds input**: Opens currency dialog
-- **Default Buy Ins input**: Opens currency dialog
+### Tracking:
+- **Successful day threshold picker**: 0-90% in 10% steps. The share of a day's points that makes it a successful day. It decides which days show as full in the week strips on the Dashboard and Tracking pages, and how each day is shaded on Stats.
+- **Show habit icons switch**: Show/hide habit icons on the Tracking and My Habits pages
 
-### My Information:
+### Poker session defaults:
+- **Currency**: dialog with a search box
+- **Game type buttons**: Cash / Tournament
+- **Game variants picker**: Multi-select with checkboxes; "Not set" when none
+- **Location buttons**: Live / Online / None
+- **Big blind / Buy-in**: open an amount dialog; "Not set" until set
+
+### Account:
+- **"API keys"**: Navigate to PAT page
+- **"Log out"**: Sign out
+
+### Your data (last section):
 - **"Reset all tracking data" button** (red/danger):
   - Erases the member's habits, their whole habit tracking history and all their poker sessions, so they start again from scratch. Anyone they shared a habit with stops seeing it. It cannot be undone
   - Their history starts again on the day they choose new habits; the days before that are not counted as missed
   - Afterwards the Dashboard skips the first-time welcome and goes straight to choosing habits ("Choose your habits to start again"). Onboarding lectures and the profile are left as they were
   - Opens a confirmation dialog with **"Cancel"** / **"Reset"** (red) buttons
   - If the reset fails part-way, the dialog says so; pressing Reset again erases the rest
-
-### Account:
-- **"API Keys" button**: Navigate to PAT page
-- **"Log Out" button** (red): Sign out
+- **"Delete my data" button** (red/danger): opens a confirmation dialog ("Delete all my data"). If the delete fails, the dialog says so and the member can try again
 
 ---
 
