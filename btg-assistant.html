@@ -780,8 +780,12 @@ that period has reached), so you can look back at earlier months.
   - Everything (JSON): profile, habits, full habit history, poker sessions and lecture answers, as a backup
   - A button is greyed out while there is nothing to put in its file
   - In the iPhone/Android app the file may open in the share menu (Save to Files) or may not save at all; if nothing is saved, the member should open app.joinbtg.com in a web browser, sign in and download it from Settings there
-- **Reset all tracking data**: erases habits, habit history and poker sessions
-- **Delete my data**: asks the BTG team to remove all the member's data; they are logged out straight away and can no longer log in
+- **Reset all tracking data**: erases habits, habit history and poker sessions, straight away
+- **Delete my data**: asks the BTG team to remove all the member's data, 14 days after it is pressed
+  - Until that date nothing changes: the member stays signed in and uses the app as normal. A banner at the top of every page says "Your data will be deleted on <date>", and they are emailed the date
+  - **Cancel deletion**, in the banner or in Settings > Your data, stops it any time before the date
+  - On the date they are signed out and can no longer sign in. They stay a member of BTG and keep Discord access
+  - A member who pressed it by mistake and missed the date should contact the BTG team
 - There is no import: data cannot be uploaded back into the app
 
 ---
@@ -1581,10 +1585,13 @@ Settings with two or three options are button rows (one tap saves; on a phone th
   - Erases the member's habits, their whole habit tracking history and all their poker sessions, so they start again from scratch. Anyone they shared a habit with stops seeing it. It cannot be undone
   - Their history starts again on the day they choose new habits; the days before that are not counted as missed
   - Afterwards the Dashboard skips the first-time welcome and goes straight to choosing habits ("Choose your habits to start again"). Onboarding lectures and the profile are left as they were
-  - Opens a confirmation dialog with **"Cancel"** / **"Reset"** (red) buttons
+  - Opens a confirmation dialog with **"Cancel"** on the left and **"Reset"** (red) on the right. Reset stays greyed out until the member types RESET in the box (any case)
   - If the reset fails part-way, the dialog says so; pressing Reset again erases the rest
-- **"Delete my data" button** (red/danger): opens a confirmation dialog ("Delete all my data"). If the delete fails, the dialog says so and the member can try again. It asks the BTG team to remove the member's data; the member is logged out straight away and can no longer log in. They stay a member of BTG and keep Discord access
+- **"Delete my data" button** (red/danger, "Remove all your data from the app, after 14 days"): opens a confirmation dialog ("Delete my data") saying the account stays open for 14 days, until the date, and can be cancelled before then. **"Cancel"** is on the left and **"Delete my data"** (red) on the right, greyed out until the member types DELETE. If the request fails, the dialog says so and the member can try again
+  - Pressing it does not sign the member out. The row becomes **"Deletion scheduled"** ("Your data will be deleted on <date>") with a **"Cancel deletion"** button, and the same banner shows at the top of every page
+  - On the date the member is signed out and can no longer sign in, and the BTG team is asked to remove their data. They stay a member of BTG and keep Discord access
 - Both confirmation dialogs have a **"Download my data first"** button, which opens the download dialog on top; closing it returns to the confirmation
+- While an admin is using the app as a member, this section shows only **"Download my data"**: Reset, Delete and Cancel deletion are for the member alone
 
 ---
 
