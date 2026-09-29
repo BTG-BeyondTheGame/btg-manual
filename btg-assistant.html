@@ -773,10 +773,16 @@ that period has reached), so you can look back at earlier months.
 - Track token usage
 - Revoke tokens
 
-### Data Management
-- Export/backup data
-- Import from CSV
-- Request data deletion
+### Data Management (Settings > Your data)
+- **Download my data**: three files, each downloaded separately
+  - Poker sessions (CSV spreadsheet): a row per session - date, type, live/online, venue, start time, hours, hands, currency, big blind, buy-ins, cashes, result, Focus/Power/Discipline ratings, game variants, notes
+  - Habit log (CSV spreadsheet): a row per habit per day logged - date, the habit's name as it was that day, how often it repeats, result (Done / Not done / Excused), and for counted habits the amount, unit and target. Days off get a row of their own
+  - Everything (JSON): profile, habits, full habit history, poker sessions and lecture answers, as a backup
+  - A button is greyed out while there is nothing to put in its file
+  - In the iPhone/Android app the file may open in the share menu (Save to Files) or may not save at all; if nothing is saved, the member should open app.joinbtg.com in a web browser, sign in and download it from Settings there
+- **Reset all tracking data**: erases habits, habit history and poker sessions
+- **Delete my data**: asks the BTG team to remove all the member's data; they are logged out straight away and can no longer log in
+- There is no import: data cannot be uploaded back into the app
 
 ---
 
@@ -1570,13 +1576,15 @@ Settings with two or three options are button rows (one tap saves; on a phone th
 - **"Log out"**: Sign out
 
 ### Your data (last section):
+- **"Download my data"**: opens a dialog offering three files - Poker sessions (CSV), Habit log (CSV) and Everything (JSON) - each with its own **"Download"** button, and **"Close"**. See Data Management above for what each file holds
 - **"Reset all tracking data" button** (red/danger):
   - Erases the member's habits, their whole habit tracking history and all their poker sessions, so they start again from scratch. Anyone they shared a habit with stops seeing it. It cannot be undone
   - Their history starts again on the day they choose new habits; the days before that are not counted as missed
   - Afterwards the Dashboard skips the first-time welcome and goes straight to choosing habits ("Choose your habits to start again"). Onboarding lectures and the profile are left as they were
   - Opens a confirmation dialog with **"Cancel"** / **"Reset"** (red) buttons
   - If the reset fails part-way, the dialog says so; pressing Reset again erases the rest
-- **"Delete my data" button** (red/danger): opens a confirmation dialog ("Delete all my data"). If the delete fails, the dialog says so and the member can try again
+- **"Delete my data" button** (red/danger): opens a confirmation dialog ("Delete all my data"). If the delete fails, the dialog says so and the member can try again. It asks the BTG team to remove the member's data; the member is logged out straight away and can no longer log in. They stay a member of BTG and keep Discord access
+- Both confirmation dialogs have a **"Download my data first"** button, which opens the download dialog on top; closing it returns to the confirmation
 
 ---
 
