@@ -557,6 +557,8 @@ How to track:
 - Time-based: enter hours and minutes such as 1:45; 45m, 1h45 or a number of hours such as 1.75 also work
 - Tracking's Habits card names the day it shows ("Habits · Yesterday"). A day that hasn't come yet can't be ticked, but can still be planned as a day off or another day type
 - When every habit due on a day is done, Tracking's Habits card and the Dashboard's Today card show "All done"
+- Each tick saves as it is made. One that can't be saved stays on screen with "Not saved · Retry" beside the day's name; the app retries when the member comes back to it or the connection returns, or they tap "Retry" (see OFFLINE AND SAVING)
+- The Dashboard and Tracking move on to the new day at midnight even if the app was left open; Tracking stays on a day the member picked
 - Day type: the button in the corner of the Today card (and of Tracking's Habits card) shows what kind of day it is; tap it to switch to another habit set or mark a "Day off". "Reset day" at the foot of the same menu deletes everything logged that day
 - Goals can be reordered via drag-and-drop on the My Habits page. That order is used everywhere: within each Daily/Weekly/Monthly section on the Dashboard, Tracking and Stats, habits follow it
 
@@ -1237,6 +1239,7 @@ The old Home page is now the Dashboard. Top to bottom:
   - Yes/No habits: tap to cycle not done -> done -> not applicable
   - Counted habits: "+" adds a step; tap the name/figure to open the input dialog
   - "All done" appears beside the day's name once every habit due that day is done
+  - "Not saved · Retry" appears beside the day's name if a tick could not be saved
   - "Poker sessions": the sessions logged that day, if any; click one to edit it
   - "Log a poker session" button (opens the poker session dialog right here)
   - "Open full day" button (goes to Tracking)
@@ -1252,6 +1255,8 @@ The old Home page is now the Dashboard. Top to bottom:
 - **Habits card**: one card with Daily, Weekly and Monthly sections (weekly/monthly show "% elapsed"). Weekly and Monthly list their own habits first, then the weekly/monthly targets of daily habits as small tiles. Habits follow the My Habits order
 - A past day you tracked shows the habits it had then; a day you never tracked shows your current habits (see "Which habits a day shows")
 - **Day type button** (Habits card header): switch habit set, mark a Day off, or "Reset day" (deletes everything logged that day)
+- Opens on today and follows it past midnight; a day picked from the week strip stays until "Today" is tapped
+- "Not saved · Retry" beside the day's name if a tick could not be saved; an "Error Saving" dialog also opens, with Retry, "Logout & Login Again" and Close
 
 ### Poker Sessions Card:
 - Header shows the day's total P&L
@@ -1701,20 +1706,21 @@ When impersonating a user:
 
 ---
 
-## OFFLINE MODE
+## OFFLINE AND SAVING
 
-When offline:
-- **Alert banner**: "You are offline"
-- **"Save Changes" button**: Sync pending changes when back online
-- **"Discard" button**: Discard offline changes
+- On a phone with no connection, a yellow banner says "You're offline. Changes won't save until you reconnect."
+- A habit tick that can't be saved stays on screen, and "Not saved · Retry" appears beside the day's name (Dashboard Today card, Tracking Habits card). The app retries by itself when the member comes back to it or the connection returns; "Retry" tries at once
+- On Tracking an "Error Saving" dialog also opens, with Retry, "Logout & Login Again" and Close, and a line of details: if saving keeps failing, the member should screenshot that line and send it to the team
+- Ticks not yet saved are lost if the member closes the app or logs out first
+- Changes made on another device appear when the member comes back to the app, with no prompt. Ticking on two devices at the same moment is best avoided: one can overwrite the other
+- There is no offline queue: nothing is kept to send later once the app is closed
 
 ---
 
 ## TECHNICAL FEATURES
 
 - Responsive design (mobile/desktop)
-- Offline capability with sync
-- Real-time data synchronization
+- Saves each change as it is made, and picks up changes from other devices when the member returns to the app
 - Multi-currency support
 - Timezone handling
 - OAuth authentication
