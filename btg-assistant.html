@@ -552,9 +552,11 @@ Habits can be ticked off in two places:
 - **Tracking** (/tracking): any day - pick it from the week strip at the top (arrows step a week back/forward). All habits are in one "Habits" card with Daily, Weekly and Monthly sections. Under Weekly and Monthly, the weekly/monthly targets of daily habits appear as small tiles below the habits themselves
 
 How to track:
-- Yes/No: Tap the habit (name or box). Each tap cycles: not done -> done -> not applicable -> not done. "Not applicable" excuses the habit for that day
-- Quantitative: Tap "+" to add one step, or tap the habit's name to open the input dialog and correct the value
-- Time-based: Use built-in timer or enter manually
+- Yes/No: Tap the habit (name or box). Each tap cycles: not done -> done -> not applicable -> not done. "Not applicable" excuses the habit for that day, and an excused habit no longer counts as one left to do
+- Quantitative: Tap "+" to add one step, or tap the habit's name to open the input dialog and correct the value. On a phone the name is underlined with dots to show it can be tapped
+- Time-based: enter hours and minutes such as 1:45; 45m, 1h45 or a number of hours such as 1.75 also work
+- Tracking's Habits card names the day it shows ("Habits · Yesterday"). A day that hasn't come yet can't be ticked, but can still be planned as a day off or another day type
+- When every habit due on a day is done, Tracking's Habits card and the Dashboard's Today card show "All done"
 - Day type: the button in the corner of the Today card (and of Tracking's Habits card) shows what kind of day it is; tap it to switch to another habit set or mark a "Day off". "Reset day" at the foot of the same menu deletes everything logged that day
 - Goals can be reordered via drag-and-drop on the My Habits page. That order is used everywhere: within each Daily/Weekly/Monthly section on the Dashboard, Tracking and Stats, habits follow it
 
@@ -565,7 +567,8 @@ How to track:
 - If a past day shows an old habit list the member does not want, and nothing they need is logged on it, "Reset day" (in the day type menu on Tracking) brings it back to the current habits. It deletes everything logged that day, so warn them first
 
 ### Streaks & Progress
-- Streak counter shows consecutive completion days (at the top of the Dashboard and on Stats)
+- Day streak: the days in a row, back from today, on which the member completed at least one habit, took a day off or excused every habit. Shown at the top of the Dashboard, on Stats and in the menu
+- Today never ends a streak while it is still going, and nor does a day on which none of the member's habits is scheduled (for example a Saturday when their habits are Monday to Friday): it is skipped, neither adding to the streak nor ending it
 - Dots show completion for each day of current week
 - Progress bars display weekly/monthly targets
 - Calendar view shows historical completion
@@ -629,8 +632,8 @@ Where to see them: this month's P&L, hours and session count are on the Dashboar
 
 ### Dashboard (/)
 The first screen, focused on today:
-- Header: today's date, how many habits are left today, day streak
-- Month tile: share of this month's days kept so far (tap -> Stats)
+- Header: today's date, how many habits are left today (excused habits don't count), day streak
+- Month tile: share of this month's days kept so far (tap -> Stats). Today counts once kept; days with nothing scheduled are left out
 - Team standing tile: your team's place on this month's leaderboard and how far behind first (tap -> Leaderboard)
 - "Poker, this month" tile: this month's P&L, hours, sessions (tap -> Stats Poker tab); eye icon hides/shows P&L
 - Today card: today's habits plus weekly and monthly targets to tick off, with "Log a poker session" and "Open full day" (goes to Tracking)
@@ -1224,8 +1227,8 @@ The upvote system captures Discord emoji reactions and converts them into reward
 The old Home page is now the Dashboard. Top to bottom:
 - **Header**: today's date, "N habits left today" (or "All done for today" / "Day off"), and a Day streak counter
 - **Three tiles**:
-  - Month tile: % of this month's days kept, "X of Y days" - tap to open Stats
-  - Team standing: your team's rank this month and points behind 1st - tap to open Leaderboard
+  - Month tile: % of this month's days kept, "X of Y days" - tap to open Stats. Today counts once it is kept, and days with none of the member's habits scheduled are left out; on the 1st, before anything is logged, it shows a dash and "Nothing to count yet"
+  - Team standing: your team's rank this month and points behind 1st - tap to open Leaderboard. Says "Not in a team yet" for a member without a team, and "No standings yet this month" early on the 1st
   - Poker, this month: P&L, hours and session count - tap to open the Stats Poker tab. Eye icon hides/shows the P&L (the same setting as on Stats)
 - **Last 7 days**: a cell per day (the last seven, ending today) showing habits done (e.g. 3/5); tap a day to show it in the Today card below
 - **Today card** (headed "Today", or the picked day - with a "Back to today" button):
@@ -1233,6 +1236,7 @@ The old Home page is now the Dashboard. Top to bottom:
   - The day's daily habits, then "Weekly" and "Monthly" habits with "% elapsed"
   - Yes/No habits: tap to cycle not done -> done -> not applicable
   - Counted habits: "+" adds a step; tap the name/figure to open the input dialog
+  - "All done" appears beside the day's name once every habit due that day is done
   - "Poker sessions": the sessions logged that day, if any; click one to edit it
   - "Log a poker session" button (opens the poker session dialog right here)
   - "Open full day" button (goes to Tracking)
@@ -1262,7 +1266,7 @@ The old Home page is now the Dashboard. Top to bottom:
 ### Quantitative Input Dialog:
 - **Minus button (-)**: Decrease value by step amount
 - **Plus button (+)**: Increase value by step amount
-- **Value display**: Click to edit directly
+- **Value display**: Tap to type the value. For a time, 1:45, 1h45, 45m and 1.75 all work
 - **Progress bar**: Shows current vs target progress
 - **Log button**: Save the tracked value
 
@@ -1310,7 +1314,7 @@ The old Overview page (/overview) now redirects to Stats. There are no Insights,
 
 ### Stat Tiles:
 - **Streak**: current day streak, counting back from today
-- **Days kept**: % of days in the period on which you kept your habits, "X of Y days", and the change vs the previous period
+- **Days kept**: % of days in the period on which you kept your habits, "X of Y days", and the change vs the previous period. Today counts once it is kept, and days with none of the member's habits scheduled are left out
 - **Points**: points earned from habits in the period
 - **Poker P&L**: result for the period with hours and hourly rate. Eye icon hides/shows P&L (shared with the Dashboard setting)
 - Days before the member set up their habits (for the first time, or again after "Reset all tracking data") are not counted anywhere: not in "X of Y days", not as misses in the grids or target weeks/months, and they show as "–" (nothing scheduled) in Tracking's week strip and the Dashboard's Last 7 days. Such a day can still be logged in Tracking or from the Dashboard's Today card, and the history then starts from that day
@@ -1318,7 +1322,7 @@ The old Overview page (/overview) now redirects to Stats. There are no Insights,
 ### Habits Tab (default):
 Three sections, the same as on Tracking, on the same columns (a column per day for a week or month, a column per month for a year). Habits follow the My Habits order.
 - **Daily**: a row per daily habit (every habit in Tracking's Daily section, including ones that also have a weekly or monthly target), with hits/days and a %
-- **"Whole day" row** at the top of Daily: shaded by how close each day came to your target; tap a day to open it in Tracking
+- **"Whole day" row** at the top of Daily: shaded by how close each day came to your target (a day with nothing scheduled shows as not scheduled); tap a day to open it in Tracking
 - **Weekly**: weekly habits first, then the weekly targets of daily habits. Each row says what it asks for ("500 hoops a week", "3 days a week"); each cell is that week's progress (e.g. 120/500); the figure on the right is weeks the target was hit out of the weeks finished so far ("2/3 weeks" - the current week only counts once it is hit)
 - **Monthly**: monthly habits first, then the monthly targets of daily habits (e.g. "15 days a month")
 - For a single week, Weekly shows a progress bar per target instead of a grid; for a single month, so does Monthly

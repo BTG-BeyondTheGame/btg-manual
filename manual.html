@@ -533,11 +533,20 @@
             <ul>
                 <li><strong>Yes/No Goals:</strong> Tap the habit (the name or the box). Each tap moves it on one step:
                     not done &rarr; done &rarr; not applicable &rarr; not done. &ldquo;Not applicable&rdquo; excuses the
-                    habit for that day</li>
+                    habit for that day, and an excused habit no longer counts as one left to do</li>
                 <li><strong>Quantitative Goals:</strong> Tap the <strong>+</strong> button to add one step, or tap the
-                    habit&rsquo;s name to open the input dialog and correct the value</li>
-                <li><strong>Time-based Goals:</strong> Enter time in hours:minutes format</li>
+                    habit&rsquo;s name to open the input dialog and correct the value. On a phone the name is underlined
+                    with dots to show it can be tapped</li>
+                <li><strong>Time-based Goals:</strong> Enter time as hours and minutes, such as <strong>1:45</strong>. You
+                    can also type <strong>45m</strong>, <strong>1h45</strong> or a number of hours such as
+                    <strong>1.75</strong></li>
             </ul>
+            <p>
+                Tracking&rsquo;s Habits card says which day it is showing (&ldquo;Habits &middot; Yesterday&rdquo;). A day
+                that hasn&rsquo;t come yet can&rsquo;t be ticked, but you can still plan it as a day off or another day
+                type. When every habit due on a day is done, the card (and the Dashboard&rsquo;s Today card) shows
+                <strong>All done</strong>.
+            </p>
             <p>
                 The button in the corner of the Today card (and of Tracking&rsquo;s Habits card) shows what kind of day
                 it is. Tap it to switch to another set of habits you have set up, or to mark the day as a
@@ -556,7 +565,7 @@
             <ul>
                 <li><strong>Minus button (-)</strong> &ndash; Decrease value by step amount</li>
                 <li><strong>Plus button (+)</strong> &ndash; Increase value by step amount</li>
-                <li><strong>Value display</strong> &ndash; Click to edit the number directly</li>
+                <li><strong>Value display</strong> &ndash; Tap to type the value. For a time, 1:45, 1h45, 45m and 1.75 all work</li>
                 <li><strong>Progress bar</strong> &ndash; Shows current progress vs. weekly/monthly target</li>
                 <li><strong>Log button</strong> &ndash; Save the tracked value</li>
             </ul>
@@ -566,8 +575,14 @@
 
             <h3 id="streaks">Streaks &amp; Progress</h3>
             <p>
-                BTG tracks your consistency through streaks. A streak counts how many consecutive days, weeks,
-                or months you've completed a goal. Your day streak is shown at the top of the Dashboard and on the Stats page.
+                Your day streak counts the days in a row, back from today, on which you completed at least one habit, took
+                a day off or excused every habit. It is shown at the top of the Dashboard, on the Stats page and in the
+                menu.
+            </p>
+            <p>
+                Two kinds of day never end a streak. Today doesn&rsquo;t, while it is still going. Nor does a day on which
+                none of your habits is scheduled, such as a Saturday when your habits are Monday to Friday: it is skipped,
+                neither adding to the streak nor ending it.
             </p>
             <p>
                 Visual indicators help you see your progress at a glance:
@@ -769,10 +784,12 @@
                 The Dashboard (<strong>Dash</strong> in the bottom bar) is the first screen you see. It is about today:
             </p>
             <ul>
-                <li><strong>Header</strong> &ndash; Today&rsquo;s date, how many habits are left today, and your day streak</li>
-                <li><strong>Month tile</strong> &ndash; The share of this month&rsquo;s days you have kept so far; tap it to open Stats</li>
+                <li><strong>Header</strong> &ndash; Today&rsquo;s date, how many habits are left today (excused habits don&rsquo;t
+                    count), and your day streak</li>
+                <li><strong>Month tile</strong> &ndash; The share of this month&rsquo;s days you have kept so far; tap it to open
+                    Stats. Today counts once you have kept it, and days with none of your habits scheduled are left out</li>
                 <li><strong>Team standing</strong> &ndash; Your team&rsquo;s place on this month&rsquo;s leaderboard and how far it is
-                    behind first; tap it to open the Leaderboard</li>
+                    behind first; tap it to open the Leaderboard. Early on the 1st it may say there are no standings yet</li>
                 <li><strong>Poker, this month</strong> &ndash; This month&rsquo;s P&amp;L, hours and number of sessions; tap it to open
                     the Poker tab in Stats. The eye icon hides or shows the P&amp;L</li>
                 <li><strong>Last 7 days</strong> &ndash; One cell per day with how many habits you completed; tap a day to show it
@@ -797,7 +814,8 @@
                     and use the arrows to step to the previous or next one. Everything on the page follows the period you pick</li>
                 <li><strong>Streak</strong> &ndash; Your current day streak, counting back from today</li>
                 <li><strong>Days kept</strong> &ndash; The share of days in the period on which you kept your habits, with the change
-                    against the period before</li>
+                    against the period before. Today counts once you have kept it, and days with none of your habits scheduled
+                    are left out</li>
                 <li><strong>Points</strong> &ndash; Points earned from habits in the period</li>
                 <li><strong>Poker P&amp;L</strong> &ndash; Your result for the period, with hours and hourly rate. The eye icon hides
                     your P&amp;L; hiding it here also hides it on the Dashboard, and the reverse</li>
@@ -808,7 +826,8 @@
                     per day for a week or month, a column per month for a year):
                     <ul>
                         <li><strong>Daily</strong> &ndash; A row per daily habit. The <strong>Whole day</strong> row at the top is
-                            shaded by how close each day came to your target; tap a day to open it in Tracking</li>
+                            shaded by how close each day came to your target (a day with nothing scheduled shows as not
+                            scheduled); tap a day to open it in Tracking</li>
                         <li><strong>Weekly</strong> &ndash; Your weekly habits, then the weekly targets of your daily habits. Each row
                             says what it asks for (for example &ldquo;500 hoops a week&rdquo; or &ldquo;3 days a week&rdquo;), each
                             cell shows that week&rsquo;s progress, and the figure on the right counts the weeks you hit the target
@@ -866,7 +885,7 @@
             <ul>
                 <li><strong>Rank</strong> &ndash; Position with color-coded border (gold, silver, bronze for top 3)</li>
                 <li><strong>Team</strong> &ndash; Team avatar and name</li>
-                <li><strong>Sessions</strong> &ndash; Number of sessions for the month</li>
+                <li><strong>Sessions</strong> &ndash; On the poker tabs, the team&rsquo;s number of sessions for the month</li>
                 <li><strong>Points / Metric</strong> &ndash; Average points, BB profit, or volume depending on the selected tab</li>
             </ul>
             <div class="tip">
