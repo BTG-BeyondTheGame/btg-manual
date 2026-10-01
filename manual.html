@@ -861,7 +861,9 @@
             <h3 id="leaderboards">Leaderboards</h3>
             <p>
                 Compare your team's performance with others across the BTG community. The Leaderboard page
-                is accessible from the sidebar and ranks teams by their average points per member.
+                is accessible from the sidebar and ranks teams by their average points per member. Only current
+                members count, so someone who has left no longer counts towards a team, and teams an admin has
+                taken off the leaderboard (a past season's teams, or groups such as onboarding) are not shown.
             </p>
 
             <h4>Leaderboard Tabs</h4>
@@ -1356,6 +1358,15 @@
             <h3>Team Management</h3>
             <ul>
                 <li>Create and edit teams with logos</li>
+                <li>Teams are listed under <strong>Competing on the leaderboard</strong> and <strong>Not competing</strong>.
+                    The <strong>Competing</strong> switch on each team moves it between the two: switch off a past
+                    season's teams and groups that should not be ranked, such as onboarding or captains</li>
+                <li>Each team shows how many current members it has (Active, or no status) and how many are not
+                    counted (Cancelled, BTG Team, Test Account or deleted). Only current members count on the leaderboard</li>
+                <li>A competing team with no current members says &ldquo;No current members &middot; not shown&rdquo;. A team
+                    switched off that still has current members says how many are left to move</li>
+                <li>The arrow on a team lists its members with their status. <strong>Move to</strong> beside a current member
+                    puts them on a competing team</li>
                 <li>Each team card has Edit (pen) and Delete (X) buttons</li>
                 <li><strong>"Add Team"</strong> button creates new teams</li>
             </ul>

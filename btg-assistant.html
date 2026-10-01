@@ -650,7 +650,7 @@ Replaces the old Overview page (/overview redirects here). See STATS PAGE below 
 - Two tabs: Habits and Poker
 
 ### Leaderboards
-The Leaderboard page ranks teams by average points per member on a monthly basis.
+The Leaderboard page ranks teams by average points per member on a monthly basis. Only current members count (status Active or none, not deleted), so members who have left no longer count towards a team, and teams an admin has switched off in Admin > Teams (a past season's teams, holding groups such as onboarding) are not shown.
 
 **Leaderboard Tabs:**
 - **Tracking tab**: Teams ranked by average habit tracking points per member
@@ -956,7 +956,11 @@ The admin section appears in the sidebar only for users with admin privileges. M
 ### TEAMS MANAGEMENT PAGE (/admin/teams)
 
 #### Page Layout:
-- List of team cards, each showing: team logo, team name, team ID
+- Teams in two groups: "Competing on the leaderboard" and "Not competing"
+- Each team card shows: team logo, team name, and "N current · N not counted" (current = status Active or none, not deleted; not counted = Cancelled, BTG Team, Test Account or deleted)
+- **Competing switch** per team: switch off a past season's teams and groups that shouldn't be ranked (onboarding, captains). Only current members of competing teams count on the leaderboard
+- Warnings: "No current members · not shown" on a competing team nobody current is on; "N current members to move" on a switched-off team that still has current members
+- **Arrow** per team: lists its members with their status; "Move to…" beside a current member moves them to a competing team
 - Action buttons per team: Edit (pen icon), Delete (X icon)
 - **"Add Team" button** at the bottom
 
