@@ -622,8 +622,8 @@
                 <li>Choose game variants (NLH, PLO, etc.) from the autocomplete dropdown</li>
                 <li>Optionally pick <strong>Live</strong> or <strong>Online</strong> under <strong>Location</strong>, and for a
                     live session the <strong>Venue</strong></li>
-                <li>Enter session details based on game type. Hours played is required for cash games and tournaments;
-                    start time and, for cash games, hands played are optional</li>
+                <li>Enter session details based on game type. A cash game needs hours played or hands played, either
+                    one or both; a tournament needs hours played. Start time and rakeback are optional</li>
                 <li>Optionally rate your performance (Focus, Power, Discipline)</li>
                 <li>Add notes</li>
                 <li>Click <strong>"Log Session"</strong> to save</li>
@@ -662,7 +662,8 @@
                     <tr>
                         <td><strong>Start Time</strong></td>
                         <td>Optional. When you started, on your own clock. The end time is worked out from the hours
-                            played, so a session that runs past midnight needs nothing special</td>
+                            played, so a session that runs past midnight needs nothing special (a session logged in hands
+                            only has no end time)</td>
                     </tr>
                     <tr>
                         <td><strong>Game Type</strong></td>
@@ -682,11 +683,20 @@
                     </tr>
                     <tr>
                         <td><strong>Hours Played</strong></td>
-                        <td>Session duration. Required for cash games and tournaments</td>
+                        <td>Session duration. Required for tournaments; for a cash game, fill in hours, hands or
+                            both. Only sessions with hours count towards your hourly rate</td>
                     </tr>
                     <tr>
                         <td><strong>Hands Played</strong></td>
-                        <td>Optional, cash games only. Useful if you play online and your tracker counts them</td>
+                        <td>Cash games only. Useful if you play online and your tracker counts them. A cash session needs
+                            hours or hands, so you can log one in hands alone</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rakeback</strong></td>
+                        <td>Optional, cash games and tournaments. Rakeback you can put against this session, such as
+                            instant rakeback or comps. It is added to the session&rsquo;s result. Rakeback paid in one go
+                            for many sessions is better logged on its own, as a <strong>Rakeback</strong> entry; don&rsquo;t
+                            log the same money both ways</td>
                     </tr>
                     <tr>
                         <td><strong>Currency</strong></td>
@@ -694,7 +704,8 @@
                     </tr>
                     <tr>
                         <td><strong>Promotions/Rakeback</strong></td>
-                        <td>Any additional earnings from promotions</td>
+                        <td>The <strong>Rakeback</strong> game type: a promotion or rakeback payout on its own, with no
+                            hours or place</td>
                     </tr>
                     <tr>
                         <td><strong>Performance Ratings</strong></td>
@@ -713,7 +724,8 @@
             </p>
             <ul>
                 <li><strong>Total P&amp;L</strong> &ndash; Your overall profit or loss</li>
-                <li><strong>Hourly Rate</strong> &ndash; Average earnings per hour</li>
+                <li><strong>Hourly Rate</strong> &ndash; Average earnings per hour, from the sessions that have hours
+                    (a session logged in hands only counts in your P&amp;L but not here)</li>
                 <li><strong>Session Count</strong> &ndash; Number of sessions played</li>
                 <li><strong>Hours Played</strong> &ndash; Total time at the tables</li>
                 <li><strong>Win Rate by Game Type</strong> &ndash; Performance breakdown by variant</li>
@@ -829,7 +841,8 @@
                     are left out</li>
                 <li><strong>Points</strong> &ndash; Points earned from habits in the period</li>
                 <li><strong>Poker P&amp;L</strong> &ndash; Your result for the period, with hours and hourly rate. The eye icon hides
-                    your P&amp;L; hiding it here also hides it on the Dashboard, and the reverse</li>
+                    your P&amp;L; hiding it here also hides it on the Dashboard, and the reverse. It follows the
+                    <strong>Rakeback</strong> switch on the Poker tab</li>
             </ul>
             <p>Below the figures are two tabs:</p>
             <ul>
@@ -851,8 +864,13 @@
                 <li><strong>Poker</strong> &ndash; A running P&amp;L chart for the period, then <strong>Live and online</strong>
                     and <strong>Time of day</strong> cards, and the list of sessions in it, each with its details, ratings,
                     notes and result. The two cards appear once some of your sessions have a location or a start time; they
-                    leave out promos and rakeback, which aren&rsquo;t played anywhere or at any time. When P&amp;L is hidden,
-                    the chart, the hourly rates and every result are hidden too</li>
+                    leave out promo and rakeback entries, which aren&rsquo;t played anywhere or at any time (rakeback
+                    logged on a session counts with that session). When P&amp;L is hidden, the chart, the hourly rates
+                    and every result are hidden too.
+                    <br>Once you have logged any rakeback, a <strong>Rakeback</strong> switch appears above the chart:
+                    <strong>Included</strong> (the default) counts it everywhere on the page, including rakeback entries
+                    in the hourly rate; <strong>Left out</strong> shows your results as if you had logged none, and hides
+                    rakeback entries from the list. The choice is remembered on that device</li>
             </ul>
             <p>Days before you set up your habits (for the first time, or again after resetting your tracking data) are not
                 counted anywhere: Stats, Tracking and the Dashboard show them as not tracked rather than missed. You can still

@@ -583,7 +583,7 @@ How to track:
 1. On the Dashboard, tap "Log a poker session" at the foot of the Today card - or, for another day, open Tracking, pick the day, and click "Log session" (plus icon) in the "Poker sessions" card
 2. Select game type and variant
 3. Optionally pick Live or Online under Location, and for a live session the Venue
-4. Enter session details. Hours played is required for cash games and tournaments; start time and (cash games only) hands played are optional
+4. Enter session details. A cash game needs hours played or hands played (either one, or both); a tournament needs hours played. Start time and rakeback are optional
 5. Add performance ratings and notes
 6. Save
 
@@ -593,22 +593,23 @@ On Tracking, each session is a row in that day's "Poker sessions" card showing t
 - **Date**: The day the session took place
 - **Location**: Optional - Live or Online. Tapping the selected one again clears it. A default can be set in Settings
 - **Venue**: Optional, live sessions only (the field appears when Live is picked) - the casino or card room. Typing suggests the member's own past venues, including for typos ("Meritt" suggests "Merit"); a different capitalisation or extra spaces are saved under the name already used. A new name is kept as typed, since nearby casinos can share names. There is no shared list of venues - each member's comes from their own sessions
-- **Start Time**: Optional - when the member started, on their own clock. The end time is worked out from the hours played (it is never typed), so a session past midnight needs nothing special
+- **Start Time**: Optional - when the member started, on their own clock. The end time is worked out from the hours played (it is never typed), so a session past midnight needs nothing special. A session logged in hands only has no end time
 - **Game Type**: NLH, PLO, PLO5c, PLO6c, Short Deck, HORSE, Razz, Stud, etc.
 - **Stakes/Big Blind**: Blind level
 - **Buy-in**: Total amount bought in
 - **Cash-out**: Amount cashed out
-- **Hours Played**: Session duration. Required for cash games and tournaments
-- **Hands Played**: Optional, cash games only. Cash sessions used to take hours OR hands; they now have a box for each. Older sessions logged in hands only show their hands, and need hours added if edited
+- **Hours Played**: Session duration. Required for tournaments. A cash session needs hours, hands or both. Only sessions with hours count towards the hourly rate (a hands-only session counts in the P&L, not the $/hr)
+- **Hands Played**: Cash games only. While both are empty the two boxes say "Or fill in hands" / "Or fill in hours"; once one is filled in, the other says "Optional". Saving with both empty gives "Please fill in the big blind, the result, and hours or hands played"
+- **Rakeback**: Optional, cash games and tournaments - rakeback the member can put against that session (instant rakeback, comps). Added to the session's result and shown in its details ("Rakeback $20"). Rakeback paid in one go for many sessions is better logged as a separate "Rakeback" entry; the same money should not be logged both ways
 - **Currency**: Session currency
-- **Promotions/Rakeback**: Additional earnings
+- **Promotions/Rakeback**: the "Rakeback" game type - a promotion or rakeback payout logged on its own, with no hours or place
 - **Performance Ratings**: Self-assessment (1-5) for Focus, Power, Discipline
 - **Notes**: Free-form session notes
 
 ### Poker Analytics
 Automatically calculated statistics:
 - Total P&L (profit/loss)
-- Hourly rate
+- Hourly rate (from the sessions that have hours; hands-only sessions are left out of it)
 - Session count
 - Total hours played
 - Win rate by game type
@@ -1302,9 +1303,10 @@ The old Home page is now the Dashboard. Top to bottom:
 - **Currency selector**: Dropdown with all currencies
 - **Big Blind input**: Number field (for cash games)
 - **Start Time**: Time field, optional (cash and tournaments). Under its label it shows when the session ended ("Ends 2:00 am next day") once hours are filled in
-- **Hours Played**: Number field, required (cash and tournaments)
-- **Hands Played**: Number field, optional (cash games)
+- **Hours Played**: Number field. Required for tournaments; for cash games, hours or hands (either)
+- **Hands Played**: Number field (cash games)
 - **Result input**: Profit/loss amount
+- **Rakeback**: Number field, optional (cash and tournaments), under Result / Hours Played
 - **Buy-ins/Cashes**: For tournaments
 - **Notes**: Multi-line text field
 - **Performance ratings**: Focus, Power, Discipline (1-5 each)
@@ -1328,7 +1330,7 @@ The old Overview page (/overview) now redirects to Stats. There are no Insights,
 - **Streak**: current day streak, counting back from today
 - **Days kept**: % of days in the period on which you kept your habits, "X of Y days", and the change vs the previous period. Today counts once it is kept, and days with none of the member's habits scheduled are left out
 - **Points**: points earned from habits in the period
-- **Poker P&L**: result for the period with hours and hourly rate. Eye icon hides/shows P&L (shared with the Dashboard setting)
+- **Poker P&L**: result for the period with hours and hourly rate (from sessions with hours). Eye icon hides/shows P&L (shared with the Dashboard setting). Follows the Rakeback switch on the Poker tab
 - Days before the member set up their habits (for the first time, or again after "Reset all tracking data") are not counted anywhere: not in "X of Y days", not as misses in the grids or target weeks/months, and they show as "–" (nothing scheduled) in Tracking's week strip and the Dashboard's Last 7 days. Such a day can still be logged in Tracking or from the Dashboard's Today card, and the history then starts from that day
 
 ### Habits Tab (default):
@@ -1346,8 +1348,9 @@ Three sections, the same as on Tracking, on the same columns (a column per day f
 - **Running P&L** chart for the period
 - **Live and online** card: a row each for Live, Online and "Not set", with sessions, hours, hourly rate and P&L
 - **Time of day** card: the same by when sessions started - Morning, Afternoon, Evening, Night, and "No start time"
-- The two cards only appear once some sessions in the period have a location / a start time, and they leave out promos and rakeback ("Rakeback not included"), so their rows can add up to less than the P&L tile
-- **Sessions** list: date, game ("Live cash · NLH", "Online tournament"), details (start-end time, hours, hands, big blind or buy-ins), Focus/Power/Discipline ratings, notes and result (newest first; "Show all" if there are many). The card header counts sessions, hours and hands
+- The two cards only appear once some sessions in the period have a location / a start time, and they leave out promo/rakeback entries ("Promo / rakeback entries left out"), so their rows can add up to less than the P&L tile. Rakeback logged on a session counts with that session
+- **Rakeback switch** ("Rakeback: Included | Left out"), above the chart, shown once the member has logged any rakeback. Included (default) counts all rakeback, with rakeback entries counting towards the hourly rate. Left out shows results as if no rakeback was logged: rakeback entries leave the list and the totals, and sessions show their result without their own rakeback. It also drives the Poker P&L tile. Remembered per device (browser), not per account
+- **Sessions** list: date, game ("Live cash · NLH", "Online tournament"), details (start-end time, hours, hands, big blind or buy-ins, rakeback), Focus/Power/Discipline ratings, notes and result (newest first; "Show all" if there are many). The card header counts sessions, hours and hands
 - When P&L is hidden, the chart, the hourly rates and every result are hidden too ("Show P&L" brings them back)
 
 ---
