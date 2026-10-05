@@ -558,7 +558,7 @@ How to track:
 - Tracking's Habits card names the day it shows ("Habits · Yesterday"). A day that hasn't come yet can't be ticked, but can still be planned as a day off or another day type
 - When every habit due on a day is done, Tracking's Habits card and the Dashboard's Today card show "All done"
 - Each tick saves as it is made. One that can't be saved stays on screen with "Not saved · Retry" beside the day's name; the app retries when the member comes back to it or the connection returns, or they tap "Retry" (see OFFLINE AND SAVING)
-- The Dashboard and Tracking move on to the new day at midnight even if the app was left open; Tracking stays on a day the member picked
+- The Dashboard and Tracking move on to the new day at midnight, or at the member's "Day ends at" time (Settings), even if the app was left open; Tracking stays on a day the member picked
 - Day type: the button in the corner of the Today card (and of Tracking's Habits card) shows what kind of day it is; tap it to switch to another habit set or mark a "Day off". "Reset day" at the foot of the same menu deletes everything logged that day
 - Goals can be reordered via drag-and-drop on the My Habits page. That order is used everywhere: within each Daily/Weekly/Monthly section on the Dashboard, Tracking and Stats, habits follow it
 
@@ -763,6 +763,7 @@ that period has reached), so you can look back at earlier months.
 - **Timezone**: searchable
 - **Date format**: DD/MM/YYYY or MM/DD/YYYY
 - **First day of the week**: any day, Sunday to Saturday. Changing it regroups the member's past weeks, so weekly results in Stats, and their streak, can change
+- **Day ends at**: midnight, or any hour up to noon, for members who play late. Until then the app still counts it as the day before: habits ticked and sessions logged go on the day they played, and after midnight the Dashboard shows "Your day ends at 4:00 am" (or whichever time) under the date
 - **Time format**: 12-hour or 24-hour
 
 ### Poker session defaults (Settings section; each is what a new session starts with)
@@ -1263,7 +1264,7 @@ The old Home page is now the Dashboard. Top to bottom:
 - **Habits card**: one card with Daily, Weekly and Monthly sections (weekly/monthly show "% elapsed"). Weekly and Monthly list their own habits first, then the weekly/monthly targets of daily habits as small tiles. Habits follow the My Habits order
 - A past day you tracked shows the habits it had then; a day you never tracked shows your current habits (see "Which habits a day shows")
 - **Day type button** (Habits card header): switch habit set, mark a Day off, or "Reset day" (deletes everything logged that day)
-- Opens on today and follows it past midnight; a day picked from the week strip stays until "Today" is tapped
+- Opens on today and follows it when the day ends (midnight, or the member's "Day ends at" time); a day picked from the week strip stays until "Today" is tapped
 - "Not saved · Retry" beside the day's name if a tick could not be saved; an "Error Saving" dialog also opens, with Retry, "Logout & Login Again" and Close
 
 ### Poker Sessions Card:
@@ -1594,6 +1595,7 @@ Settings with two or three options are button rows (one tap saves; on a phone th
 - **Timezone**: dialog with a search box (type to find a zone)
 - **Date format buttons**: DD/MM/YYYY / MM/DD/YYYY
 - **First day of the week**: opens a list of the seven days
+- **Day ends at**: opens a list: Midnight, each hour from 1:00 am to 11:00 am, then Noon
 - **Time format buttons**: 12-hour / 24-hour
 
 ### Tracking:
