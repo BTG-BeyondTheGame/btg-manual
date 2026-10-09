@@ -587,11 +587,13 @@ How to track:
 5. Add performance ratings and notes
 6. Save
 
+A new session starts as the member's last one did: its game type, Live/Online and game variants (from the latest session that had them), the big blind of their last cash game and the buy-in of their last tournament. Rakeback entries are skipped. A first-ever session starts as a cash game with nothing picked. On an event or series page the session starts as that event's game, and only Live/Online, variants and big blind come from the last session.
+
 On Tracking, each session is a row in that day's "Poker sessions" card showing the game, its details, the Focus/Power/Discipline ratings and the result; the card header shows the day's total. Click a session to edit or delete it.
 
 ### Session Details Fields
 - **Date**: The day the session took place
-- **Location**: Optional - Live or Online. Tapping the selected one again clears it. A default can be set in Settings
+- **Location**: Optional - Live or Online. Tapping the selected one again clears it. A new session starts with the last one used
 - **Venue**: Optional, live sessions only (the field appears when Live is picked) - the casino or card room. Typing suggests the member's own past venues, including for typos ("Meritt" suggests "Merit"); a different capitalisation or extra spaces are saved under the name already used. A new name is kept as typed, since nearby casinos can share names. There is no shared list of venues - each member's comes from their own sessions
 - **Start Time**: Optional - when the member started, on their own clock. The end time is worked out from the hours played (it is never typed), so a session past midnight needs nothing special. A session logged in hands only has no end time
 - **Game Type**: NLH, PLO, PLO5c, PLO6c, Short Deck, HORSE, Razz, Stud, etc.
@@ -766,12 +768,9 @@ that period has reached), so you can look back at earlier months.
 - **Day ends at**: midnight, or any hour up to noon, for members who play late. Until then the app still counts it as the day before: habits ticked and sessions logged go on the day they played, and after midnight the Dashboard shows "Your day ends at 4:00 am" (or whichever time) under the date
 - **Time format**: 12-hour or 24-hour
 
-### Poker session defaults (Settings section; each is what a new session starts with)
+### Poker sessions (Settings section)
 - **Currency**: For new sessions, and the currency Stats shows P&L in (searchable)
-- **Game type**: Cash or Tournament
-- **Game variants**: Preferred game types
-- **Location**: Live, Online or None
-- **Big blind / Buy-in**: what new cash / tournament sessions start with
+- There are no other poker defaults to set: a new session starts as the member's last one did (see Logging a Poker Session)
 
 ### Notification Settings
 - Enable/disable push notifications
@@ -1603,12 +1602,8 @@ Settings with two or three options are button rows (one tap saves; on a phone th
 - **Successful day threshold picker**: 0-90% in 10% steps. The share of a day's points that makes it a successful day. It decides which days show as full in the week strips on the Dashboard and Tracking pages, and how each day is shaded on Stats.
 - **Show habit icons switch**: Show/hide habit icons on the Tracking and My Habits pages
 
-### Poker session defaults:
+### Poker sessions:
 - **Currency**: dialog with a search box
-- **Game type buttons**: Cash / Tournament
-- **Game variants picker**: Multi-select with checkboxes; "Not set" when none
-- **Location buttons**: Live / Online / None
-- **Big blind / Buy-in**: open an amount dialog; "Not set" until set
 
 ### Account:
 - **"API keys"**: Navigate to PAT page
