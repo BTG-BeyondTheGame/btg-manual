@@ -701,6 +701,11 @@ per habit, not all or nothing. Someone you share with sees that habit's name and
 day-by-day progress on it. They do not see your other habits, your points, your poker
 results, or who else you share with.
 
+They see your days the way your own Stats shows them: a day off, or a day whose type leaves
+the habit out, is not counted against you, and hovering it says it was a day off or not one of
+that day's habits (never the name of the day type). If you change the habit, earlier days are
+judged by the habit as it was then.
+
 ### Sharing a habit
 1. Go to My Habits
 2. Click the people icon on the habit
@@ -732,7 +737,12 @@ They appear in the "Shared with me" panel, in two places:
 Colours are the same in both:
 - Green: completed
 - Red: was due that day and not completed
-- Grey: not applicable - not scheduled, still to come, or before it was shared with you
+- Grey: not applicable - not scheduled, a day off or a day type that leaves the habit out, marked not applicable, still to come, or before it was shared with you
+
+Each day is judged the way the member's own Stats judges it, by the habit as it was that day: a
+yes/no habit they have since turned into hours keeps the days they ticked. For a yes/no habit with
+a weekly or monthly target, the Dashboard line also says how far they are ("2/3 this week"),
+counted as their Stats counts it: days ticked so far on which the habit was due, not counting days off.
 
 On Stats the panel follows the period chosen at the top of the page (for a week or year, the month
 that period has reached), so you can look back at earlier months.
@@ -1464,8 +1474,9 @@ Ticking nobody makes the habit private again.
 - One block per member sharing with you, showing their name
 - **On Stats**: their shared habits, with a square per day of the month and a completed/total count; follows the period chosen at the top of Stats (for a week or year, the month it has reached)
 - **On the Dashboard**: one line per habit - what it asks for, a dot per day of the current week, and today's figure for counted habits. Shows 3 habits, with "Show N more" for the rest
-- Green = completed, Red = due and not completed, Grey = not applicable (not scheduled, still to come, before the habit was shared with you, or before the owner set up their habits - first time or after a reset)
-- Hovering a square or dot explains it
+- Green = completed, Red = due and not completed, Grey = not applicable (not scheduled, a day off, a day type that leaves the habit out, marked not applicable, still to come, before the habit was shared with you, or before the owner set up their habits - first time or after a reset)
+- Days are judged as on the owner's own Stats, by the habit as it was that day: a yes/no habit since turned into hours keeps the days ticked. A weekly or monthly count on a yes/no habit ("2/3 this week") counts days ticked so far on which the habit was due, not days off
+- Hovering a square or dot explains it ("day off", "not in that day's habits", ...); the name of the owner's day type is never shown
 - Each owner's days end when theirs do: if they set "Day ends at" to after midnight, their day stays open until then, so it isn't marked missed while they can still tick it
 - If nobody is sharing with you, it says so and links to Manage habits
 
